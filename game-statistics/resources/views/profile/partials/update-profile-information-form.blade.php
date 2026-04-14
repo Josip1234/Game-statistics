@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -45,6 +45,29 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div>
+            <label for="dbirth">Date of birth</label>
+            <input type="date" name="dbirth" id="dbirth" class="mt-1 block w-full" value="{{ old('dbirth',$user->dbirth?->format('Y-m-d')) }}">
+            @error('dbirth')
+                <p class="mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+        <div>
+            <label for="nickname">Nickname</label>
+            <input type="text" name="nickname" id="nickname" class="mt-1 block w-full" value="{{ old('nickname',$user->nickname) }}">
+            @error('nickname')
+                <p class="mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+        <div>
+            <label for="profilePicture">Profile picture</label>
+            <img src="{{ old('profilePicture',$user->profilePicture) }}" alt="profile_picture" class="mt-1 block w-full">
+            <input type="file" name="profilePicture" value="{{ old('profilePicture',$user->profilePicture) }}" class="mt-1 block w-full" id="profilePicture">
+            @error('profilePicture')
+                <p class="mt-2">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="flex items-center gap-4">
