@@ -22,9 +22,10 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 
-/public/build
+/public/build 
+/public/uploads
 /storage/pail
 .env.backup
 .env.production
 .phpactor.json
-auth.json
+auth.json 
