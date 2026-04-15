@@ -39,6 +39,8 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
         $request->user()->profilePicture=$picturePath;
+        //trebamo validirati uploadane filove smiju biti samo slike
+        //kreirati ću middleware
 
         $request->user()->save();
 
