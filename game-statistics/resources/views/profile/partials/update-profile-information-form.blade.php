@@ -63,7 +63,11 @@
         </div>
         <div>
             <label for="profilePicture">Profile picture</label>
+            @if(!empty($user->profilePicture))
             <img src="{{ old('profilePicture',$user->profilePicture) }}" alt="profile_picture" class="mt-1 block w-full">
+            @else
+            <p class="mt-2">Picture does not exists</p>
+            @endif
             <input type="file" name="profilePicture" value="{{ old('profilePicture',$user->profilePicture) }}" class="mt-1 block w-full" id="profilePicture">
             @error('profilePicture')
                 <p class="mt-2">{{ $message }}</p>
