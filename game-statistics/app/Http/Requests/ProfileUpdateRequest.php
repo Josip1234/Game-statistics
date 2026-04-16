@@ -28,7 +28,7 @@ class ProfileUpdateRequest extends FormRequest
             ],
             'dbirth'=>['required','date','before:today'],
             'nickname'=>['required','max:69','min:3','string'],
-            'profilePicture'=>['required'],
+            'profilePicture'=>['required','file','mimes:jpg,png,webp,gif,svg,jpeg,tiff,arw,cr2,raw,rw2'],
         ];
     }
 }
