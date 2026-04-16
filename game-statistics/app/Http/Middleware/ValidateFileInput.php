@@ -17,6 +17,7 @@ class ValidateFileInput
     {
         $file=$request->file('profilePicture');
         $extension=$file->getExtension();
+        echo var_dump($file);
         $allowedExtensions=[
               "jpg",
               "png",
@@ -34,7 +35,7 @@ class ValidateFileInput
         foreach ($allowedExtensions as $value) {
             if($extension===$value) $allowed=1; break;
         }
-        if($allowed!=1){
+        if((int)$allowed===0){
             abort(403,"This file extension cannot be uploaded.");
         }
         return $next($request);
