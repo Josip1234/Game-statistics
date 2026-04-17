@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
 
      Route::prefix("profile_game")->name("profile.game.")->controller(GameController::class)->middleware('auth')->group(function(){
         Route::get('/index','homepage')->name('homepage');
+        Route::get('/create','create')->name('new');
     });
 }); 
 

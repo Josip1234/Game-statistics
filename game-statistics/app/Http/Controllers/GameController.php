@@ -9,4 +9,7 @@ class GameController extends Controller
     public function homepage(){
         return view('profile.game.index');
     }
+    public function create(){
+        return view('profile.game.create');
+    }
 }
