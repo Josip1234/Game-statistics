@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('game', function (Blueprint $table) {
+        Schema::create('game', function (Blueprint $table) {
             $table->id();
-            
+            $table->string("name",255);
+            $table->string("yearOrRangeOfProduction",255)->nullable();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

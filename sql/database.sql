@@ -3,3 +3,4 @@ create user 'gamer'@'localhost' identified by 'gamer123';
 grant all privileges on game_statistics.* to 'gamer'@'localhost';
 use game_statistics;
 select * from users;
+drop table game;
