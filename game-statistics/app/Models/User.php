@@ -50,4 +50,8 @@ class User extends Authenticatable
             'dbirth'=>'date'
         ];
     }
+    //one user can have many games
+    public function games(){
+        $this->hasMany(Game::class);
+    }
 }
