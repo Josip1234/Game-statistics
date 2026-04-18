@@ -8,3 +8,4 @@ select g.id,g.name,g.yearOrRangeOfProduction,g.user_id,u.nickname from game_stat
 on g.user_id=u.id;
 select * from game;
 use game_statistics;
+
