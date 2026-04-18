@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SequelController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,12 @@ Route::middleware('auth')->group(function () {
         Route::get('{game}/edit','edit')->name('edit');
         Route::put('{game}/update','update')->name('update'); 
         Route::delete('{game}/delete','delete')->name('delete');
+    });
+
+    Route::prefix("game_sequel")->name("game.sequel.")->controller(SequelController::class)->middleware('auth')->group(function(){
+    Route::get('{game}/index','index')->name('homepage');
+    Route::get('{game}/create','create')->name('new');
+    Route::post('{game}/save','save')->name('save');
     });
 }); 
 

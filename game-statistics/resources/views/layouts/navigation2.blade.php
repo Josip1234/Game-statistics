@@ -12,11 +12,20 @@
                     <x-nav-link :href="route( 'profile.game.new' )" :active="request()->routeIs('profile.game.new')">
                         {{ __('New game') }}
                     </x-nav-link>
+                 @elseif(request()->routeIs('game.sequel.homepage'))
+                 <x-nav-link :href="route( 'game.sequel.new',$game )" :active="request()->routeIs('game.sequel.new')">
+                        {{ __('New sequel') }}
+                    </x-nav-link>
+                 @elseif(request()->routeIs('game.sequel.new')) 
+                    <x-nav-link :href="route( 'game.sequel.homepage',$game )" :active="request()->routeIs('game.sequel.homepage')">
+                        {{ __('Return to game sequal homepage') }}
+                    </x-nav-link>
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}
                     </x-nav-link>
                  @endif
+
              
                 </div>
             </div>

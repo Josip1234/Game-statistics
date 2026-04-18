@@ -28,7 +28,7 @@ class GameController extends Controller
     public function add(Request $request){
         $validated=$request->validate([
             'name'=>['required','max:255','min:2'],
-            'yearOrRangeOfProduction'=>['required','max:255','min:4'],
+            'yearOrRangeOfProduction'=>['required','min:4'],
             'user_id'=>['required']
         ]);
         Game::create($validated);
@@ -41,7 +41,7 @@ class GameController extends Controller
         public function update(Request $request,Game $game){
         $validated=$request->validate([
             'name'=>['required','max:255','min:2'],
-            'yearOrRangeOfProduction'=>['required','max:255','min:4'],
+            'yearOrRangeOfProduction'=>['required','min:4'],
             'user_id'=>['required']
         ]);
         $game->update($validated);

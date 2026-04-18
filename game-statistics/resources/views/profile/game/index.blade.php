@@ -45,6 +45,7 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form>
+                                    <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i></a>
                             
                             </td>                  
                         </tr>

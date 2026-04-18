@@ -16,4 +16,8 @@ class Game extends Model
     public function user(){
         $this->belongsTo(User::class);
     }
+    //one game can have more sequels
+    public function sequels(){
+        $this->hasMany(Sequel::class);
+    }
 }
