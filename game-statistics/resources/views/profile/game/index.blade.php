@@ -15,6 +15,46 @@
                             {{ session('status') }}
                      </div>
                      @endif
+                      <div class="overflow-x-auto">
+                <table class="min-w-full border">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="border px-3 py-2 text-left">ID</th>
+                            <th class="border px-3 py-2 text-left">Game name</th>
+                            <th class="border px-3 py-2 text-left">Year of production</th>
+                            <th class="border px-3 py-2 text-left">User</th>
+                            <th class="border px-3 py-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($games as $game)
+                        <tr>
+                            <td class="border px-3 py-2">{{ $game->id }}</td>
+                            <td class="border px-3 py-2">{{ $game->name }}</td>
+                            <td class="border px-3 py-2">{{ $game->yearOrRangeOfProduction }}</td>
+                            <td class="border px-3 py-2">{{ $game->nickname}}</td>            
+                            <td class="border px-3 py-2"><a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a>
+                            
+                                    <form method="POST"
+                                                      action="{{ route('profile.game.delete', $game) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm game deletion');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
+                            
+                            </td>                  
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="mt-6 flex justify-center">
+                        {{ $games->links() }}
+                </div>
+            </div>
                 </div>
             </div>
         </div>

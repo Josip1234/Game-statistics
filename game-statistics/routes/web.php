@@ -21,6 +21,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/index','homepage')->name('homepage');
         Route::get('/create','create')->name('new'); 
         Route::post('/add','add')->name('add');
+        Route::get('{game}/edit','edit')->name('edit');
+        Route::put('{game}/update','update')->name('update'); 
+        Route::delete('{game}/delete','delete')->name('delete');
     });
 }); 
 
