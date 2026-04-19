@@ -28,5 +28,28 @@ class SequelController extends Controller
         ]);
         Sequel::create($validated);
         return redirect()->route('game.sequel.homepage',$game)->with('status','Successfully inserted new sequel.');
+    } 
+    public function edit(Game $game, Sequel $sequel){
+        return view("profile.sequel.edit",[
+            'game'=>$game,
+            'sequel'=>$sequel
+        ]);
+    }
+
+       public function update(Request $request, Game $game, Sequel $sequel){
+        $validated=$request->validate([
+            'game_id'=>['required','numeric'],
+            'name'=>['required','min:2','max:50'],
+            'game_version'=>['nullable','min:3','max:50'],
+            'version_history'=>['nullable','min:3'],
+            'publish_year'=>['required','numeric'],
+        ]);
+        $sequel->update($validated);
+        return redirect()->route('game.sequel.homepage',$game)->with('status','Successfully updated sequel.');
+    } 
+    public function delete(Game $game, Sequel $sequel){
+        $sequel->delete();
+        return redirect()->route('game.sequel.homepage',$game)->with('status','Successfully deleted sequel.');
+
     }
 }

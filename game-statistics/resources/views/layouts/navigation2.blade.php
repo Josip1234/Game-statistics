@@ -16,7 +16,7 @@
                  <x-nav-link :href="route( 'game.sequel.new',$game )" :active="request()->routeIs('game.sequel.new')">
                         {{ __('New sequel') }}
                     </x-nav-link>
-                 @elseif(request()->routeIs('game.sequel.new')) 
+                 @elseif(request()->routeIs('game.sequel.new') || request()->routeIs('game.sequel.edit')) 
                     <x-nav-link :href="route( 'game.sequel.homepage',$game )" :active="request()->routeIs('game.sequel.homepage')">
                         {{ __('Return to game sequal homepage') }}
                     </x-nav-link>

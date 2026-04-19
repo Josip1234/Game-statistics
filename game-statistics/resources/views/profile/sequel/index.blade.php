@@ -39,7 +39,19 @@
                               <td class="border px-3 py-2">{{ $sequel->version_history}}</td>   
                                           
                             <td class="border px-3 py-2">
-                            
+                                <a href="{{ route('game.sequel.edit',[$game,$sequel]) }}"><i class="bi bi-pencil-square"></i></a>
+
+                                    <form method="POST"
+                                                      action="{{ route('game.sequel.delete', [$game,$sequel]) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm sequel deletion');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
+                                    
                             </td>                  
                         </tr>
                         @endforeach
