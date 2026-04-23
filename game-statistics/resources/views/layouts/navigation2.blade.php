@@ -16,10 +16,19 @@
                  <x-nav-link :href="route( 'game.sequel.new',$game )" :active="request()->routeIs('game.sequel.new')">
                         {{ __('New sequel') }}
                     </x-nav-link>
+                       
                  @elseif(request()->routeIs('game.sequel.new') || request()->routeIs('game.sequel.edit')) 
                     <x-nav-link :href="route( 'game.sequel.homepage',$game )" :active="request()->routeIs('game.sequel.homepage')">
                         {{ __('Return to game sequal homepage') }}
                     </x-nav-link>
+                 @elseif(request()->routeIs('sequel.statistics.seqCreate'))
+                        <x-nav-link :href="route( 'sequel.statistics.seqHomepage',$sequel )" :active="request()->routeIs('sequel.statistics.seqHomepage')">
+                        {{ __('Return to sequal statistic homepage') }}
+                    </x-nav-link>  
+                @elseif(request()->routeIs('sequel.statistics.seqHomepage'))
+                        <x-nav-link :href="route( 'sequel.statistics.seqCreate',$sequel )" :active="request()->routeIs('sequel.statistics.seqCreate')">
+                        {{ __('New sequel statistic') }}
+                    </x-nav-link> 
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

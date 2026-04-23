@@ -16,6 +16,10 @@ class Sequel extends Model
         ];
     //1 sequel belogs to 1 game
     public function game(){
-        $this->belongsTo(Game::class);
+       return $this->belongsTo(Game::class);
+    }
+    //one sequel can belong to one statistics
+    public function statistic(){
+        return $this->hasMany(Statistics::class,"sequel_id","id");
     }
 }

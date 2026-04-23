@@ -20,4 +20,9 @@ class Game extends Model
     public function sequels(){
         $this->hasMany(Sequel::class);
     }
+    //one game can have more statistics
+    public function statistics(){
+        $this->belongsTo(Statistics::class);
+    }
+
 }

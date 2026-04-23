@@ -51,7 +51,7 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form>
-                                    
+                                    <a href="{{ route('sequel.statistics.seqHomepage',$sequel) }}"><i class="bi bi-123"></i></a>
                             </td>                  
                         </tr>
                         @endforeach

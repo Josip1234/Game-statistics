@@ -36,6 +36,12 @@ Route::middleware('auth')->group(function () {
             Route::put('{game}/{sequel}/update','update')->name('update');
             Route::delete('{game}/{sequel}/delete','delete')->name('delete');
     });
+
+    Route::prefix("sequel_stat")->name("sequel.statistics.")->controller(StatisticsController::class)->middleware('auth')->group(function(){
+         Route::get('{sequel}/index','seqIndex')->name('seqHomepage');
+         Route::get('{sequel}/create','seqNew')->name('seqCreate'); 
+         Route::post('{sequel}/save','seqSave')->name('seqSave');
+    });
   
 }); 
 
