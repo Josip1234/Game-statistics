@@ -3,6 +3,7 @@
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SequelController;
+use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,13 +29,14 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix("game_sequel")->name("game.sequel.")->controller(SequelController::class)->middleware('auth')->group(function(){
-    Route::get('{game}/index','index')->name('homepage');
-    Route::get('{game}/create','create')->name('new');
-    Route::post('{game}/save','save')->name('save');
-    Route::get('{game}/{sequel}/edit','edit')->name('edit');
-    Route::put('{game}/{sequel}/update','update')->name('update');
-    Route::delete('{game}/{sequel}/delete','delete')->name('delete');
+            Route::get('{game}/index','index')->name('homepage');
+            Route::get('{game}/create','create')->name('new');
+            Route::post('{game}/save','save')->name('save');
+            Route::get('{game}/{sequel}/edit','edit')->name('edit');
+            Route::put('{game}/{sequel}/update','update')->name('update');
+            Route::delete('{game}/{sequel}/delete','delete')->name('delete');
     });
+  
 }); 
 
  
