@@ -37,8 +37,8 @@
                             <td class="border px-3 py-2">{{ $stat->id }}</td>
                             <td class="border px-3 py-2">{{ $stat->game_progress }}</td>
                             <td class="border px-3 py-2">{{ $stat->hours_played }}</td>
-                            <td class="border px-3 py-2">{{ $stat->started_playing }}</td>
-                            <td class="border px-3 py-2">{{ $stat->ended_playing }}</td>
+                            <td class="border px-3 py-2">{{ ($stat->started_playing===null)?"Unknown":$stat->started_playing }}</td>
+                            <td class="border px-3 py-2">{{ $stat->ended_playing?->format("d.m.Y") }}</td>
                             <td class="border px-3 py-2">{{ $stat->sequels["name"]; }}</td>
                         </tr>
                         @endforeach
