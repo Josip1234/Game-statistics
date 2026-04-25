@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function () {
          Route::get('{sequel}/index','seqIndex')->name('seqHomepage');
          Route::get('{sequel}/create','seqNew')->name('seqCreate'); 
          Route::post('{sequel}/save','seqSave')->name('seqSave');
+         Route::get('{sequel}/{statistics}/seqEdit','seqEdit')->name('seqEdit');
+         Route::put('{sequel}/{statistics}/seqStore','seqStore')->name('seqStore');
+         Route::delete('{sequel}/{statistics}/seqDelete','seqDelete')->name('seqDelete');
     });
   
 }); 

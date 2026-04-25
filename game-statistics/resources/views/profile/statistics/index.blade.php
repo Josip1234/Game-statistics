@@ -37,9 +37,28 @@
                             <td class="border px-3 py-2">{{ $stat->id }}</td>
                             <td class="border px-3 py-2">{{ $stat->game_progress }}</td>
                             <td class="border px-3 py-2">{{ $stat->hours_played }}</td>
-                            <td class="border px-3 py-2">{{ ($stat->started_playing===null)?"Unknown":$stat->started_playing }}</td>
+                            <td class="border px-3 py-2">{{ ($stat->started_playing===null)?"Unknown":$stat->started_playing?->format("d.m.Y") }}</td>
                             <td class="border px-3 py-2">{{ $stat->ended_playing?->format("d.m.Y") }}</td>
                             <td class="border px-3 py-2">{{ $stat->sequels["name"]; }}</td>
+                            <td class="border px-3 py-2"><a href="{{ route('sequel.statistics.seqEdit',[$sequel,$stat]) }}"><i class="bi bi-pencil-square"></i>
+                            
+
+                                
+                                    <form method="POST"
+                                                      action="{{ route('sequel.statistics.seqDelete',[$sequel,$stat]) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm sequel stats deletion?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
+
+
+                            
+                            
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

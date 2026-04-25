@@ -8,4 +8,5 @@ select g.id,g.name,g.yearOrRangeOfProduction,g.user_id,u.nickname from game_stat
 on g.user_id=u.id;
 select * from game;
 use game_statistics;
-
+-- need to add in table games additional field and 1 char character 1 or 0 to check if game have sequel if game have sequel 
+-- action for sequel will be printed in game index otherwise actions for game statistics will be printed

@@ -21,7 +21,7 @@
                     <x-nav-link :href="route( 'game.sequel.homepage',$game )" :active="request()->routeIs('game.sequel.homepage')">
                         {{ __('Return to game sequal homepage') }}
                     </x-nav-link>
-                 @elseif(request()->routeIs('sequel.statistics.seqCreate'))
+                 @elseif(request()->routeIs('sequel.statistics.seqCreate') || request()->routeIs('sequel.statistics.seqEdit'))
                         <x-nav-link :href="route( 'sequel.statistics.seqHomepage',$sequel )" :active="request()->routeIs('sequel.statistics.seqHomepage')">
                         {{ __('Return to sequal statistic homepage') }}
                     </x-nav-link>  
