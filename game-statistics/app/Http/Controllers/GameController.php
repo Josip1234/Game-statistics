@@ -14,6 +14,7 @@ class GameController extends Controller
             'game.id',
             'game.name',
             'game.yearOrRangeOfProduction',
+            'game.have_sequel',
             'users.nickname')
          ->orderBy('game.id')
          ->paginate(5);
@@ -29,7 +30,8 @@ class GameController extends Controller
         $validated=$request->validate([
             'name'=>['required','max:255','min:2'],
             'yearOrRangeOfProduction'=>['required','min:4'],
-            'user_id'=>['required']
+            'user_id'=>['required'],
+            'have_sequel'=>['nullable','numeric']
         ]);
         Game::create($validated);
         return redirect()->route('profile.game.homepage')->with('status','New game successfully added.');
@@ -42,7 +44,8 @@ class GameController extends Controller
         $validated=$request->validate([
             'name'=>['required','max:255','min:2'],
             'yearOrRangeOfProduction'=>['required','min:4'],
-            'user_id'=>['required']
+            'user_id'=>['required'],
+            'have_sequel'=>['nullable','numeric']
         ]);
         $game->update($validated);
         return redirect()->route('profile.game.homepage')->with('status','Game successfully updated.');

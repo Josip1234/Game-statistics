@@ -23,6 +23,7 @@
                             <th class="border px-3 py-2 text-left">Game name</th>
                             <th class="border px-3 py-2 text-left">Year of production</th>
                             <th class="border px-3 py-2 text-left">User</th>
+                            <th class="border px-3 py-2 text-left">Sequel?</th>
                             <th class="border px-3 py-2 text-left">Actions</th>
                         </tr>
                     </thead>
@@ -32,7 +33,8 @@
                             <td class="border px-3 py-2">{{ $game->id }}</td>
                             <td class="border px-3 py-2">{{ $game->name }}</td>
                             <td class="border px-3 py-2">{{ $game->yearOrRangeOfProduction }}</td>
-                            <td class="border px-3 py-2">{{ $game->nickname}}</td>            
+                            <td class="border px-3 py-2">{{ $game->nickname}}</td>   
+                            <td class="border px-3 py-2">{{ ($game->have_sequel===1)?"Have sequel":"No sequel"; }}</td>         
                             <td class="border px-3 py-2"><a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a>
                             
                                     <form method="POST"
@@ -45,7 +47,10 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form>
-                                    <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i></a>
+                                                @if($game->have_sequel===1)
+                                                          <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i></a>
+                                                @endif
+                              
                             
                             </td>                  
                         </tr>

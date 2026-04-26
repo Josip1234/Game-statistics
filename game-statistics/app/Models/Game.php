@@ -10,7 +10,11 @@ class Game extends Model
     protected $fillable = [
         "name",
         "yearOrRangeOfProduction",
-        'user_id'
+        'user_id',
+        'have_sequel'
+    ];
+    protected $casts = [
+        'have_sequel'=>['integer']
     ];
     //one game belongs to one user
     public function user(){

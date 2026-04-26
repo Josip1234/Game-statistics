@@ -25,6 +25,17 @@
             <x-input-error :messages="$errors->get('yearOrRangeOfProduction')" class="mt-2" />
         </div>
 
+          <div>
+            <label for="have_sequel" class="block font-medium text-sm text-gray-700">Choose mark of sequel</label>
+            <select name="have_sequel" id="have_sequel" class="mt-1 block w-full">
+                <option value="0" @selected(old('have_sequel',$game->have_sequel)==0)>No sequel</option>
+                <option value="1" @selected(old('have_sequel',$game->have_sequel)==1)>Has sequel</option>
+            </select>
+            @error('have_sequel')
+                <p class="mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
          <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
         <div class="flex items-center gap-4">
