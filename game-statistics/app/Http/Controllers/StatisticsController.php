@@ -87,4 +87,33 @@ class StatisticsController extends Controller
         Statistics::create($validated);
         return redirect()->route("game.statistics.gamStIndex",$game)->with('status','Successfully inserted new game statistic, with no sequel.');
     }
+
+     public function gamEdit(Game $game,Statistics $statistics){
+        return view("profile.statistics.edit",[
+            'game'=>$game,
+            'statistics'=>$statistics
+        ]);
+    }
+
+        public function gamStore(Game $game, Statistics $statistics, Request $request){
+        $validated=$request->validate([
+            'game_progress'=>['required','max:50','min:2'],
+            'hours_played'=>['required','min:0'],
+            //started playing must be before or equal to end playing
+            'started_playing'=>['required','date','before_or_equal:'.$request->input('ended_playing')],
+            //end playing must be after or equal started playing
+            'ended_playing'=>['required','date','after_or_equal:'.$request->input('started_playing')],
+            'sequel_id'=>['nullable'],
+            'game_id'=>['required'],
+        ]);
+        $statistics->update($validated);
+        return redirect()->route("game.statistics.gamStIndex",$game)->with('status','Successfully updated game statistics, with no sequel.');
+    }
+
+
+   public function gamDelete(Game $game, Statistics $statistics){
+        $statistics->delete();
+        return redirect()->route("game.statistics.gamStIndex",$game)->with('status','Statistic successfully deleted.');
+    }
+
 }
