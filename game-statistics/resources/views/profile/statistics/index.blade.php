@@ -1,9 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight"> 
+            @if(request()->routeIs('game.statistics.gamStIndex')) 
+            {{ __('Game statistics homepage') }}
+               {{ __('Game name:') }}
+            {{ $game->name }}
+            @else
             {{ __('Sequel statistics homepage') }}
                {{ __('Game name:') }}
             {{ $sequel->name }}
+            @endif
         </h2>
     </x-slot>
 
@@ -26,7 +32,11 @@
                             <th class="border px-3 py-2 text-left">Hours Played</th>
                             <th class="border px-3 py-2 text-left">Started Playing</th>
                             <th class="border px-3 py-2 text-left">Ended Playing</th>
+                            @if(request()->routeIs('game.statistics.gamStIndex')) 
+                              <th class="border px-3 py-2 text-left">Game name</th>
+                            @else
                             <th class="border px-3 py-2 text-left">Sequel name</th>
+                            @endif
                             <th class="border px-3 py-2 text-left">Actions</th>
                         </tr>
                     </thead>
@@ -39,6 +49,9 @@
                             <td class="border px-3 py-2">{{ $stat->hours_played }}</td>
                             <td class="border px-3 py-2">{{ ($stat->started_playing===null)?"Unknown":$stat->started_playing?->format("d.m.Y") }}</td>
                             <td class="border px-3 py-2">{{ $stat->ended_playing?->format("d.m.Y") }}</td>
+                              @if(request()->routeIs('game.statistics.gamStIndex'))  
+                                <td class="border px-3 py-2">{{ $stat->games["name"]; }}</td>
+                              @else 
                             <td class="border px-3 py-2">{{ $stat->sequels["name"]; }}</td>
                             <td class="border px-3 py-2"><a href="{{ route('sequel.statistics.seqEdit',[$sequel,$stat]) }}"><i class="bi bi-pencil-square"></i>
                             
@@ -54,16 +67,15 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form>
-
-
-                            
-                            
+                                    
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
                 <div class="mt-6 flex justify-center">
+                    
                         {{ $statistics->links() }}
                 </div>
             </div>

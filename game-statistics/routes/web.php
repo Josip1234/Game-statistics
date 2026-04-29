@@ -44,6 +44,14 @@ Route::middleware('auth')->group(function () {
          Route::get('{sequel}/{statistics}/seqEdit','seqEdit')->name('seqEdit');
          Route::put('{sequel}/{statistics}/seqStore','seqStore')->name('seqStore');
          Route::delete('{sequel}/{statistics}/seqDelete','seqDelete')->name('seqDelete');
+    }); 
+    Route::prefix("game_stat")->name('game.statistics.')->controller(StatisticsController::class)->middleware('auth')->group(function(){
+        Route::get('{game}/index','gamStIndex')->name('gamStIndex');
+        Route::get('{game}/create','gamStNew')->name('gamStNew');
+        Route::post('{game}/save','gamSave')->name('gamSave');
+        Route::get('{game}/{statistics}/gamEdit','gamEdit')->name('gamEdit');
+        Route::put('{game}/{statistics}/gamStore','gamStore')->name('gamStore');
+        Route::delete('{game}/{statistics}/gamDelete','gamDelete')->name('gamDelete');
     });
   
 }); 

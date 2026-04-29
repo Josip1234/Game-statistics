@@ -48,7 +48,9 @@
                                                     </button>
                                                 </form>
                                                 @if($game->have_sequel===1)
-                                                          <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i></a>
+                                                   <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i></a>
+                                                @else 
+                                                   <a href="{{ route('game.statistics.gamStIndex',$game) }}"><i class="bi bi-arrow-bar-right"></i><i class="bi bi-controller"></i><i class="bi bi-123"></i></a>
                                                 @endif
                               
                             

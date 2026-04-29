@@ -28,6 +28,14 @@
                 @elseif(request()->routeIs('sequel.statistics.seqHomepage'))
                         <x-nav-link :href="route( 'sequel.statistics.seqCreate',$sequel )" :active="request()->routeIs('sequel.statistics.seqCreate')">
                         {{ __('New sequel statistic') }}
+                    </x-nav-link>  
+                 @elseif(request()->routeIs('game.statistics.gamStIndex'))
+                    <x-nav-link :href="route( 'game.statistics.gamStNew',$game )" :active="request()->routeIs('game.statistics.gamStIndex')">
+                        {{ __('New game statistic') }}
+                    </x-nav-link>  
+                 @elseif(request()->routeIs('game.statistics.gamStNew') || request()->routeIs('game.statistics.gamEdit'))
+                    <x-nav-link :href="route( 'game.statistics.gamStIndex',$game )" :active="request()->routeIs('game.statistics.gamStNew')">
+                        {{ __('Back to gaming statistic homepage') }}
                     </x-nav-link> 
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">

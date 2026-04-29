@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('New sequel statistics') }} 
+              @if(request()->routeIs('game.statistics.gamStNew'))
+              {{ __('New game statistics') }}
+              @else
+                {{ __('New sequel statistics') }}
+                @endif 
         </h2>
     </x-slot>
 
@@ -10,7 +14,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                      @include('layouts.navigation2')
+                      @if(request()->routeIs('game.statistics.gamStNew'))
+                         <form method="post" action="{{ route('game.statistics.gamSave',$game) }}" class="mt-6 space-y-6">
+                      @else 
                        <form method="post" action="{{ route('sequel.statistics.seqSave',$sequel) }}" class="mt-6 space-y-6">
+                      @endif
                     @csrf
         <div>
             <x-input-label for="game_progress" :value="__('Insert game progress')" />
@@ -39,8 +47,11 @@
                 <p class="mt-2">{{ $message }}</p>
             @enderror
         </div>
-
-        <input type="hidden" name="sequel_id" value="{{ $sequel->id }}">
+           @if(request()->routeIs('game.statistics.gamStNew'))
+            <input type="hidden" name="game_id" value="{{ $game->id }}">
+           @else
+            <input type="hidden" name="sequel_id" value="{{ $sequel->id }}">
+           @endif
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
