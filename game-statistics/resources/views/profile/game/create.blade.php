@@ -33,7 +33,22 @@
             @error('have_sequel')
                 <p class="mt-2">{{ $message }}</p>
             @enderror
+        </div>  
+
+
+           <div>
+            <label for="genre" class="block font-medium text-sm text-gray-700">Select game genre</label>
+            <select name="genre_id" id="genre" class="mt-1 block w-full">
+                @foreach ($genres as $genre)
+                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                @endforeach
+            </select>
+            @error('genre_id')
+                <p class="mt-2">{{ $message }}</p>
+            @enderror
         </div>
+
+
 
          <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 

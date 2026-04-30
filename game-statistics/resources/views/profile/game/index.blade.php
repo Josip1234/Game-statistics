@@ -36,7 +36,14 @@
                             <td class="border px-3 py-2">{{ $game->yearOrRangeOfProduction }}</td>
                             <td class="border px-3 py-2">{{ $game->nickname}}</td>   
                             <td class="border px-3 py-2">{{ ($game->have_sequel===1)?"Have sequel":"No sequel"; }}</td>  
-                            <td class="border px-3 py-2">{{ ($game->name===null)?"Genre not defined":$game->name}}</td>       
+                            <td class="border px-3 py-2">
+                             @if($game->genre_id===null)
+                                {{ "No genre defined" }}
+                             @else
+                                 {{ $game->genre->name }}
+                             @endif    
+                            
+                            </td>       
                             <td class="border px-3 py-2"><a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a>
                             
                                     <form method="POST"

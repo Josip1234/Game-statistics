@@ -32,7 +32,7 @@ class Game extends Model
     }
     //game can have one genre
     public function genre(){
-        return $this->belongsTo(Genre::class,"genre_id","id");
+        return $this->belongsTo(Genre::class,'genre_id','id');
     }
 
 }
