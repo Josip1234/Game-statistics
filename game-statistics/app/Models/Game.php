@@ -11,10 +11,12 @@ class Game extends Model
         "name",
         "yearOrRangeOfProduction",
         'user_id',
-        'have_sequel'
+        'have_sequel',
+        'genre_id'
     ];
     protected $casts = [
-        'have_sequel'=>['integer']
+        'have_sequel'=>['integer'],
+        'genre_id'=>['integer']
     ];
     //one game belongs to one user
     public function user(){
@@ -27,6 +29,10 @@ class Game extends Model
     //one game can have more statistics
     public function statistics(){
         $this->belongsTo(Statistics::class);
+    }
+    //game can have one genre
+    public function genre(){
+        return $this->belongsTo(Genre::class,"genre_id","id");
     }
 
 }

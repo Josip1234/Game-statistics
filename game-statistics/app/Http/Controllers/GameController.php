@@ -9,10 +9,10 @@ use App\Models\User;
 class GameController extends Controller
 {
     public function homepage(){ 
-        $games=Game::join('users','game.user_id','=','users.id')
+        $games=Game::with('genre')->join('users','game.user_id','=','users.id')
         ->select(
             'game.id',
-            'game.name',
+            'game.name as gn',
             'game.yearOrRangeOfProduction',
             'game.have_sequel',
             'users.nickname')

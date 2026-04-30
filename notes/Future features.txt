@@ -1,0 +1,6 @@
+in future versions if game need to have multiple genres, 
+we need additional table which will have id from genre and 
+id from game to have M:M connection 
+for now, if game has multiple genres, 
+we can mark it as mixed or something like that
+     
