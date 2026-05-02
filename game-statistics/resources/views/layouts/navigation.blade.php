@@ -18,6 +18,10 @@
                       <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Gaming homepage') }}
                     </x-nav-link>
+                  <x-nav-link :href="route( 'game.genre.genGmIndex' )" :active="request()->routeIs('game.genre.genGmIndex')">
+                        {{ __('Game genre homepage') }}
+                    </x-nav-link>
+                       
                 </div>
             </div>
 

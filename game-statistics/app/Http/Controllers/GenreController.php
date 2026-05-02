@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    public function genGmIndex(Game $game){
+    public function genGmIndex(){
         $genres=Genre::orderBy('id')->paginate(5);
         return view("profile.genre.index",
-        ["game"=>$game,
+        [
         "genres"=>$genres
         ]);
     }

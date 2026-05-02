@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('{game}/{statistics}/gamDelete','gamDelete')->name('gamDelete');
     });
     Route::prefix("game_genre")->name('game.genre.')->controller(GenreController::class)->middleware('auth')->group(function(){
-        Route::get('{game}/index','genGmIndex')->name('genGmIndex');
+        Route::get('/index','genGmIndex')->name('genGmIndex');
     });
   
 }); 

@@ -37,6 +37,8 @@
                     <x-nav-link :href="route( 'game.statistics.gamStIndex',$game )" :active="request()->routeIs('game.statistics.gamStNew')">
                         {{ __('Back to gaming statistic homepage') }}
                     </x-nav-link> 
+                 @elseif(request()->routeIs('game.genre.genGmIndex'))
+                     
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

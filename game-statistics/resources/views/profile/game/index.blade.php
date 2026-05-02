@@ -56,7 +56,7 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('game.genre.genGmIndex',$game) }}">Game genre homepage</a>
+                                               
 
                                                 @if($game->have_sequel===1)
                                                    <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i></a>
