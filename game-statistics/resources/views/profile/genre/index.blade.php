@@ -33,6 +33,21 @@
                             <td class="border px-3 py-2">
                                 <a href="{{ route('game.genre.genEdit',$genre) }}"><i class="bi bi-pencil-square"></i>
 
+
+
+
+                                    
+                                    <form method="POST"
+                                                      action="{{ route('game.genre.genDelete', $genre) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm genre deletion');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
+
                             </td>
                                         
                         </tr>

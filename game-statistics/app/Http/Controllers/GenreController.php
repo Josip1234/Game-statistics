@@ -37,4 +37,8 @@ class GenreController extends Controller
         $genre->update($validated);
         return redirect()->route('game.genre.genGmIndex')->with('status','Successfully updated genre.');
     }
+    public function genDelete(Genre $genre){
+        $genre->delete();
+          return redirect()->route('game.genre.genGmIndex')->with('status','Genre successfully deleted.');
+    }
 }
