@@ -41,7 +41,7 @@
                      <x-nav-link :href="route( 'game.genre.genNew' )">
                         {{ __('Add new genre') }}
                     </x-nav-link> 
-                 @elseif(request()->routeIs('game.genre.genNew')) 
+                 @elseif(request()->routeIs('game.genre.genNew') || request()->routeIs('game.genre.genEdit')) 
                     <x-nav-link :href="route( 'game.genre.genGmIndex' )">
                         {{ __('Back to the genre homepage') }}
                     </x-nav-link>

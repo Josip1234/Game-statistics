@@ -58,6 +58,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/index','genGmIndex')->name('genGmIndex');
         Route::get('/new','genNew')->name('genNew');
         Route::post('/store','genStore')->name('store');
+        Route::get('{genre}/edit','genEdit')->name('genEdit');
+        Route::put('{genre}/update','genUpdate')->name('genUpdate');
     });
   
 }); 
