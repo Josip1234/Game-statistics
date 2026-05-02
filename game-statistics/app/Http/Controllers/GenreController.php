@@ -14,5 +14,15 @@ class GenreController extends Controller
         [
         "genres"=>$genres
         ]);
+    } 
+    public function genNew(){
+        return view("profile.genre.new");
+    }
+    public function genStore(Request $request){
+        $validated=$request->validate([
+            "name"=>['required','max:50','min:3']
+        ]);
+        Genre::create($validated);
+        return redirect()->route('game.genre.genGmIndex')->with('status','Added new game genre.');
     }
 }

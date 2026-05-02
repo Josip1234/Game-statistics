@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
     });
     Route::prefix("game_genre")->name('game.genre.')->controller(GenreController::class)->middleware('auth')->group(function(){
         Route::get('/index','genGmIndex')->name('genGmIndex');
+        Route::get('/new','genNew')->name('genNew');
+        Route::post('/store','genStore')->name('store');
     });
   
 }); 
