@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SequelController;
 use App\Http\Controllers\StatisticsController;
@@ -52,6 +53,9 @@ Route::middleware('auth')->group(function () {
         Route::get('{game}/{statistics}/gamEdit','gamEdit')->name('gamEdit');
         Route::put('{game}/{statistics}/gamStore','gamStore')->name('gamStore');
         Route::delete('{game}/{statistics}/gamDelete','gamDelete')->name('gamDelete');
+    });
+    Route::prefix("game_genre")->name('game.genre.')->controller(GenreController::class)->middleware('auth')->group(function(){
+        Route::get('{game}/index','genGmIndex')->name('genGmIndex');
     });
   
 }); 
