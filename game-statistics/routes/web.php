@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SequelController;
 use App\Http\Controllers\StatisticsController;
@@ -61,6 +62,9 @@ Route::middleware('auth')->group(function () {
         Route::get('{genre}/edit','genEdit')->name('genEdit');
         Route::put('{genre}/update','genUpdate')->name('genUpdate'); 
         Route::delete('{genre}/delete','genDelete')->name('genDelete');
+    });
+    Route::prefix("game_platform")->name('game.platform.')->controller(PlatformController::class)->middleware('auth')->group(function(){
+        Route::get('/index','index')->name('index');
     });
   
 }); 

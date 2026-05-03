@@ -12,7 +12,8 @@ class Game extends Model
         "yearOrRangeOfProduction",
         'user_id',
         'have_sequel',
-        'genre_id'
+        'genre_id',
+        'platform_id'
     ];
     protected $casts = [
         'have_sequel'=>['integer'],
@@ -33,6 +34,10 @@ class Game extends Model
     //game can have one genre
     public function genre(){
         return $this->belongsTo(Genre::class,'genre_id','id');
+    }
+    //one game belongs to one platform
+    public function platform(){
+        return $this->belongsTo(Platform::class,'platform_id','id');
     }
 
 }
