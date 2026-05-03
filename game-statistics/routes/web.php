@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function () {
     });
     Route::prefix("game_platform")->name('game.platform.')->controller(PlatformController::class)->middleware('auth')->group(function(){
         Route::get('/index','index')->name('index');
+        Route::get('/new','create')->name('create');
+        Route::post('/store','store')->name('store');
     });
   
 }); 

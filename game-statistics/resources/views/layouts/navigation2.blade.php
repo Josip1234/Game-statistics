@@ -45,6 +45,14 @@
                     <x-nav-link :href="route( 'game.genre.genGmIndex' )">
                         {{ __('Back to the genre homepage') }}
                     </x-nav-link>
+                 @elseif(request()->routeIs('game.platform.index'))
+                     <x-nav-link :href="route( 'game.platform.create' )">
+                        {{ __('New platform') }}
+                    </x-nav-link>
+                 @elseif(request()->routeIs('game.platform.create'))
+                    <x-nav-link :href="route( 'game.platform.index' )">
+                        {{ __('Back to platform homepage') }}
+                    </x-nav-link>
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}
