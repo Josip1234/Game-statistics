@@ -11,3 +11,4 @@ use game_statistics;
 -- need to add in table games additional field and 1 char character 1 or 0 to check if game have sequel if game have sequel 
 -- action for sequel will be printed in game index otherwise actions for game statistics will be printed
 alter table game modify column have_sequel char(1) null;
+alter table game drop column platform_id;
