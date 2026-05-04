@@ -24,7 +24,8 @@
                             <th class="border px-3 py-2 text-left">Year of production</th>
                             <th class="border px-3 py-2 text-left">User</th>
                             <th class="border px-3 py-2 text-left">Sequel?</th>
-                            <th class="border px-3 py-2 text-left">Genre</th>
+                            <th class="border px-3 py-2 text-left">Genre</th> 
+                               <th class="border px-3 py-2 text-left">Platform</th>
                             <th class="border px-3 py-2 text-left">Actions</th>
                         </tr>
                     </thead>
@@ -44,6 +45,13 @@
                              @endif    
                             
                             </td>       
+                             <td class="border px-3 py-2">
+                           @if($game->platform_id===null)
+                                {{ "No platform defined" }}
+                             @else
+                                 {{ $game->platform->name }}
+                             @endif   
+                             </td>
                             <td class="border px-3 py-2"><a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a>
                             
                                     <form method="POST"

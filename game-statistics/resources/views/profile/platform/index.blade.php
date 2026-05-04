@@ -32,7 +32,7 @@
                                         <td class="border px-3 py-2">{{ $platform->name }}</td>
                                         <td class="border px-3 py-2">{{ $platform->platform_history }}</td>
                                         <td class="border px-3 py-2">
-                                            <a href="{{ route('game.platform.delete', $platform) }}"><i
+                                            <a href="{{ route('game.platform.edit', $platform) }}"><i
                                                     class="bi bi-pencil-square"></i> 
                                             </a>
                                                  <form method="POST"

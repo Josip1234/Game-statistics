@@ -5,32 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Genre;
+use App\Models\Platform;
 use App\Models\User;
 
 class GameController extends Controller
 {
     public function homepage(){ 
-        $games=Game::with('genre')->join('users','game.user_id','=','users.id')
+        $games=Game::with(['genre','platform'])->join('users','game.user_id','=','users.id') 
         ->select(
             'game.id',
             'game.name as gn',
             'game.yearOrRangeOfProduction',
             'game.have_sequel', 
             'game.genre_id',
+            'game.platform_id',
             'users.nickname')
          ->orderBy('game.id')
          ->paginate(5);  
-
         
-
         return view('profile.game.index',[
             "games"=>$games,
         ]);
     }
     public function create(){
-        $genre=Genre::orderBy('id')->get();
+        $genre=Genre::orderBy('id')->get(); 
+        $platform=Platform::orderBy('id')->get();
         return view('profile.game.create',[
-            'genres'=>$genre
+            'genres'=>$genre,
+            'platform'=>$platform
         ]);
     }
     public function add(Request $request){
@@ -39,16 +41,19 @@ class GameController extends Controller
             'yearOrRangeOfProduction'=>['required','min:4'],
             'user_id'=>['required'],
             'have_sequel'=>['nullable','numeric'],
-            'genre_id'=>['nullable']
+            'genre_id'=>['nullable','numeric'],
+            'platform_id'=>['nullable','numeric']
         ]);
         Game::create($validated);
         return redirect()->route('profile.game.homepage')->with('status','New game successfully added.');
     }
       public function edit(Game $game){
           $genre=Genre::orderBy('id')->get();
+          $platform=Platform::orderBy('id')->get();
         return view('profile.game.edit',
         ["game"=>$game,
-         'genres'=>$genre
+         'genres'=>$genre,
+         'platform'=>$platform
         ]);
     }
         public function update(Request $request,Game $game){
@@ -57,7 +62,8 @@ class GameController extends Controller
             'yearOrRangeOfProduction'=>['required','min:4'],
             'user_id'=>['required'],
             'have_sequel'=>['nullable','numeric'],
-             'genre_id'=>['nullable']
+             'genre_id'=>['nullable','numeric'],
+              'platform_id'=>['nullable','numeric']
         ]);
         $game->update($validated);
         return redirect()->route('profile.game.homepage')->with('status','Game successfully updated.');

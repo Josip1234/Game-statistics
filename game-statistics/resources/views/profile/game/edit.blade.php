@@ -49,6 +49,22 @@
             @enderror
         </div>
 
+
+
+                 <div>
+            <label for="platform_id" class="block font-medium text-sm text-gray-700">Select game platform</label>
+            <select name="platform_id" id="platform_id" class="mt-1 block w-full">
+                @foreach ($platform as $platform)
+                    <option value="{{ $platform->id }}" @selected(old('platform_id',$game->platform_id)==$platform->id)>{{ $platform->name }}</option>
+                @endforeach
+            </select>
+            @error('platform_id')
+                <p class="mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+
+
          <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
         <div class="flex items-center gap-4">

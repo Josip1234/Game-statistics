@@ -5,4 +5,8 @@ for now, if game has multiple genres,
 we can mark it as mixed or something like that  
 
 need to check create form need to put old values for fields to remember 
-insert data if any of the errors occured.
+insert data if any of the errors occured. 
+
+One game can be played on many platforms so we need more to more 
+relation (another table which connects more platforms for one game),
+same as multiple tables for genres.
