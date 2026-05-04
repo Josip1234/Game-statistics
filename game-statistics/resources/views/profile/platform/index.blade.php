@@ -9,36 +9,41 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                     @include('layouts.navigation2')
-                     @if(session("status"))
-                     <div class="mb-4 rounder-md bg-green-50 p-4 text-sm text-green-700">
+                    @include('layouts.navigation2')
+                    @if (session('status'))
+                        <div class="mb-4 rounder-md bg-green-50 p-4 text-sm text-green-700">
                             {{ session('status') }}
-                     </div>
-                     @endif
-                      <div class="overflow-x-auto">
-                <table class="min-w-full border">
-                    <thead>
-                        <tr class="bg-gray-50">
-                            <th class="border px-3 py-2 text-left">ID</th>
-                            <th class="border px-3 py-2 text-left">Platform name</th>
-                            <th class="border px-3 py-2 text-left">Platform history</th>
-                            <th class="border px-3 py-2 text-left">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($platforms as $platform)
-                        <tr>
-                            <td class="border px-3 py-2">{{ $platform->id }}</td>
-                            <td class="border px-3 py-2">{{ $platform->name }}</td>
-                            <td class="border px-3 py-2">{{ $platform->platform_history }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="mt-6 flex justify-center">
-                        {{ $platforms->links() }}
-                </div>
-            </div>
+                        </div>
+                    @endif
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border px-3 py-2 text-left">ID</th>
+                                    <th class="border px-3 py-2 text-left">Platform name</th>
+                                    <th class="border px-3 py-2 text-left">Platform history</th>
+                                    <th class="border px-3 py-2 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($platforms as $platform)
+                                    <tr>
+                                        <td class="border px-3 py-2">{{ $platform->id }}</td>
+                                        <td class="border px-3 py-2">{{ $platform->name }}</td>
+                                        <td class="border px-3 py-2">{{ $platform->platform_history }}</td>
+                                        <td class="border px-3 py-2">
+                                            <a href="{{ route('game.platform.edit', $platform) }}"><i
+                                                    class="bi bi-pencil-square"></i>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="mt-6 flex justify-center">
+                            {{ $platforms->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

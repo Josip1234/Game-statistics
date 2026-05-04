@@ -24,4 +24,17 @@ class PlatformController extends Controller
         Platform::create($validated);
         return redirect()->route('game.platform.index')->with('status','Successfully inserted new platform');
     }
+    public function edit(Platform $platform){
+        return view("profile.platform.edit",[
+            "platform"=>$platform,
+        ]);
+    }
+    public function update(Platform $platform, Request $request){
+        $validated=$request->validate([
+             "name"=>['required','max:50','min:3'],
+            "platform_history"=>['nullable']
+        ]);
+        $platform->update($validated);
+        return redirect()->route('game.platform.index')->with('status','Successfully updated platform.');
+    }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('New platform') }}
+            {{ __('Platform edit') }}
         </h2>
     </x-slot>
 
@@ -10,18 +10,19 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                      @include('layouts.navigation2')
-                       <form method="post" action="{{ route('game.platform.store') }}" class="mt-6 space-y-6">
+                       <form method="post" action="{{ route('game.platform.update',$platform) }}" class="mt-6 space-y-6">
                     @csrf
+                    @method('put')
         <div>
-            <x-input-label for="name" :value="__('Insert new platform name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autocomplete="off" :value="old('name')" />
+            <x-input-label for="name" :value="__('Edit platform name')" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autocomplete="off" :value="old('name',$platform->name)" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <div>
-            <label for="platform_history">Insert platform history</label>
+            <label for="platform_history">Edit platform history</label>
             <textarea name="platform_history" id="platform_history" cols="30" rows="10" class="mt-1 block w-full">
-                 {{ old('platform_history') }}
+                {{ old('platform_history',$platform->platform_history) }}
             </textarea>
             @error('platform_history')
                 <p class="mt-2">{{ $message }}</p>
