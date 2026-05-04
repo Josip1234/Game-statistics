@@ -37,4 +37,8 @@ class PlatformController extends Controller
         $platform->update($validated);
         return redirect()->route('game.platform.index')->with('status','Successfully updated platform.');
     }
+    public function delete(Platform $platform){
+        $platform->delete();
+        return redirect()->route('game.platform.index')->with('status','Platform deleted.');
+    }
 }

@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store','store')->name('store'); 
         Route::get('{platform}/edit','edit')->name('edit');
         Route::put('{platform}/update','update')->name('update');
+        Route::delete('{platform}/delete','delete')->name('delete');
     });
   
 }); 
