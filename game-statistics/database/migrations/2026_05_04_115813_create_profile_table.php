@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('profile', function (Blueprint $table) {
             $table->id();
             $table->string("profile_name");
-            $table->foreignId("game_id")->constrained("game")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId("user_id")->nullable()->constrained("users")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("game_id")->nullable()->constrained("game")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("sequel_id")->nullable()->constrained("sequel")->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
