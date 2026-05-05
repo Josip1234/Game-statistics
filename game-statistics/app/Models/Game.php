@@ -16,8 +16,8 @@ class Game extends Model
         'platform_id'
     ];
     protected $casts = [
-        'have_sequel'=>['integer'],
-        'genre_id'=>['integer']
+        'have_sequel'=>'integer',
+        'genre_id'=>'integer'
     ];
     //one game belongs to one user
     public function user(){
@@ -39,5 +39,8 @@ class Game extends Model
     public function platform(){
         return $this->belongsTo(Platform::class,'platform_id','id');
     }
-
+    //one game has many profiles
+    public function profiles(){
+        return $this->hasMany(Profile::class);
+    }
 }

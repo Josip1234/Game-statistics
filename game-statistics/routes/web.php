@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GameProfileController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ProfileController;
@@ -71,7 +72,9 @@ Route::middleware('auth')->group(function () {
         Route::put('{platform}/update','update')->name('update');
         Route::delete('{platform}/delete','delete')->name('delete');
     });
-  
+   Route::prefix("game_profile")->name('game.profile.')->controller(GameProfileController::class)->middleware('auth')->group(function(){
+        Route::get('{game}/index','gpindex')->name('index');
+   });
 }); 
 
  

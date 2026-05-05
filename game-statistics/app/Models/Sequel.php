@@ -22,4 +22,8 @@ class Sequel extends Model
     public function statistic(){
         return $this->hasMany(Statistics::class,"sequel_id","id");
     }
+    //one sequel can have many profiles
+    public function profiles(){
+        return $this->hasMany(Profile::class);
+    }
 }

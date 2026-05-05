@@ -62,6 +62,10 @@
                     <x-nav-link :href="route( 'game.platform.index' )">
                         {{ __('Back to platform homepage') }}
                     </x-nav-link>
+                 @elseif(request()->routeIs('game.profile.index')) 
+                 <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
+                        {{ __('Back to gaming homepage') }}
+                    </x-nav-link>
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}
