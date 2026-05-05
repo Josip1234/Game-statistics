@@ -15,6 +15,9 @@
                  @elseif(request()->routeIs('game.sequel.homepage'))
                  <x-nav-link :href="route( 'game.sequel.new',$game )" :active="request()->routeIs('game.sequel.new')">
                         {{ __('New sequel') }}
+                    </x-nav-link> 
+                      <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
+                        {{ __('Back to gaming homepage') }}
                     </x-nav-link>
                        
                  @elseif(request()->routeIs('game.sequel.new') || request()->routeIs('game.sequel.edit')) 
@@ -29,10 +32,16 @@
                         <x-nav-link :href="route( 'sequel.statistics.seqCreate',$sequel )" :active="request()->routeIs('sequel.statistics.seqCreate')">
                         {{ __('New sequel statistic') }}
                     </x-nav-link>  
+                     <x-nav-link :href="route( 'game.sequel.homepage',$sequel->game_id )" :active="request()->routeIs('game.sequel.homepage')">
+                        {{ __('Return to game sequal homepage') }}
+                    </x-nav-link>
                  @elseif(request()->routeIs('game.statistics.gamStIndex'))
                     <x-nav-link :href="route( 'game.statistics.gamStNew',$game )" :active="request()->routeIs('game.statistics.gamStIndex')">
                         {{ __('New game statistic') }}
                     </x-nav-link>  
+                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
+                        {{ __('Back to gaming homepage') }}
+                    </x-nav-link>
                  @elseif(request()->routeIs('game.statistics.gamStNew') || request()->routeIs('game.statistics.gamEdit'))
                     <x-nav-link :href="route( 'game.statistics.gamStIndex',$game )" :active="request()->routeIs('game.statistics.gamStNew')">
                         {{ __('Back to gaming statistic homepage') }}
