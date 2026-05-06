@@ -28,4 +28,18 @@ class GameProfileController extends Controller
         Profile::create($validated);
         return redirect()->route("game.profile.index",$game)->with('status','New game profile has been created.');
     }
+    public function gpedit(Game $game, Profile $profile, Request $request){
+        return view("profile.gprofile.edit",[
+             'game'=>$game,
+             'profile'=>$profile
+        ]);
+    }
+    public function gpupdate(Game $game, Profile $profile, Request $request){
+         $validated=$request->validate([
+            'profile_name'=>['required','max:255','min:3'],
+            'game_id'=>['required','numeric']
+        ]);
+        $profile->update($validated);
+        return redirect()->route("game.profile.index",$game)->with('status','Game profile has been updated.');
+    }
 }

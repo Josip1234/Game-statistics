@@ -69,6 +69,10 @@
                        <x-nav-link :href="route( 'game.profile.create',$game )">
                         {{ __('New game profile') }}
                     </x-nav-link> 
+                 @elseif(request()->routeIs('game.profile.edit') || request()->routeIs('game.profile.create'))  
+                   <x-nav-link :href="route( 'game.profile.index',$game )">
+                        {{ __('Back to game profile index') }}
+                    </x-nav-link>
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

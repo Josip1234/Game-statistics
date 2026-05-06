@@ -31,7 +31,7 @@
                             <td class="border px-3 py-2">{{ $profile->id }}</td> 
                             <td class="border px-3 py-2">{{ $profile->profile_name }}</td> 
                             <td class="border px-3 py-2">{{ $profile->game->name }}</td> 
-                            <td></td>
+                            <td class="border px-3 py-2"><a href="{{ route('game.profile.edit',[$game,$profile]) }}"><i class="bi bi-pencil-square"></i></a></td>
                         </tr>
                           @endforeach
                             </tbody>

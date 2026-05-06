@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
         Route::get('{game}/index','gpindex')->name('index');
         Route::get('{game}/create','gpcreate')->name('create'); 
         Route::post('{game}/store','gpstore')->name('store');
+        Route::get('{game}/{profile}/edit','gpedit')->name('edit'); 
+        Route::put('{game}/{profile}/update','gpupdate')->name('update');
    });
 }); 
 
