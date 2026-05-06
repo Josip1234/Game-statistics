@@ -65,7 +65,10 @@
                  @elseif(request()->routeIs('game.profile.index')) 
                  <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}
-                    </x-nav-link>
+                    </x-nav-link>  
+                       <x-nav-link :href="route( 'game.profile.create',$game )">
+                        {{ __('New game profile') }}
+                    </x-nav-link> 
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

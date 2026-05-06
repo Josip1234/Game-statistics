@@ -13,8 +13,8 @@ class Profile extends Model
         "sequel_id"
     ];
     protected $casts = [
-        "game_id"=>'numeric',
-        "sequel_id"=>'numeric'
+        "game_id"=>'integer',
+        "sequel_id"=>'integer'
     ];
     public function game(){
         return $this->belongsTo(Game::class);

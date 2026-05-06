@@ -74,6 +74,8 @@ Route::middleware('auth')->group(function () {
     });
    Route::prefix("game_profile")->name('game.profile.')->controller(GameProfileController::class)->middleware('auth')->group(function(){
         Route::get('{game}/index','gpindex')->name('index');
+        Route::get('{game}/create','gpcreate')->name('create'); 
+        Route::post('{game}/store','gpstore')->name('store');
    });
 }); 
 
