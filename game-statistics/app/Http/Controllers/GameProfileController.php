@@ -42,4 +42,8 @@ class GameProfileController extends Controller
         $profile->update($validated);
         return redirect()->route("game.profile.index",$game)->with('status','Game profile has been updated.');
     }
+    public function gpdelete(Game $game, Profile $profile){
+        $profile->delete();
+       return redirect()->route("game.profile.index",$game)->with('status','Game profile has been deleted.');
+    }
 }

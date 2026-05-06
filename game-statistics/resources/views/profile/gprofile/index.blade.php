@@ -31,7 +31,24 @@
                             <td class="border px-3 py-2">{{ $profile->id }}</td> 
                             <td class="border px-3 py-2">{{ $profile->profile_name }}</td> 
                             <td class="border px-3 py-2">{{ $profile->game->name }}</td> 
-                            <td class="border px-3 py-2"><a href="{{ route('game.profile.edit',[$game,$profile]) }}"><i class="bi bi-pencil-square"></i></a></td>
+                            <td class="border px-3 py-2"><a href="{{ route('game.profile.edit',[$game,$profile]) }}"><i class="bi bi-pencil-square"></i></a>
+                            
+
+                                   
+                                    <form method="POST"
+                                                      action="{{ route('game.profile.delete', [$game,$profile]) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm profile deletion?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
+                            
+                            
+                            
+                            </td>
                         </tr>
                           @endforeach
                             </tbody>
