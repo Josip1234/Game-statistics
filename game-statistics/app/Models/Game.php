@@ -43,4 +43,8 @@ class Game extends Model
     public function profiles(){
         return $this->hasMany(Profile::class);
     }
+    //one game can have more modifications
+    public function game(){
+        return $this->belongsTo(Modification::class);
+    }
 }

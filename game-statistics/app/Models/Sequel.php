@@ -26,4 +26,8 @@ class Sequel extends Model
     public function profiles(){
         return $this->hasMany(Profile::class);
     }
+    //one sequel can have many modifications
+    public function modification(){
+        return $this->belongsTo(Modification::class);
+    }
 }
