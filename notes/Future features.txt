@@ -10,6 +10,8 @@ insert data if any of the errors occured.
 One game can be played on many platforms so we need more to more 
 relation (another table which connects more platforms for one game),
 same as multiple tables for genres.
- 
- one game without sequel can have more profiles also 
- one sequel can have more profiles
+
+
+ we need to connect profile with statistics for game and sequel.
+ if game has multiple profiles, we need to connect that profile to 
+ that game statistic.

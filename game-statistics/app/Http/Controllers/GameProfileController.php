@@ -9,7 +9,7 @@ use App\Models\Profile;
 class GameProfileController extends Controller
 {
     public function gpindex(Game $game){
-        $profile=Profile::with('game')->orderBy('id')->paginate(5);
+        $profile=Profile::with('game')->where('game_id','=',$game->id)->orderBy('id')->paginate(5);
         return view("profile.gprofile.index",[
             'game'=>$game,
             'profiles'=>$profile

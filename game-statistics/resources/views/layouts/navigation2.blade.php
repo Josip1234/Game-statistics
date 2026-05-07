@@ -72,6 +72,20 @@
                  @elseif(request()->routeIs('game.profile.edit') || request()->routeIs('game.profile.create'))  
                    <x-nav-link :href="route( 'game.profile.index',$game )">
                         {{ __('Back to game profile index') }}
+                    </x-nav-link>   
+                 @elseif(request()->routeIs('sequel.profile.index')) 
+
+                  <x-nav-link :href="route( 'game.sequel.homepage',[$game,$sequel] )" :active="request()->routeIs('game.sequel.homepage')">
+                        {{ __('Back to sequel homepage') }}
+                    </x-nav-link> 
+
+
+                  <x-nav-link :href="route( 'sequel.profile.create',[$game,$sequel] )">
+                        {{ __('New sequel profile') }}
+                    </x-nav-link> 
+                 @elseif(request()->routeIs('sequel.profile.edit') || request()->routeIs('sequel.profile.create'))  
+                   <x-nav-link :href="route( 'sequel.profile.index',[$game,$sequel] )">
+                        {{ __('Back to sequel profile index') }}
                     </x-nav-link>
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">

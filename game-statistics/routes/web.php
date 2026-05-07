@@ -6,6 +6,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SequelController;
+use App\Http\Controllers\SequelProfileController;
 use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +81,18 @@ Route::middleware('auth')->group(function () {
         Route::put('{game}/{profile}/update','gpupdate')->name('update'); 
         Route::delete('{game}/{profile}/delete','gpdelete')->name('delete');
    });
+
+    Route::prefix("sequel_profile")->name('sequel.profile.')->controller(SequelProfileController::class)->middleware('auth')->group(function(){
+        Route::get('{game}/{sequel}/index','spindex')->name('index');
+        Route::get('{game}/{sequel}/create','spcreate')->name('create'); 
+        Route::post('{game}/{sequel}/store','spstore')->name('store');
+        Route::get('{game}/{sequel}/{profile}/edit','spedit')->name('edit'); 
+        Route::put('{game}/{sequel}/{profile}/update','spupdate')->name('update'); 
+        Route::delete('{game}/{sequel}/{profile}/delete','spdelete')->name('delete');
+   });
+
+
+
 }); 
 
  
