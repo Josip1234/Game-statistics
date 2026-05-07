@@ -87,6 +87,8 @@
                    <x-nav-link :href="route( 'sequel.profile.index',[$game,$sequel] )">
                         {{ __('Back to sequel profile index') }}
                     </x-nav-link>
+                 @elseif(request()->routeIs('game.sequel.modifications.seqIndex'))
+                 @elseif(request()->routeIs('game.sequel.modifications.index'))
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

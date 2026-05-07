@@ -52,7 +52,8 @@
                                                     </button>
                                                 </form>
                                     <a href="{{ route('sequel.statistics.seqHomepage',$sequel) }}"><i class="bi bi-123"></i></a> 
-                                    <a href="{{ route('sequel.profile.index',[$game,$sequel]) }}"><i class="bi bi-person"></i></a>
+                                    <a href="{{ route('sequel.profile.index',[$game,$sequel]) }}"><i class="bi bi-person"></i></a> 
+                                    <a href="{{ route('game.sequel.modifications.seqIndex',[$game,$sequel]) }}"><i class="bi bi-pencil-square"></i><i class="bi bi-controller"></i></a>
                             </td>                  
                         </tr>
                         @endforeach

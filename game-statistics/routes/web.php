@@ -3,11 +3,13 @@
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameProfileController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ModificationController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SequelController;
 use App\Http\Controllers\SequelProfileController;
 use App\Http\Controllers\StatisticsController;
+use App\Models\Modification;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -89,6 +91,10 @@ Route::middleware('auth')->group(function () {
         Route::get('{game}/{sequel}/{profile}/edit','spedit')->name('edit'); 
         Route::put('{game}/{sequel}/{profile}/update','spupdate')->name('update'); 
         Route::delete('{game}/{sequel}/{profile}/delete','spdelete')->name('delete');
+   });
+   Route::prefix("game_seq_modification")->name('game.sequel.modifications.')->controller(ModificationController::class)->middleware('auth')->group(function(){
+        Route::get('{game}/{sequel}/index','seqIndex')->name("seqIndex");
+        Route::get('{game}/index','index')->name('index');
    });
 
 
