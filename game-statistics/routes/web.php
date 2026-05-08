@@ -95,6 +95,9 @@ Route::middleware('auth')->group(function () {
    Route::prefix("game_seq_modification")->name('game.sequel.modifications.')->controller(ModificationController::class)->middleware('auth')->group(function(){
         Route::get('{game}/{sequel}/index','seqIndex')->name("seqIndex");
         Route::get('{game}/index','index')->name('index');
+        Route::get('{game}/{sequel}/create','seqCreate')->name("seqCreate");
+        Route::get('{game}/create','create')->name("create");
+
    });
 
 

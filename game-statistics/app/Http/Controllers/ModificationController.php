@@ -24,4 +24,15 @@ class ModificationController extends Controller
             'sequel'=>$sequel
         ]);
     }
+    public function seqCreate(Game $game,Sequel $sequel){
+         return view("profile.modification.create",[
+            'game'=>$game,
+            'sequel'=>$sequel
+         ]);
+    }
+    public function create(Game $game){
+        return view("profile.modification.create",[
+            'game'=>$game
+        ]);
+    }
 }
