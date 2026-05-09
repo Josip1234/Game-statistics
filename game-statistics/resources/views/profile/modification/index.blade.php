@@ -45,10 +45,10 @@
                             <td class="border px-3 py-2">{{ $mod->id }}</td>
                             <td class="border px-3 py-2">{{ $mod->name }}</td>
                              @if(request()->routeIs('game.sequel.modifications.seqIndex'))
-                             <td class="border px-3 py-2">{{ $mod->game->name }}</td>
-                             <td class="border px-3 py-2">{{ $mod->sequel->name }}</td>
+                             <td class="border px-3 py-2">{{ $game->name }}</td>
+                             <td class="border px-3 py-2">{{ $sequel->name }}</td>
                              @else 
-                              <td class="border px-3 py-2">{{ $mod->game->name }}</td>
+                              <td class="border px-3 py-2">{{ $game->name }}</td>
                              @endif
 
                         </tr>

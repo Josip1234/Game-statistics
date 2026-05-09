@@ -28,6 +28,6 @@ class Sequel extends Model
     }
     //one sequel can have many modifications
     public function modification(){
-        return $this->belongsTo(Modification::class);
+        return $this->hasMany(Modification::class);
     }
 }

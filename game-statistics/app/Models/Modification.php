@@ -17,9 +17,9 @@ class Modification extends Model
        "sequel_id"=>'integer' 
     ];
     public function games(){
-        return $this->hasMany(Game::class);
+        return $this->belongsTo(Game::class);
     }
     public function sequels(){
-        return $this->hasMany(Sequel::class);
+        return $this->belongsTo(Sequel::class);
     }
 }

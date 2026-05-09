@@ -45,6 +45,6 @@ class Game extends Model
     }
     //one game can have more modifications
     public function game(){
-        return $this->belongsTo(Modification::class);
+        return $this->hasMany(Modification::class);
     }
 }
