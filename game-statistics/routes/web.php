@@ -103,6 +103,8 @@ Route::middleware('auth')->group(function () {
         Route::get('{game}/{sequel}/{modification}/edit','seqEdit')->name('seqEdit');
         Route::put('{game}/{modification}/update','update')->name('update');
         Route::put('{game}/{sequel}/{modification}/update','seqUpdate')->name('seqUpdate');
+        Route::delete('{game}/{modification}/delete','delete')->name('delete');
+        Route::delete('{game}/{sequel}/{modification}/delete','seqDelete')->name('seqDelete');
 
    });
 

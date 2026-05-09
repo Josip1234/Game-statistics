@@ -84,4 +84,15 @@ class ModificationController extends Controller
          $modification->update($validated);
         return redirect()->route("game.sequel.modifications.seqIndex",[$game,$sequel])->with("status","Successfully updated sequel modification.");
     }
+
+    public function delete(Game $game,Modification $modification){
+        $modification->delete();
+        return redirect()->route("game.sequel.modifications.index",$game)->with("status","Successfully deleted game modification.");
+
+    }
+    public function seqDelete(Game $game, Sequel $sequel, Modification $modification){
+        $modification->delete();
+        return redirect()->route("game.sequel.modifications.seqIndex",[$game,$sequel])->with("status","Successfully deleted sequel modification.");
+
+    }
 }

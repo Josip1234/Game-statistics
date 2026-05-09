@@ -53,10 +53,32 @@
                              @if(request()->routeIs('game.sequel.modifications.seqIndex'))
                              <td class="border px-3 py-2">
                                  <a href="{{ route('game.sequel.modifications.seqEdit',[$game,$sequel,$mod]) }}"><i class="bi bi-pencil-square"></i>
+                                    
+                                    <form method="POST"
+                                                      action="{{ route('game.sequel.modifications.seqDelete', [$game,$sequel,$mod]) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm sequel modification deletion?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
                              </td>
                              @else
                               <td class="border px-3 py-2">
                                 <a href="{{ route('game.sequel.modifications.edit',[$game,$mod]) }}"><i class="bi bi-pencil-square"></i>
+                                    
+                                    <form method="POST"
+                                                      action="{{ route('game.sequel.modifications.delete', [$game,$mod]) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm game modification deletion?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
                               </td>
                              @endif
                         </tr>
