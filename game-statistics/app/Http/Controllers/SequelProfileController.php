@@ -11,7 +11,7 @@ class SequelProfileController extends Controller
 {
        public function spindex(Game $game,Sequel $sequel){
         $profile=Profile::with('sequel')->orderBy('id')->where('sequel_id','!=','null')->
-        where('game_id','=',$game->id)->paginate(5);
+        where('sequel_id','=',$sequel->id)->paginate(5);
         
         return view("profile.sprofile.index",[
             'game'=>$game,

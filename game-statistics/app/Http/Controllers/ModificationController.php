@@ -19,7 +19,8 @@ class ModificationController extends Controller
         ]);
     }
     public function seqIndex(Game $game,Sequel $sequel){
-        $modifications=Modification::with('sequels')->where('sequel_id','!=','null')->orderBy('id')->paginate(5);
+        $modifications=Modification::with('sequels')->where('sequel_id','!=','null')->
+        where('sequel_id',"=",$sequel->id)->orderBy('id')->paginate(5);
         return view("profile.modification.index",[
             'modifications'=>$modifications,
             'game'=>$game,
