@@ -49,8 +49,16 @@
                              <td class="border px-3 py-2">{{ $sequel->name }}</td>
                              @else 
                               <td class="border px-3 py-2">{{ $game->name }}</td>
+                             @endif  
+                             @if(request()->routeIs('game.sequel.modifications.seqIndex'))
+                             <td class="border px-3 py-2">
+                                 <a href="{{ route('game.sequel.modifications.seqEdit',[$game,$sequel,$mod]) }}"><i class="bi bi-pencil-square"></i>
+                             </td>
+                             @else
+                              <td class="border px-3 py-2">
+                                <a href="{{ route('game.sequel.modifications.edit',[$game,$mod]) }}"><i class="bi bi-pencil-square"></i>
+                              </td>
                              @endif
-
                         </tr>
                         @endforeach
                     </tbody>

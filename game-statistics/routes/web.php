@@ -98,7 +98,11 @@ Route::middleware('auth')->group(function () {
         Route::get('{game}/{sequel}/create','seqCreate')->name("seqCreate");
         Route::get('{game}/create','create')->name("create"); 
         Route::post('{game}/store','store')->name("store");
-        Route::post('{game}/{sequel}/store','seqStore')->name("seqStore");
+        Route::post('{game}/{sequel}/store','seqStore')->name("seqStore"); 
+        Route::get('{game}/{modification}/edit','edit')->name('edit');
+        Route::get('{game}/{sequel}/{modification}/edit','seqEdit')->name('seqEdit');
+        Route::put('{game}/{modification}/update','update')->name('update');
+        Route::put('{game}/{sequel}/{modification}/update','seqUpdate')->name('seqUpdate');
 
    });
 

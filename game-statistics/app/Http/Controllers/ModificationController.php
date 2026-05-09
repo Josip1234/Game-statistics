@@ -54,4 +54,34 @@ class ModificationController extends Controller
          Modification::create($validated);
         return redirect()->route("game.sequel.modifications.seqIndex",[$game,$sequel])->with("status","Added new sequel modification.");
     }
+    public function edit(Game $game,Modification $modification){
+        return view("profile.modification.edit",[
+            'game'=>$game,
+            'modification'=>$modification
+        ]);
+    }
+    public function seqEdit(Game $game,Sequel $sequel, Modification $modification){
+        return view("profile.modification.edit",[
+            'game'=>$game,
+            'sequel'=>$sequel,
+            'modification'=>$modification
+        ]);
+    }
+    public function update(Game $game, Modification $modification, Request $request){
+        $validated=$request->validate([
+            'name'=>['required','min:3','max:50'],
+            'game_id'=>['required','numeric']
+        ]);
+        $modification->update($validated);
+        return redirect()->route("game.sequel.modifications.index",$game)->with("status","Successfully updated game modification.");
+    }
+    public function seqUpdate(Game $game,Sequel $sequel, Modification $modification, Request $request){
+                   $validated=$request->validate([
+            'name'=>['required','min:3','max:50'],
+            'game_id'=>['required','numeric'],
+            'sequel_id'=>['required','numeric']
+        ]);
+         $modification->update($validated);
+        return redirect()->route("game.sequel.modifications.seqIndex",[$game,$sequel])->with("status","Successfully updated sequel modification.");
+    }
 }
