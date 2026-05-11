@@ -22,4 +22,7 @@ class Modification extends Model
     public function sequels(){
         return $this->belongsTo(Sequel::class);
     }
+    public function mdetail(){
+        return $this->hasMany(MDetail::class);
+    }
 }

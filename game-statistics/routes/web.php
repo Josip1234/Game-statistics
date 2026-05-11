@@ -3,6 +3,7 @@
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameProfileController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MDetailController;
 use App\Http\Controllers\ModificationController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ProfileController;
@@ -107,7 +108,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('{game}/{sequel}/{modification}/delete','seqDelete')->name('seqDelete');
 
    });
-
+   Route::prefix("modification_details")->name('modification.details.')->controller(MDetailController::class)->middleware('auth')->group(function(){
+        Route::get('{modification}/index','index')->name('index');
+   });
 
 
 }); 

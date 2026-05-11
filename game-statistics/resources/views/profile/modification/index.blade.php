@@ -63,7 +63,9 @@
                                                     <button type="submit" class="text-red-600 hover:underline">
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
-                                                </form>
+                                                </form> 
+                                         <a href="{{ route('modification.details.index',$mod) }}"><i class="bi bi-ticket-detailed"></i></a>
+
                              </td>
                              @else
                               <td class="border px-3 py-2">
@@ -78,7 +80,8 @@
                                                     <button type="submit" class="text-red-600 hover:underline">
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
-                                                </form>
+                                                </form> 
+                                        <a href="{{ route('modification.details.index',$mod) }}"><i class="bi bi-ticket-detailed"></i></a>
                               </td>
                              @endif
                         </tr>

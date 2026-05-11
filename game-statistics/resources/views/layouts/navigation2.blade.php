@@ -109,7 +109,8 @@
                    <x-nav-link :href="route( 'game.sequel.modifications.index',$game )">
                         {{ __('Return to game modification index') }}
                     </x-nav-link>
-                    
+                    @elseif(request()->routeIs('modification.details.index')) 
+                        <button onclick="history.back()">Go Back to modification</button>
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}
