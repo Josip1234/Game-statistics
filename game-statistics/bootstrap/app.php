@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RememberPreviousUrl;
 use App\Http\Middleware\ValidateFileInput;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'file.validate'=>ValidateFileInput::class,
+            'remember.url'=>RememberPreviousUrl::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -110,6 +110,7 @@
                         {{ __('Return to game modification index') }}
                     </x-nav-link>
                     @elseif(request()->routeIs('modification.details.index')) 
+                        {{ request()->session()->previousRoute() }}
                         <button onclick="history.back()">Go Back to modification</button>
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
