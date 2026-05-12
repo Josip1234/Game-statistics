@@ -110,6 +110,7 @@ Route::middleware('auth')->group(function () {
    });
    Route::prefix("modification_details")->name('modification.details.')->controller(MDetailController::class)->middleware(['auth','remember.url'])->group(function(){
         Route::get('{modification}/index','index')->name('index');
+        Route::get('{modification}/create','create')->name('create');
    });
 
 

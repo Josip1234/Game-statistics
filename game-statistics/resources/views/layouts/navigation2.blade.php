@@ -109,7 +109,7 @@
                    <x-nav-link :href="route( 'game.sequel.modifications.index',$game )">
                         {{ __('Return to game modification index') }}
                     </x-nav-link>
-                    @elseif(request()->routeIs('modification.details.index')) 
+                @elseif(request()->routeIs('modification.details.index')) 
                       {{-- if route in session is equal to games with no sequel return url  else return button for history --}}
                      
                          @if(session(0)==='game.sequel.modifications.index')
@@ -121,10 +121,18 @@
                                 {{ __('Return to  modification index') }}
                             </x-nav-link>
                          @else 
-                            <button onclick="history.back()">Go Back to modification</button>
+                            {{-- not a good solution need to match route in whole session in middleware --}}
+                            <button onclick="history.back()">Go back to modification</button>
                          @endif
 
-                    
+                         <x-nav-link :href="route(  'modification.details.create',$modification )">
+                                {{ __('Create new modification details') }}
+                            </x-nav-link>
+
+                 @elseif(request()->routeIs('modification.details.create'))
+                     <x-nav-link :href="route(  'modification.details.index',$modification )">
+                          {{ __('Return to  modification detail index') }}
+                     </x-nav-link>  
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

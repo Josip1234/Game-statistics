@@ -17,4 +17,9 @@ class MDetailController extends Controller
              'modification'=>$modification
         ]);
     }
+    public function create(Modification $modification){
+        return view("profile.mdetail.create",[
+            'modification'=>$modification
+        ]);
+    }
 }
