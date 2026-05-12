@@ -32,7 +32,7 @@
                         <tr>
                             <td class="border px-3 py-2">{{ $md->id }}</td>
                             <td class="border px-3 py-2">{{ $md->description }}</td>
-                            <td class="border px-3 py-2">{{ $mod->file_url }}</td>
+                            <td class="border px-3 py-2">{{ $md->file_url }}</td>
 
                         </tr>
                         @endforeach
