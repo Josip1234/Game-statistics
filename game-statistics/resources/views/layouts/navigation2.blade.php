@@ -129,7 +129,7 @@
                                 {{ __('Create new modification details') }}
                             </x-nav-link>
 
-                 @elseif(request()->routeIs('modification.details.create'))
+                 @elseif(request()->routeIs('modification.details.create') || request()->routeIs('modification.details.edit'))
                      <x-nav-link :href="route(  'modification.details.index',$modification )">
                           {{ __('Return to  modification detail index') }}
                      </x-nav-link>  

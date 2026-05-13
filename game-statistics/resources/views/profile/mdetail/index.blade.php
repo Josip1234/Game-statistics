@@ -24,7 +24,8 @@
                         <tr class="bg-gray-50">
                             <th class="border px-3 py-2 text-left">ID</th>
                             <th class="border px-3 py-2 text-left">Modification description</th>
-                            <th class="border px-3 py-2 text-left">Modification file url</th>
+                            <th class="border px-3 py-2 text-left">Modification file url</th> 
+                            <th class="border px-3 py-2 text-left">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,7 @@
                             <td class="border px-3 py-2">{{ $md->id }}</td>
                             <td class="border px-3 py-2">{{ $md->description }}</td>
                             <td class="border px-3 py-2">{{ $md->file_url }}</td>
+                            <td class="border px-3 py-2"><a href="{{ route('modification.details.edit',[$modification,$md]) }}"><i class="bi bi-pencil-square"></i></a></td>
 
                         </tr>
                         @endforeach

@@ -35,12 +35,40 @@ class MDetailController extends Controller
             $file->move(public_path('uploads'),$fileName);
             $filePath='uploads/'.$fileName;
         } ;
-
+        
          MDetail::create([
              "description"=>$request->description,
              "file_url"=>$filePath,
              "mod_id"=>$request->mod_id,
          ]);
-         return redirect()->route('modification.details.store',$modification)->with('status','Successfully stored new modification detail');
+         return redirect()->route('modification.details.index',$modification)->with('status','Successfully stored new modification detail');
+    }
+    public function edit(Modification $modification,MDetail $mdetail){
+        return view("profile.mdetail.edit",[
+             "modification"=>$modification,
+             "mdetail"=>$mdetail
+        ]);
+    }
+
+        public function update(Modification $modification, MDetail $mdetail,Request $request){
+         $request->validate([
+                "description"=>['required','min:10','max:255'],
+                "file_url"=>['nullable','file'],
+                "mod_id"=>['required','numeric'],
+         ]);
+              $filePath=null;
+        if($request->hasFile('file_url')){
+            $file=$request->file('file_url');
+            $fileName=$file->getClientOriginalName();
+            $file->move(public_path('uploads'),$fileName);
+            $filePath='uploads/'.$fileName;
+        } ;
+        
+         $mdetail->update([
+             "description"=>$request->description,
+             "file_url"=>$filePath,
+             "mod_id"=>$request->mod_id,
+         ]);
+         return redirect()->route('modification.details.index',$modification)->with('status','Successfully updated modification detail');
     }
 }

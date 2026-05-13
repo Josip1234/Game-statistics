@@ -112,6 +112,8 @@ Route::middleware('auth')->group(function () {
         Route::get('{modification}/index','index')->name('index');
         Route::get('{modification}/create','create')->name('create');
         Route::post('{modification}/store','store')->name('store');
+        Route::get('{modification}/{mdetail}/edit','edit')->name('edit');
+        Route::put('{modification}/{mdetail}/update','update')->name('update');
    });
 
 
