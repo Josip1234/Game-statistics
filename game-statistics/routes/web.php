@@ -114,6 +114,7 @@ Route::middleware('auth')->group(function () {
         Route::post('{modification}/store','store')->name('store');
         Route::get('{modification}/{mdetail}/edit','edit')->name('edit');
         Route::put('{modification}/{mdetail}/update','update')->name('update');
+        Route::delete('{modification}/{mdetail}/delete','delete')->name('delete');
    });
 
 

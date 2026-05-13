@@ -34,7 +34,23 @@
                             <td class="border px-3 py-2">{{ $md->id }}</td>
                             <td class="border px-3 py-2">{{ $md->description }}</td>
                             <td class="border px-3 py-2">{{ $md->file_url }}</td>
-                            <td class="border px-3 py-2"><a href="{{ route('modification.details.edit',[$modification,$md]) }}"><i class="bi bi-pencil-square"></i></a></td>
+                            <td class="border px-3 py-2"><a href="{{ route('modification.details.edit',[$modification,$md]) }}"><i class="bi bi-pencil-square"></i></a>
+                            
+                            
+                                      <form method="POST"
+                                                      action="{{ route('modification.details.delete', [$modification,$md]) }}"
+                                                      style="display: inline"
+                                                      onsubmit="return confirm('Confirm detail deletion?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:underline">
+                                                        <i class="bi bi-trash icon-delete"></i>
+                                                    </button>
+                                                </form>
+                            
+                            
+                            
+                            </td>
 
                         </tr>
                         @endforeach

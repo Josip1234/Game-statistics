@@ -71,4 +71,9 @@ class MDetailController extends Controller
          ]);
          return redirect()->route('modification.details.index',$modification)->with('status','Successfully updated modification detail');
     }
+
+    public function delete(Modification $modification, MDetail $mdetail){
+        $mdetail->delete();
+        return redirect()->route('modification.details.index',$modification)->with('status','Successfully deleted modification detail.');
+    }
 }

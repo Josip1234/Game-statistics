@@ -14,4 +14,8 @@ same as multiple tables for genres.
 
  we need to connect profile with statistics for game and sequel.
  if game has multiple profiles, we need to connect that profile to 
- that game statistic.
+ that game statistic. 
+
+ Need to make a check if there on md update when there is no uploaded file 
+ but file url already exists to stop file_url rewriting with null value. 
+ Need to save old value
