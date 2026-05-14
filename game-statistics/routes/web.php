@@ -93,9 +93,9 @@ Route::middleware('auth')->group(function () {
         Route::put('{game}/{sequel}/{profile}/update','spupdate')->name('update'); 
         Route::delete('{game}/{sequel}/{profile}/delete','spdelete')->name('delete');
    });
-   Route::prefix("game_seq_modification")->name('game.sequel.modifications.')->controller(ModificationController::class)->middleware(['auth','remember.url'])->group(function(){
-        Route::get('{game}/{sequel}/index','seqIndex')->name("seqIndex");
-        Route::get('{game}/index','index')->name('index');
+   Route::prefix("game_seq_modification")->name('game.sequel.modifications.')->controller(ModificationController::class)->middleware(['auth'])->group(function(){
+        Route::get('{game}/{sequel}/index','seqIndex')->name("seqIndex")->middleware('remember.url');
+        Route::get('{game}/index','index')->name('index')->middleware('remember.url');
         Route::get('{game}/{sequel}/create','seqCreate')->name("seqCreate");
         Route::get('{game}/create','create')->name("create"); 
         Route::post('{game}/store','store')->name("store");
@@ -108,8 +108,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('{game}/{sequel}/{modification}/delete','seqDelete')->name('seqDelete');
 
    });
-   Route::prefix("modification_details")->name('modification.details.')->controller(MDetailController::class)->middleware(['auth','remember.url'])->group(function(){
-        Route::get('{modification}/index','index')->name('index');
+   Route::prefix("modification_details")->name('modification.details.')->controller(MDetailController::class)->middleware(['auth'])->group(function(){
+        Route::get('{modification}/index','index')->name('index')->middleware('remember.url');
         Route::get('{modification}/create','create')->name('create');
         Route::post('{modification}/store','store')->name('store');
         Route::get('{modification}/{mdetail}/edit','edit')->name('edit');

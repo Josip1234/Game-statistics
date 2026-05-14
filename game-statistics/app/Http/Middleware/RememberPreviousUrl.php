@@ -28,7 +28,15 @@ class RememberPreviousUrl
         $previousRouteName=session()->previousRoute();
         $request->session()->put($index,$previousRouteName);
         $index++;
-
+         
+       /*
+        if($previousRouteName==='game.sequel.modifications.index'){
+            echo "gaming route";
+        }elseif($previousRouteName==='game.sequel.modifications.seqIndex'){
+            echo "sequel route";
+        }else{
+            echo "Previous route";
+        }*/
         
         return $next($request);
     }
