@@ -51,24 +51,36 @@ class MDetailController extends Controller
     }
 
         public function update(Modification $modification, MDetail $mdetail,Request $request){
-         $request->validate([
+            if($request->file('file_url')===null){
+                 $request->validate([
+                "description"=>['required','min:10','max:255'],
+                "mod_id"=>['required','numeric'],
+         ]);
+          $mdetail->update([
+             "description"=>$request->description,
+             "mod_id"=>$request->mod_id,
+         ]);
+            }else{
+                 $request->validate([
                 "description"=>['required','min:10','max:255'],
                 "file_url"=>['nullable','file'],
                 "mod_id"=>['required','numeric'],
          ]);
-              $filePath=null;
+                  $filePath=null;
         if($request->hasFile('file_url')){
             $file=$request->file('file_url');
             $fileName=$file->getClientOriginalName();
             $file->move(public_path('uploads'),$fileName);
             $filePath='uploads/'.$fileName;
         } ;
-        
+
          $mdetail->update([
              "description"=>$request->description,
              "file_url"=>$filePath,
              "mod_id"=>$request->mod_id,
          ]);
+            }
+        
          return redirect()->route('modification.details.index',$modification)->with('status','Successfully updated modification detail');
     }
 
