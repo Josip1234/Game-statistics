@@ -51,7 +51,7 @@
                             <td class="border px-3 py-2">{{ $stat->ended_playing?->format("d.m.Y") }}</td>
                               @if(request()->routeIs('game.statistics.gamStIndex'))  
                                 <td class="border px-3 py-2">{{ $stat->games["name"]; }}</td>
-                                 <td class="border px-3 py-2"><a href="{{ route('game.statistics.gamEdit',[$game,$stat]) }}"><i class="bi bi-pencil-square"></i>
+                                 <td class="border px-3 py-2"><a href="{{ route('game.statistics.gamEdit',[$game,$stat]) }}"><i class="bi bi-pencil-square"></i></a>
                                 
                                     <form method="POST"
                                                       action="{{ route('game.statistics.gamDelete',[$game,$stat]) }}"
@@ -63,9 +63,11 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form>
+                                 <a href="{{ route('advanced.statistics.json_data',[$game,$stat]) }}"><i class="bi bi-123"></i>A</a>
+
                               @else 
                             <td class="border px-3 py-2">{{ $stat->sequels["name"]; }}</td>
-                            <td class="border px-3 py-2"><a href="{{ route('sequel.statistics.seqEdit',[$sequel,$stat]) }}"><i class="bi bi-pencil-square"></i>
+                            <td class="border px-3 py-2"><a href="{{ route('sequel.statistics.seqEdit',[$sequel,$stat]) }}"><i class="bi bi-pencil-square"></i></a>
                             
 
                                 
@@ -80,8 +82,10 @@
                                                     </button>
                                                 </form>
                                     
+                                            <a href="{{ route('advanced.statistics.json_data',[$sequel,$stat]) }}"><i class="bi bi-123"></i>A</a>
+                            @endif 
+                            
                             </td>
-                            @endif
                         </tr>
                         @endforeach
                     </tbody>

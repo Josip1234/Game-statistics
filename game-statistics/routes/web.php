@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdStatisticsController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameProfileController;
 use App\Http\Controllers\GenreController;
@@ -124,7 +125,10 @@ Route::middleware('auth')->group(function () {
         Route::put('{modification}/{mdetail}/update','update')->name('update');
         Route::delete('{modification}/{mdetail}/delete','delete')->name('delete');
    });
-
+  Route::prefix("advanced_statistics")->name('advanced.statistics.')->controller(AdStatisticsController::class)->middleware(['auth'])->group(function(){
+        Route::get('{game}/{statistics}/jkeyval','gkeyval')->name('json_data');
+        Route::get('{sequel}/{statistics}/skeyval','skeyval')->name('json_data');
+  });
 
 }); 
 

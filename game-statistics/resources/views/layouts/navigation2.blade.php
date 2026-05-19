@@ -127,7 +127,7 @@
                         @elseif(isset($modification->game_id) && isset($modification->sequel_id))
                                <x-nav-link :href="route(  'game.sequel.modifications.seqIndex',[$modification->game_id,$modification->sequel_id] )">
                                 {{ __('Return to sequel modification index') }}
-                            </x-nav-link>
+                            </x-nav-link> 
                          @endif
 
                          <x-nav-link :href="route(  'modification.details.create',$modification )">
@@ -138,6 +138,17 @@
                      <x-nav-link :href="route(  'modification.details.index',$modification )">
                           {{ __('Return to  modification detail index') }}
                      </x-nav-link>  
+                 {{-- advanced.statistics.json_data --}}
+                 @elseif(request()->routeIs('advanced.statistics.json_data'))
+                     @if(isset($game))
+                       <x-nav-link :href="route( 'game.statistics.gamStIndex',$game )" :active="request()->routeIs('game.statistics.gamStNew')">
+                        {{ __('Back to gaming statistic homepage') }}
+                    </x-nav-link> 
+                    @elseif(isset($sequel))
+                     <x-nav-link :href="route( 'sequel.statistics.seqHomepage',$sequel )" :active="request()->routeIs('sequel.statistics.seqHomepage')">
+                        {{ __('Return to sequal statistic homepage') }}
+                    </x-nav-link> 
+                    @endif
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}
