@@ -16,6 +16,7 @@ class AdStatisticsController extends Controller
         ]);
     }
     public function skeyval(Sequel $sequel,Statistics $statistics){
+     
         return view("profile.adstat.jkeyval",[
             'statistics'=>$statistics,
             'sequel'=>$sequel

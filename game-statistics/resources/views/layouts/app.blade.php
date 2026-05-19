@@ -15,6 +15,8 @@
          
         @if(request()->routeIs('advanced.statistics.json_data'))
             <script src="{{ asset('js/keyval.js') }}"></script>
+        @elseif(request()->routeIs('advanced.statistics.sjson_data'))
+        <script src="{{ asset('js/keyval.js') }}"></script>
         @endif
 
         <!-- Scripts -->

@@ -82,7 +82,7 @@
                                                     </button>
                                                 </form>
                                     
-                                            <a href="{{ route('advanced.statistics.json_data',[$sequel,$stat]) }}"><i class="bi bi-123"></i>A</a>
+                                            <a href="{{ route('advanced.statistics.sjson_data',[$sequel,$stat]) }}"><i class="bi bi-123"></i>A</a>
                             @endif 
                             
                             </td>

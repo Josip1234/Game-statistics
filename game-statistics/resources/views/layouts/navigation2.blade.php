@@ -140,15 +140,15 @@
                      </x-nav-link>  
                  {{-- advanced.statistics.json_data --}}
                  @elseif(request()->routeIs('advanced.statistics.json_data'))
-                     @if(isset($game))
-                       <x-nav-link :href="route( 'game.statistics.gamStIndex',$game )" :active="request()->routeIs('game.statistics.gamStNew')">
+                  
+                       <x-nav-link :href="route( 'game.statistics.gamStIndex',$game )" >
                         {{ __('Back to gaming statistic homepage') }}
                     </x-nav-link> 
-                    @elseif(isset($sequel))
-                     <x-nav-link :href="route( 'sequel.statistics.seqHomepage',$sequel )" :active="request()->routeIs('sequel.statistics.seqHomepage')">
+                  
+                 @elseif(request()->routeIs('advanced.statistics.sjson_data'))
+                      <x-nav-link :href="route( 'sequel.statistics.seqHomepage',$sequel )">
                         {{ __('Return to sequal statistic homepage') }}
                     </x-nav-link> 
-                    @endif
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}
