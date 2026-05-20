@@ -1,5 +1,8 @@
 <?php
 namespace App\Services;
+
+use Illuminate\Support\Facades\Storage;
+
 class GameService{
     private array $keys;
     private array $values;
@@ -47,14 +50,52 @@ class GameService{
 
     public function change_key_val(array $data):array{
         $array=array();
-       
+        
         for ($i=1; $i < sizeof($data); $i++) { 
-          
-            
-                $array[$data["key".$i]]=$data["val".$i];
-            
+
+                if(in_array("key".$i,$this->keys)){
+                    $array[$data["key".$i]]=$data["val".$i];
+                }else break;
+                
         }
        
         return $array;
+    }
+    
+    public function saveGameAdStatistics(array $data){
+        
+        $games=$this->loadGamesStat();
+        $maxId=0;
+        foreach ($games as $game) {
+            $maxId=max($maxId,(int)($game['id']??0));
+        }
+        $maxId+=1;
+       
+        //$json='';
+       // $json.="[{";
+        for ($i=0; $i <sizeof($data) ; $i++) { 
+            // $json.="\"id\":{$maxId},"; 
+             $games['id']=$maxId;
+             foreach ($data as $key => $value) {
+               // $json.="\"{$key}\":{$value},"; 
+                $games[$key]=$value;
+             }
+            // $json.="},{";
+             
+        }
+       // $json.="}]";
+       // print_r($games);
+        $this->saveGameAStat($games);
+    }
+    private function saveGameAStat(array $games):void{
+        Storage::put($this->file_url,json_encode($games, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
+    private function loadGamesStat():array{
+        if(!Storage::exists($this->file_url)){
+            return [];
+        }
+        $file=Storage::get($this->file_url);
+        $data=json_decode($file,true);
+        return is_array($data)?$data:[];
     }
 }

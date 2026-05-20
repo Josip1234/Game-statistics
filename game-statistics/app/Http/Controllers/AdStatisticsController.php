@@ -36,7 +36,8 @@ class AdStatisticsController extends Controller
     public function gsave_to_json(Request $request, GameService $gameService, Game $game, Statistics $statistics){
                $arrayData=array();
             $extension='.json';
-            $file_name=uniqid($game->name.'_').$extension;
+               $name=str_replace([":"," ","."],"",$game->name);
+            $file_name=uniqid($name.'_').$extension;
             $file_url='uploads/'.$file_name;
             $statistic_id=$statistics->id;
              foreach ($request->input() as $key => $value) {
@@ -47,13 +48,14 @@ class AdStatisticsController extends Controller
             $json=$gameService->returnJsonKeyValues(); 
             $data=$json->original;
             $dat=$gameService->change_key_val($data);
-              var_dump($dat);  
+            $gameService->saveGameAdStatistics($dat);  
     }
      public function ssave_to_json(Request $request, GameService $gameService, Sequel $sequel, Statistics $statistics){
             $arrayData=array();
             $extension='.json';
-            $file_name=uniqid($sequel->name.'_').$extension;
-             $file_url='uploads/'.$file_name;
+            $name=str_replace([":"," ","."],"",$sequel->name);
+            $file_name=uniqid($name.'_').$extension;
+             $file_url='uploads/'.$file_name.$extension;
               $statistic_id=$statistics->id;
             foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
@@ -63,7 +65,7 @@ class AdStatisticsController extends Controller
             $json=$gameService->returnJsonKeyValues(); 
             $data=$json->original;
             $dat=$gameService->change_key_val($data);     
-            var_dump($dat);  
+            $gameService->saveGameAdStatistics($dat);
 
     }
 }
