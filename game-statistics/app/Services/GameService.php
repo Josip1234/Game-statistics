@@ -4,6 +4,7 @@ class GameService{
     private array $keys;
     private array $values;
     private string $fileName;
+    private string $file_url;
 
     //controller will first recieve values added from user then will activate this service 
     //will add key and values into this class then convert it to json 
@@ -14,10 +15,11 @@ class GameService{
     // (or it will go by url then we will have sequel or game input hidden field depending on url)
     //which will also have stored session with string file name (url of the file stored in public)
     //folder  
-    public function set(array $keys,array $values, string $fileName) {
+    public function set(array $keys,array $values, string $fileName, string $file_url) {
         $this->keys=$keys;
         $this->values=$values;
         $this->fileName=$fileName;
+        $this->file_url=$file_url;
     }
 
     public function returnJsonKeyValues(){
@@ -41,5 +43,18 @@ class GameService{
             return response('Size of arrays aredifferent',403);
         }
 
+    }
+
+    public function change_key_val(array $data):array{
+        $array=array();
+       
+        for ($i=1; $i < sizeof($data); $i++) { 
+          
+            
+                $array[$data["key".$i]]=$data["val".$i];
+            
+        }
+       
+        return $array;
     }
 }

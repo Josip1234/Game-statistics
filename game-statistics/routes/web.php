@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/json',function(){
     $gs = new GameService();
-     $gs->set(['ime','prezime'],['jobo','našao posao'],"neka_datoteka");
+     $gs->set(['ime','prezime'],['jobo','našao posao'],"neka_datoteka","neki url");
     //return "Game service";
     return $gs->returnJsonKeyValues();
 })->middleware('auth');
@@ -128,6 +128,8 @@ Route::middleware('auth')->group(function () {
   Route::prefix("advanced_statistics")->name('advanced.statistics.')->controller(AdStatisticsController::class)->middleware(['auth'])->group(function(){
         Route::get('{game}/{statistics}/jkeyval','gkeyval')->name('json_data');
         Route::get('{sequel}/{statistics}/skeyval','skeyval')->name('sjson_data');
+        Route::post('{sequel}/{statistics}/save','ssave_to_json')->name('seq_json');
+        Route::post('{game}/{statistics}/saveg','gsave_to_json')->name('gam_json');
   });
 
 }); 

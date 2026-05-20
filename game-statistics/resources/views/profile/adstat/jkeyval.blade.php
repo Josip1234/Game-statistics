@@ -9,9 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                     @include('layouts.navigation2')
-                       <form method="post" action="" class="mt-6 space-y-6">
-                    @csrf
+                     @include('layouts.navigation2') 
+                        @if(request()->routeIs('advanced.statistics.sjson_data'))
+                       <form method="post" action="{{ route('advanced.statistics.seq_json',[$sequel,$statistics]) }}" class="mt-6 space-y-6">
+                        @else 
+                        <form method="post" action="{{ route('advanced.statistics.gam_json',[$game,$statistics]) }}" class="mt-6 space-y-6">
+                        @endif
+                    @csrf 
         <div id="values">
           
         </div>
