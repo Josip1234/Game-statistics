@@ -56,28 +56,48 @@ document.getElementById('number_or_fields').innerText=numberOfFields;
 }
 
 
+
+
 function removeNewTextFields(){
 
-   
-    
-    let element=document.getElementById('values');
-    let element2=element.getElementsByTagName('input');  
-    let label=element.getElementsByTagName('label');
-    
-    for (let ind = 0; ind <= element2.length; ind++) {
-          
-      if(index<0) index=1;
-      if(labelId<0) index=1;
+   let div=document.getElementById('values');
+   let input=div.getElementsByTagName('input');
+   let arraySize=input.length;
 
-      const element3 = document.getElementById(element2[ind].id);
-      element3.remove();  
-      const labelRemove=document.getElementById(label[ind].id);
-      labelRemove.remove();
-       index--;
-       numberOfFields--;
-      labelId--;
-      document.getElementById('number_or_fields').innerText=numberOfFields; 
-    }
-      
+   let label=div.getElementsByTagName('label');
    
+   for(i=0;i<arraySize;i++){
+    document.getElementById(label[i].id).remove();
+      document.getElementById(input[i].id).remove();
+      labelId--;
+      index--;
+        numberOfFields--;
+    document.getElementById('number_or_fields').innerText=numberOfFields;
+   if(numberOfFields<0){
+    numberOfFields=0;
+   }
+   if(labelId<0){
+    labelId=0;
+   }
+   if(index=0){
+    index=0;
+   }
+   document.getElementById('number_or_fields').innerText=numberOfFields;
+   }
+
+   
+}
+
+function removeAllFields(){
+  let div=document.getElementById('values');
+  
+   while (div.hasChildNodes()) {
+    div.removeChild(div.firstChild);
+  }
+
+
+  index=0;
+  labelId=0;
+  numberOfFields=0;
+   document.getElementById('number_or_fields').innerText=numberOfFields;
 }
