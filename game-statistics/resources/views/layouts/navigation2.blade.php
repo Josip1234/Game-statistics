@@ -144,11 +144,28 @@
                        <x-nav-link :href="route( 'game.statistics.gamStIndex',$game )" >
                         {{ __('Back to gaming statistic homepage') }}
                     </x-nav-link> 
+                       <x-nav-link :href="route( 'advanced.statistics.adhomepage',$statistics )">
+                        {{ __('Advanced statistic homepage') }}
+                    </x-nav-link> 
                   
                  @elseif(request()->routeIs('advanced.statistics.sjson_data'))
                       <x-nav-link :href="route( 'sequel.statistics.seqHomepage',$sequel )">
                         {{ __('Return to sequal statistic homepage') }}
                     </x-nav-link> 
+                       <x-nav-link :href="route( 'advanced.statistics.adhomepage',$statistics )">
+                        {{ __('Advanced statistic homepage') }}
+                    </x-nav-link> 
+                 @elseif(request()->routeIs('advanced.statistics.adhomepage'))
+                        @if($statistics->sequel_id!=null)
+                        <x-nav-link :href="route( 'advanced.statistics.sjson_data',[$statistics->sequel_id,$statistics] )">
+                        {{ __('Return to sequel json data') }}
+                    </x-nav-link> 
+                       @elseif($statistics->game_id!=null && $statistics->sequel_id==null)
+                             <x-nav-link :href="route( 'advanced.statistics.json_data',[$statistics->game_id,$statistics] )">
+                        {{ __('Return to game json data') }}
+                    </x-nav-link> 
+                        @endif
+                   
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

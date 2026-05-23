@@ -49,6 +49,7 @@ class AdStatisticsController extends Controller
             $data=$json->original;
             $dat=$gameService->change_key_val($data);
             $gameService->saveGameAdStatistics($dat);  
+             return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
     }
      public function ssave_to_json(Request $request, GameService $gameService, Sequel $sequel, Statistics $statistics){
             $arrayData=array();
@@ -66,6 +67,13 @@ class AdStatisticsController extends Controller
             $data=$json->original;
             $dat=$gameService->change_key_val($data);     
             $gameService->saveGameAdStatistics($dat);
+            return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
 
+    }
+     
+    public function index(Statistics $statistics){
+        return view('profile.adstat.index',[
+            'statistics'=>$statistics
+        ]);
     }
 }

@@ -129,7 +129,8 @@ Route::middleware('auth')->group(function () {
         Route::get('{game}/{statistics}/jkeyval','gkeyval')->name('json_data');
         Route::get('{sequel}/{statistics}/skeyval','skeyval')->name('sjson_data');
         Route::post('{sequel}/{statistics}/save','ssave_to_json')->name('seq_json');
-        Route::post('{game}/{statistics}/saveg','gsave_to_json')->name('gam_json');
+        Route::post('{game}/{statistics}/saveg','gsave_to_json')->name('gam_json'); 
+        Route::get('{statistics}/index','index')->name('adhomepage');
   });
 
 }); 
