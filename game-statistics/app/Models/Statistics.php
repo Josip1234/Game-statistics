@@ -27,4 +27,7 @@ class Statistics extends Model
     public function games(){
         return $this->belongsTo(Game::class,"game_id","id");
     }
+    public function astat(){
+        return $this->hasMany(AStat::class);
+    }
 }

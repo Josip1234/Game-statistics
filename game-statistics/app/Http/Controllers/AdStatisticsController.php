@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AStat;
 use App\Models\Statistics;
 use Illuminate\Http\Request;
 use App\Models\Game;
@@ -49,6 +50,8 @@ class AdStatisticsController extends Controller
             $data=$json->original;
             $dat=$gameService->change_key_val($data);
             $gameService->saveGameAdStatistics($dat);  
+               $request->session()->put('file_name',$file_name);
+            $request->session()->put('file_url',$file_url);
              return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
     }
      public function ssave_to_json(Request $request, GameService $gameService, Sequel $sequel, Statistics $statistics){
@@ -67,13 +70,22 @@ class AdStatisticsController extends Controller
             $data=$json->original;
             $dat=$gameService->change_key_val($data);     
             $gameService->saveGameAdStatistics($dat);
+            $request->session()->put('file_name',$file_name);
+            $request->session()->put('file_url',$file_url);
             return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
 
     }
      
-    public function index(Statistics $statistics){
+    public function index(Statistics $statistics){ 
+        $adStat=AStat::with('statistics')->where('statistic_id','=',$statistics->id)->orderBy('id')->paginate(5);
         return view('profile.adstat.index',[
-            'statistics'=>$statistics
+            'statistics'=>$statistics,
+            'adStat'=>$adStat
+        ]);
+    }
+    public function create(Statistics $statistics){
+        return view('profile.adstat.create',[
+           'statistics'=>$statistics
         ]);
     }
 }

@@ -16,9 +16,26 @@
                      </div>
                      @endif
                       <div class="overflow-x-auto">
-                
+                          <table class="min-w-full border">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="border px-3 py-2 text-left">ID</th>
+                            <th class="border px-3 py-2 text-left">File name</th>
+                            <th class="border px-3 py-2 text-left">File url</th>
+                            <th class="border px-3 py-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         @foreach ($adStat as $as)
+                              <td class="border px-3 py-2"></td>
+                              <td class="border px-3 py-2"></td>
+                              <td class="border px-3 py-2"></td>
+                              <td class="border px-3 py-2"></td>
+                         @endforeach
+                    </tbody>
+                          </table>
                 <div class="mt-6 flex justify-center">
-                        
+                        {{ $adStat->links() }}
                 </div>
             </div>
                 </div>

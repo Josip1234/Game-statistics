@@ -131,6 +131,7 @@ Route::middleware('auth')->group(function () {
         Route::post('{sequel}/{statistics}/save','ssave_to_json')->name('seq_json');
         Route::post('{game}/{statistics}/saveg','gsave_to_json')->name('gam_json'); 
         Route::get('{statistics}/index','index')->name('adhomepage');
+        Route::get('{statistics}/create','create')->name('adcreate');
   });
 
 }); 
