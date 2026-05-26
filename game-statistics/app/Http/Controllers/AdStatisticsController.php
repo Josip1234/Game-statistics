@@ -38,6 +38,7 @@ class AdStatisticsController extends Controller
                $arrayData=array();
             $extension='.json';
                $name=str_replace([":"," ","."],"",$game->name);
+              
             $file_name=uniqid($name.'_').$extension;
             $file_url='uploads/'.$file_name;
             $statistic_id=$statistics->id;
@@ -59,7 +60,7 @@ class AdStatisticsController extends Controller
             $extension='.json';
             $name=str_replace([":"," ","."],"",$sequel->name);
             $file_name=uniqid($name.'_').$extension;
-             $file_url='uploads/'.$file_name.$extension;
+             $file_url='uploads/'.$file_name;
               $statistic_id=$statistics->id;
             foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
