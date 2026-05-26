@@ -12,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                      @include('layouts.navigation2')
-                       <form method="post" action="" class="mt-6 space-y-6">
+                       <form method="post" action="{{ route('advanced.statistics.adstore',$statistics) }}" class="mt-6 space-y-6">
                     @csrf
         <div>
             <x-input-label for="file_name" :value="__('Insert file name')" />

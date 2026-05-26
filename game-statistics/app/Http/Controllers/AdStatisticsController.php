@@ -78,6 +78,7 @@ class AdStatisticsController extends Controller
      
     public function index(Statistics $statistics){ 
         $adStat=AStat::with('statistics')->where('statistic_id','=',$statistics->id)->orderBy('id')->paginate(5);
+        
         return view('profile.adstat.index',[
             'statistics'=>$statistics,
             'adStat'=>$adStat
@@ -87,5 +88,16 @@ class AdStatisticsController extends Controller
         return view('profile.adstat.create',[
            'statistics'=>$statistics
         ]);
+    }
+
+    public function store(Statistics $statistics,Request $request){
+        $validated=$request->validate([
+              'statistic_id' => ['required','numeric','min:1'],
+              'file_name'=>['required','string','max:100','unique:advanced_statistics,file_name','min:1'],
+              'file_url'=>['required','string','unique:advanced_statistics,file_url','min:1'] 
+        ]);
+        AStat::create($validated);
+        $request->session()->forget(['file_name','file_url']);
+        return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully inserted new advanced statistics');
     }
 }

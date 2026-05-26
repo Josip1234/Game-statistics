@@ -27,10 +27,10 @@
                     </thead>
                     <tbody>
                          @foreach ($adStat as $as)
-                              <td class="border px-3 py-2"></td>
-                              <td class="border px-3 py-2"></td>
-                              <td class="border px-3 py-2"></td>
-                              <td class="border px-3 py-2"></td>
+                              <td class="border px-3 py-2">{{ $as->id }}</td>
+                              <td class="border px-3 py-2">{{ $as->file_name }}</td>
+                              <td class="border px-3 py-2">{{ $as->file_url }}</td>
+                              <td class="border px-3 py-2"><a href=""><i class="bi bi-pencil-square"></i></a></td>
                          @endforeach
                     </tbody>
                           </table>
