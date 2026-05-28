@@ -101,4 +101,24 @@ class AdStatisticsController extends Controller
         $request->session()->forget(['file_name','file_url']);
         return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully inserted new advanced statistics');
     }
+    public function edit(Statistics $statistics, AStat $adstat){
+            return view('profile.adstat.edit',[
+                'statistics'=>$statistics,
+                'adstat'=>$adstat
+            ]);
+    }
+    public function update(Statistics $statistics, AStat $adstat,Request $request){
+        $validated=$request->validate([
+              'statistic_id' => ['required','numeric','min:1'],
+              'file_name'=>['required','string','max:100','unique:advanced_statistics,file_name','min:1'],
+              'file_url'=>['required','string','unique:advanced_statistics,file_url','min:1'] 
+        ]);
+        $adstat->update($validated);
+        return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully updated statistic.');
+    }
+    public function delete(Statistics $statistics, AStat $adstat){
+        $adstat->delete();
+       return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully deleted statistic.');
+
+    }
 }

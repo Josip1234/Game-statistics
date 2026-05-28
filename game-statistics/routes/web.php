@@ -133,6 +133,9 @@ Route::middleware('auth')->group(function () {
         Route::get('{statistics}/index','index')->name('adhomepage');
         Route::get('{statistics}/create','create')->name('adcreate');
         Route::post('{statistics}/store','store')->name('adstore');
+        Route::get('{statistics}/{adstat}/edit','edit')->name('adedit');
+        Route::put('{statistics}/{adstat}/update','update')->name('adupdate');
+        Route::delete('{statistics}/{adstat}/delete','delete')->name('addelete');
   });
 
 }); 
