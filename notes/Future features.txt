@@ -20,7 +20,5 @@ same as multiple tables for genres.
  but file url already exists to stop file_url rewriting with null value. 
  Need to save old value 
 
- we need to add middleware which will scan storage and check if file url and name 
- url exists in database if they do not exists that file will be deleted from storage 
- need to clean up unnecessary storage space usage 
+
 
