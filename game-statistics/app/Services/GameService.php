@@ -25,6 +25,10 @@ class GameService{
         $this->file_url=$file_url;
     }
 
+    public function setFileUrl(string $file_url){
+        $this->file_url=$file_url;
+    }
+
     public function returnJsonKeyValues(){
         $keys=array_values($this->keys);
         $values=array_values($this->values);
@@ -97,5 +101,8 @@ class GameService{
         $file=Storage::get($this->file_url);
         $data=json_decode($file,true);
         return is_array($data)?$data:[];
+    }
+    public function loadData():array{
+        return $this->loadGamesStat();
     }
 }

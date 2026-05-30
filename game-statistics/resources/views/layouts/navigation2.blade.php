@@ -168,10 +168,11 @@
                     <x-nav-link :href="route( 'advanced.statistics.adcreate',$statistics )">
                         {{ __('Create new statistics') }}
                     </x-nav-link> 
-                 @elseif(request()->routeIs('advanced.statistics.adcreate'))
+                 @elseif(request()->routeIs('advanced.statistics.adcreate') || request()->routeIs('advanced.statistics.readJData') )
                        <x-nav-link :href="route( 'advanced.statistics.adhomepage',$statistics )">
                         {{ __('Return to advanced statistics homepage') }}
                     </x-nav-link> 
+                
                  @else  
                        <x-nav-link :href="route( 'profile.game.homepage' )" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Back to gaming homepage') }}

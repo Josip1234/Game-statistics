@@ -120,5 +120,20 @@ class AdStatisticsController extends Controller
         $adstat->delete();
        return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully deleted statistic.');
 
+    } 
+    public function readJsonData(GameService $gameService,Statistics $statistics,AStat $adstat){
+        $gameService->setFileUrl($adstat->file_url);
+        $data=$gameService->loadData();
+        $filtered=[];
+        foreach ($data as $key => $value) {
+            if($key==="id") $filtered[$key]=$value;
+            else continue;
+        }
+    
+        return view("profile.adstat.jdi",[
+            "statistics"=>$statistics,
+            "adstat"=>$adstat,
+            "addat"=>$filtered
+        ]);
     }
 }

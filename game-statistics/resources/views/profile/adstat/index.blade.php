@@ -44,7 +44,9 @@
                                                     </button>
                                                 </form>
                             
+                                                <a href="{{ route('advanced.statistics.readJData',[$statistics,$as]) }}"><i class="bi bi-ticket-detailed">JD</i></a>
                             
+
                             
                             </td>
                               </tr>
