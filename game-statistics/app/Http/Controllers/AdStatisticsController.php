@@ -136,4 +136,8 @@ class AdStatisticsController extends Controller
             "addat"=>$filtered
         ]);
     }
+    public function chooseId(Statistics $statistics, AStat $adstat, Request $request){
+      $id=$request->input('id');
+      return redirect()->route('advanced.statistics.readJData',[$statistics,$adstat])->with('status',$id);
+    }
 }

@@ -136,7 +136,8 @@ Route::middleware('auth')->group(function () {
         Route::get('{statistics}/{adstat}/edit','edit')->name('adedit');
         Route::put('{statistics}/{adstat}/update','update')->name('adupdate');
         Route::delete('{statistics}/{adstat}/delete','delete')->name('addelete');
-        Route::get('{statistics}/{adstat}/jdindex','readJsonData')->name('readJData');
+        Route::get('{statistics}/{adstat}/jdindex','readJsonData')->name('readJData'); 
+        Route::post('{statistics}/{adstat}/cid','chooseId')->name('chooseId');
   });
 
 }); 

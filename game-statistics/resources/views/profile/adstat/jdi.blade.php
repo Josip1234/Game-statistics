@@ -10,7 +10,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                      @include('layouts.navigation2')
-                       <form method="post" action="" class="mt-6 space-y-6">
+                     @if(session('status'))
+                        
+                     
+                     @else
+                       <form method="post" action="{{ route('advanced.statistics.chooseId',[$statistics,$adstat]) }}" class="mt-6 space-y-6">
                     @csrf
     
         <div>
@@ -43,10 +47,11 @@
          <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Choose id') }}</x-primary-button>
 
         </div>
     </form>
+        @endif
                 </div>
                
 
