@@ -21,4 +21,6 @@ same as multiple tables for genres.
  Need to save old value 
 
 
-
+since one sequel can have many files we can say that one file can have only statistic for that file 
+if there is another statistic for new game another file can be created for that sequel more data will 
+have more files.

@@ -104,5 +104,6 @@ class GameService{
     }
     public function loadData():array{
         return $this->loadGamesStat();
-    }
+    } 
+  
 }

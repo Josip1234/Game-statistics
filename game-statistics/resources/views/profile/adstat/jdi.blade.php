@@ -10,48 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                      @include('layouts.navigation2')
-                     @if(session('status'))
-                        
-                     
-                     @else
-                       <form method="post" action="{{ route('advanced.statistics.chooseId',[$statistics,$adstat]) }}" class="mt-6 space-y-6">
-                    @csrf
+
     
         <div>
-            <label for="have_sequel" class="block font-medium text-sm text-gray-700">Choose id to select values</label>
-             
-            
-                <select name="id" id="id" class="mt-1 block w-full">
-                     @foreach ($addat as $val )
-                     
-                    <option value="{{ $val }}">{{ $val }}</option>
-                        
-                    @endforeach
-                </select>
-              
-                   
-               
-               
-            
-            </select>
-           
-        </div>  
-
-
-       
-
-
-     
-
-
-         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Choose id') }}</x-primary-button>
-
-        </div>
-    </form>
-        @endif
+  
                 </div>
                
 
