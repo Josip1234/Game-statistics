@@ -127,10 +127,12 @@ class AdStatisticsController extends Controller
         $data=$gameService->loadData();
         $filtered=[];
         foreach ($data as $key => $value) {
-            if($key==="id") $filtered[$key]=$value;
-            else continue;
+          
+                $filtered[$key]=$value;
+            
+        
         }
-    
+     
         return view("profile.adstat.jdi",[
             "statistics"=>$statistics,
             "adstat"=>$adstat,

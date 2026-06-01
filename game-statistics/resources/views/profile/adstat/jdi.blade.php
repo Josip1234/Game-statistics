@@ -10,8 +10,25 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                      @include('layouts.navigation2')
+                      <div class="w-full max-w-sm p-6 bg-neutral-primary-soft border border-default rounded-base shadow-xs mx-auto">
+    <h5 class="mb-4 text-xl font-medium text-body">Json data</h5>
+    <ul role="list" class="space-y-4 my-6">
+                     @foreach ($addat as $key=>$val)
+                       <li class="flex items-center">
+                             <span class="text-body">{{ $key }}{{ __(':') }}{{ $val }}</span>
+                         </li>
+                   
+                       
+                     @endforeach
+                    </ul>
 
-    
+
+
+      
+    </ul>
+</div>
+
+
         <div>
   
                 </div>
