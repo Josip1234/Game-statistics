@@ -14,21 +14,21 @@
                     @csrf
         <div>
             <x-input-label for="name" :value="__('Insert new game name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autocomplete="off" />
+            <x-text-input id="name" name="name" type="text" :value="old('name')" class="mt-1 block w-full" autocomplete="off" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="yearOrRangeOfProduction" :value="__('Insert year or range of years')" />
-            <x-text-input id="yearOrRangeOfProduction" name="yearOrRangeOfProduction" type="text" class="mt-1 block w-full" autocomplete="off" />
+            <x-text-input id="yearOrRangeOfProduction" name="yearOrRangeOfProduction" type="text" :value="old('yearOrRangeOfProduction')" class="mt-1 block w-full" autocomplete="off" />
             <x-input-error :messages="$errors->get('yearOrRangeOfProduction')" class="mt-2" />
         </div>
 
         <div>
             <label for="have_sequel" class="block font-medium text-sm text-gray-700">Choose mark of sequel</label>
             <select name="have_sequel" id="have_sequel" class="mt-1 block w-full">
-                <option value="0">No sequel</option>
-                <option value="1">Has sequel</option>
+                <option value="0" @selected(old('have_sequel')==0)>No sequel</option>
+                <option value="1" @selected(old('have_sequel')==1)>Has sequel</option>
             </select>
             @error('have_sequel')
                 <p class="mt-2">{{ $message }}</p>
@@ -40,7 +40,7 @@
             <label for="genre" class="block font-medium text-sm text-gray-700">Select game genre</label>
             <select name="genre_id" id="genre" class="mt-1 block w-full">
                 @foreach ($genres as $genre)
-                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                    <option value="{{ $genre->id }}" @selected(old('genre_id')==$genre->id)>{{ $genre->name }}</option>
                 @endforeach
             </select>
             @error('genre_id')
@@ -53,7 +53,7 @@
             <label for="platform_id" class="block font-medium text-sm text-gray-700">Select game platform</label>
             <select name="platform_id" id="platform_id" class="mt-1 block w-full">
                 @foreach ($platform as $platform)
-                    <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                    <option value="{{ $platform->id }}" @selected(old('platform_id')==$platform->id)>{{ $platform->name }}</option>
                 @endforeach
             </select>
             @error('platform_id')
