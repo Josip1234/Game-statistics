@@ -25,6 +25,7 @@ class GameController extends Controller
         
         return view('profile.game.index',[
             "games"=>$games,
+            "id"=>0
         ]);
     }
     public function create(){

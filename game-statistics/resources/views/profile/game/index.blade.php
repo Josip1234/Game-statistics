@@ -32,7 +32,7 @@
                     <tbody>
                         @foreach ($games as $game)
                         <tr>
-                            <td class="border px-3 py-2">{{ $game->id }}</td>
+                            <td class="border px-3 py-2">{{ ++$id }}</td>
                             <td class="border px-3 py-2">{{ $game->gn }}</td>
                             <td class="border px-3 py-2">{{ $game->yearOrRangeOfProduction }}</td>
                             <td class="border px-3 py-2">{{ $game->nickname}}</td>   
