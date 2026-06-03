@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    public function genGmIndex(){
+    public function genGmIndex(Request $request){
+         
         $genres=Genre::orderBy('id')->paginate(5);
+        $page=$request->input("page");
+        $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
+       
         return view("profile.genre.index",
         [
-        "genres"=>$genres
+        "genres"=>$genres,
+        "id"=>$idToShow
         ]);
     } 
     public function genNew(){

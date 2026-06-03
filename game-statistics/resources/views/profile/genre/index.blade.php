@@ -28,7 +28,7 @@
                     <tbody>
                         @foreach ($genres as $genre)
                         <tr>
-                            <td class="border px-3 py-2">{{ $genre->id }}</td>
+                            <td class="border px-3 py-2">{{ ++$id }}</td>
                             <td class="border px-3 py-2">{{ $genre->name }}</td>
                             <td class="border px-3 py-2">
                                 <a href="{{ route('game.genre.genEdit',$genre) }}"><i class="bi bi-pencil-square"></i>
@@ -56,6 +56,16 @@
                 </table>
                 <div class="mt-6 flex justify-center">
                         {{ $genres->links() }}
+                     {{-- @if($genres->hasPages()) 
+                      @php
+                            $tmpId=$id;
+                        @endphp
+                      @endif
+                     --}}   
+                           
+                        
+                       
+                        
                 </div>
             </div>
                 </div>
