@@ -11,7 +11,9 @@ class SequelController extends Controller
     public function index(Game $game){
         $sequels=Sequel::orderBy('id')->where('sequel.game_id','=',$game->id)->paginate(5);
         return view("profile.sequel.index",["game"=>$game,
-        "sequels"=>$sequels]);
+        "sequels"=>$sequels,
+        "id"=>0],
+        );
     }
     public function create(Game $game){
         return view("profile.sequel.create",[

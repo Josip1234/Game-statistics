@@ -14,25 +14,25 @@
                     @csrf
         <div>
             <x-input-label for="name" :value="__('Insert new sequel name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autocomplete="off" />
+            <x-text-input id="name" name="name" type="text" :value="old('name')" class="mt-1 block w-full" autocomplete="off" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="publish_year" :value="__('Insert year of publish')" />
-            <x-text-input id="publish_year" name="publish_year" type="number" class="mt-1 block w-full" autocomplete="off" step='1' min='0' />
+            <x-text-input id="publish_year" name="publish_year" type="number" :value="old('publish_year')" class="mt-1 block w-full" autocomplete="off" step='1' min='0' />
             <x-input-error :messages="$errors->get('publish_year')" class="mt-2" />
         </div>
 
              <div>
             <x-input-label for="game_version" :value="__('Insert new game version')" />
-            <x-text-input id="game_version" name="game_version" type="text" class="mt-1 block w-full" autocomplete="off" />
+            <x-text-input id="game_version" name="game_version" type="text" :value="old('game_version')" class="mt-1 block w-full" autocomplete="off" />
             <x-input-error :messages="$errors->get('game_version')" class="mt-2" />
         </div>
 
         <div>
             <label for="version_history">Insert versions history</label>
-            <textarea name="version_history" id="version_history" cols="30" rows="10" class="mt-1 block w-full"></textarea>
+            <textarea name="version_history" id="version_history" cols="30" rows="10" class="mt-1 block w-full">{{ old('version_history') }}</textarea>
             @error('version_history')
                 <p class="mt-2">{{ $message }}</p>
             @enderror

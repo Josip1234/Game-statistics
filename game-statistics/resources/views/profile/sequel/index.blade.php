@@ -31,7 +31,7 @@
                     <tbody>
                         @foreach ($sequels as $sequel)
                         <tr>
-                            <td class="border px-3 py-2">{{ $sequel->id }}</td>
+                            <td class="border px-3 py-2">{{ ++$id }}</td>
                             <td class="border px-3 py-2">{{ $game->name }}</td>
                                <td class="border px-3 py-2">{{ $sequel->name}}</td>
                                 <td class="border px-3 py-2">{{ $sequel->publish_year }}</td> 
