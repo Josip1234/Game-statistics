@@ -24,3 +24,5 @@ same as multiple tables for genres.
 since one sequel can have many files we can say that one file can have only statistic for that file 
 if there is another statistic for new game another file can be created for that sequel more data will 
 have more files.
+
+need to fix correct id generation for tables game and sequel as a genre solution
