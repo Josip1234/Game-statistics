@@ -10,13 +10,17 @@ use App\Models\Game;
 
 class StatisticsController extends Controller
 {
-    public function seqIndex(Sequel $sequel){
+    public function seqIndex(Sequel $sequel,Request $request){
         $statistics=Statistics::with('sequels')->
         where('statistics.sequel_id','=',$sequel->id)->orderBy('id')->paginate(5);
+
+        $page=$request->input("page");
+        $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
         
         return view("profile.statistics.index",[
             "sequel"=>$sequel,
-            "statistics"=>$statistics
+            "statistics"=>$statistics,
+             "id"=>$idToShow
         ]);
     }
     public function seqNew(Sequel $sequel){
@@ -60,12 +64,16 @@ class StatisticsController extends Controller
         $statistics->delete();
         return redirect()->route("sequel.statistics.seqHomepage",$sequel)->with('status','Statistic successfully deleted.');
     }
-    public function gamStIndex(Game $game){
+    public function gamStIndex(Game $game, Request $request){
           $statistics=Statistics::with('games')->
         where('statistics.game_id','=',$game->id)->orderBy('id')->paginate(5);
+           $page=$request->input("page");
+        $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
+       
          return view("profile.statistics.index",[
             "statistics"=>$statistics,
-            "game"=>$game
+            "game"=>$game,
+             "id"=>$idToShow
          ]);
     }
 

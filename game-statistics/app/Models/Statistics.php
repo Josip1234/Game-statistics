@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Statistics extends Model
 {
@@ -30,4 +31,6 @@ class Statistics extends Model
     public function astat(){
         return $this->hasMany(AStat::class);
     }
+
+    
 }

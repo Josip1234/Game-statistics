@@ -22,26 +22,27 @@
                     @csrf
         <div>
             <x-input-label for="game_progress" :value="__('Insert game progress')" />
-            <x-text-input id="game_progress" name="game_progress" type="text" class="mt-1 block w-full" autocomplete="off" />
+            <x-text-input id="game_progress" name="game_progress" type="text" :value="old('game_progress')" class="mt-1 block w-full" autocomplete="off" />
             <x-input-error :messages="$errors->get('game_progress')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="hours_played" :value="__('Insert playing hours')" />
-            <x-text-input id="hours_played" name="hours_played" type="number" class="mt-1 block w-full" autocomplete="off"  min='0' />
+            <x-text-input id="hours_played" name="hours_played" type="number"  :value="old('hours_played')" class="mt-1 block w-full" autocomplete="off"  min='0' />
             <x-input-error :messages="$errors->get('hours_played')" class="mt-2" />
         </div>
 
              <div>
-            <x-input-label for="started_playing" :value="__('Insert date of playtime start')" />
-            <input type="date" name="started_playing" id="started_playing" class="mt-1 block w-full">
-      
+            <x-input-label for="started_playing" :value="__('Insert date of playtime start')" /> 
+          
+            <input type="date" name="started_playing" id="started_playing"  value="{{ old('started_playing') }}" class="mt-1 block w-full">
+            
             <x-input-error :messages="$errors->get('started_playing')" class="mt-2" />
         </div>
 
         <div>
             <label for="ended_playing" class="block font-medium text-sm text-gray-700">Insert date of playtime end</label>
-            <input type="date" name="ended_playing" id="ended_playing" class="mt-1 block w-full">
+            <input type="date" name="ended_playing" id="ended_playing" value="{{ old('ended_playing')}}" class="mt-1 block w-full">
           
             @error('ended_playing')
                 <p class="mt-2">{{ $message }}</p>

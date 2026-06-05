@@ -44,7 +44,7 @@
                                     @foreach ($statistics as $stat)
                         <tr>
                               
-                            <td class="border px-3 py-2">{{ $stat->id }}</td>
+                            <td class="border px-3 py-2">{{ ++$id }}</td>
                             <td class="border px-3 py-2">{{ $stat->game_progress }}</td>
                             <td class="border px-3 py-2">{{ $stat->hours_played }}</td>
                             <td class="border px-3 py-2">{{ ($stat->started_playing===null)?"Unknown":$stat->started_playing?->format("d.m.Y") }}</td>
