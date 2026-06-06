@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 
 class PlatformController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $platforms=Platform::orderBy('id')->paginate(5);
+         $page=$request->input("page");
+     $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
         return view("profile.platform.index",[
-            "platforms"=>$platforms
+            "platforms"=>$platforms,
+              "id"=>$idToShow
         ]);
     }
     public function create(){

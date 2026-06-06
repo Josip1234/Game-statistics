@@ -28,7 +28,7 @@
                             <tbody>
                                 @foreach ($platforms as $platform)
                                     <tr>
-                                        <td class="border px-3 py-2">{{ $platform->id }}</td>
+                                        <td class="border px-3 py-2">{{ ++$id }}</td>
                                         <td class="border px-3 py-2">{{ $platform->name }}</td>
                                         <td class="border px-3 py-2">{{ $platform->platform_history }}</td>
                                         <td class="border px-3 py-2">
