@@ -8,11 +8,14 @@ use App\Models\Profile;
 
 class GameProfileController extends Controller
 {
-    public function gpindex(Game $game){
+    public function gpindex(Request $request,Game $game){
         $profile=Profile::with('game')->where('game_id','=',$game->id)->orderBy('id')->paginate(5);
+         $page=$request->input("page");
+        $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
         return view("profile.gprofile.index",[
             'game'=>$game,
-            'profiles'=>$profile
+            'profiles'=>$profile,
+             "id"=>$idToShow
         ]);
     }
     public function gpcreate(Game $game){

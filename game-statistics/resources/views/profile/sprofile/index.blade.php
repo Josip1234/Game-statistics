@@ -28,7 +28,7 @@
                             <tbody>
                                 @foreach ($profiles as $profile)
                         <tr>
-                            <td class="border px-3 py-2">{{ $profile->id }}</td> 
+                            <td class="border px-3 py-2">{{ ++$id }}</td> 
                             <td class="border px-3 py-2">{{ $profile->profile_name }}</td> 
                             <td class="border px-3 py-2">{{ $profile->sequel->name }}</td> 
                             <td class="border px-3 py-2"><a href="{{ route('sequel.profile.edit',[$game,$sequel,$profile]) }}"><i class="bi bi-pencil-square"></i></a>

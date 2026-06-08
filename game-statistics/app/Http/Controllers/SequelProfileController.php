@@ -9,14 +9,17 @@ use App\Models\Game;
 
 class SequelProfileController extends Controller
 {
-       public function spindex(Game $game,Sequel $sequel){
+       public function spindex(Request $request,Game $game,Sequel $sequel){
         $profile=Profile::with('sequel')->orderBy('id')->where('sequel_id','!=','null')->
         where('sequel_id','=',$sequel->id)->paginate(5);
-        
+         $page=$request->input("page");
+                 $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
+
         return view("profile.sprofile.index",[
             'game'=>$game,
             'sequel'=>$sequel,
-            'profiles'=>$profile
+            'profiles'=>$profile,
+               "id"=>$idToShow
         ]);
     }
     public function spcreate(Game $game,Sequel $sequel){
