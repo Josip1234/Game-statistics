@@ -9,22 +9,29 @@ use App\Models\Sequel;
 
 class ModificationController extends Controller
 {
-    public function index(Game $game){
+    public function index(Request $request,Game $game){
         $modifications=Modification::with('games')->
         where('game_id','=',$game->id)->orderBy('id')->paginate(5);
+        $page = $request->input("page");
+        $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
+
      
         return view("profile.modification.index",[
             'modifications'=>$modifications,
-            'game'=>$game
+            'game'=>$game,
+             'id'=>$idToShow
         ]);
     }
-    public function seqIndex(Game $game,Sequel $sequel){
+    public function seqIndex(Request $request,Game $game,Sequel $sequel){
         $modifications=Modification::with('sequels')->where('sequel_id','!=','null')->
         where('sequel_id',"=",$sequel->id)->orderBy('id')->paginate(5);
+         $page = $request->input("page");
+            $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
         return view("profile.modification.index",[
             'modifications'=>$modifications,
             'game'=>$game,
-            'sequel'=>$sequel
+            'sequel'=>$sequel,
+            'id'=>$idToShow
         ]);
     }
     public function seqCreate(Game $game,Sequel $sequel){

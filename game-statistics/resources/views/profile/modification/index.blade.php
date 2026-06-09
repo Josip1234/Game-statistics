@@ -42,7 +42,7 @@
                                     @foreach ($modifications as $mod)
                         <tr>
                               
-                            <td class="border px-3 py-2">{{ $mod->id }}</td>
+                            <td class="border px-3 py-2">{{ ++$id; }}</td>
                             <td class="border px-3 py-2">{{ $mod->name }}</td>
                              @if(request()->routeIs('game.sequel.modifications.seqIndex'))
                              <td class="border px-3 py-2">{{ $game->name }}</td>
