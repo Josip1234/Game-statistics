@@ -15,6 +15,7 @@
                      @include('layouts.navigation2')
                      @if(session("status"))
                      <div class="mb-4 rounder-md bg-green-50 p-4 text-sm text-green-700">
+                        
                             {{ session('status') }}
                      </div>
                      @endif
@@ -31,7 +32,7 @@
                     <tbody>
                                     @foreach ($mdetails as $md)
                         <tr>
-                            <td class="border px-3 py-2">{{ $md->id }}</td>
+                            <td class="border px-3 py-2">{{ ++$id }}</td>
                             <td class="border px-3 py-2">{{ $md->description }}</td>
                             <td class="border px-3 py-2">{{ $md->file_url }}</td>
                             <td class="border px-3 py-2"><a href="{{ route('modification.details.edit',[$modification,$md]) }}"><i class="bi bi-pencil-square"></i></a>

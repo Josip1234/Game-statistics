@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified','storage.cleanup'])->name('dashboard');
+})->middleware(['auth', 'verified','storage.cleanup','forget.file.session'])->name('dashboard');
 
 Route::get('/json',function(){
     $gs = new GameService();
@@ -30,7 +30,7 @@ Route::get('/json',function(){
     return $gs->returnJsonKeyValues();
 })->middleware('auth');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','forget.file.session'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -117,7 +117,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('{game}/{sequel}/{modification}/delete','seqDelete')->name('seqDelete');
 
    });
-   Route::prefix("modification_details")->name('modification.details.')->controller(MDetailController::class)->middleware(['auth'])->group(function(){
+   Route::prefix("modification_details")->name('modification.details.')->controller(MDetailController::class)->middleware(['auth','forget.file.session'])->group(function(){
         Route::get('{modification}/index','index')->name('index')->middleware('remember.url');
         Route::get('{modification}/create','create')->name('create');
         Route::post('{modification}/store','store')->name('store');

@@ -15,13 +15,18 @@
                     @csrf
         <div>
             <x-input-label for="description" :value="__('Insert new mod detail description')" />
-            <x-text-input id="description" name="description" type="text" class="mt-1 block w-full" autocomplete="off" />
+            <x-text-input id="description" name="description" type="text" class="mt-1 block w-full" :value="old('description')" autocomplete="off" />
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 
           <div>
             <label for="file_url">Modification file</label>
-            <input type="file" name="file_url" value="{{ old('file_url') }}" class="mt-1 block w-full" id="file_url">
+            @if(session('original_file_name') && session('original_file_name')!="")
+                <p>{{ session('original_file_name') }}</p>
+                <input type="file" name="file_url" value="{{ session('original_file_name') }}" class="mt-1 block w-full" id="file_url">
+            @else 
+               <input type="file" name="file_url" value="{{ old('file_url') }}" class="mt-1 block w-full" id="file_url">
+            @endif         
             @error('file_url')
                 <p class="mt-2">{{ $message }}</p>
             @enderror

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ForgetFileSessionForRoute;
 use App\Http\Middleware\RememberPreviousUrl;
 use App\Http\Middleware\StorageCleanup;
 use App\Http\Middleware\ValidateFileInput;
@@ -17,7 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'file.validate'=>ValidateFileInput::class,
             'remember.url'=>RememberPreviousUrl::class,
-            'storage.cleanup'=>StorageCleanup::class,
+            'storage.cleanup'=>StorageCleanup::class, 
+            'forget.file.session'=>ForgetFileSessionForRoute::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

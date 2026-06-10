@@ -41,7 +41,7 @@ class AdStatisticsController extends Controller
               
             $file_name=uniqid($name.'_').$extension;
             $file_url='uploads/'.$file_name;
-            $statistic_id=$statistics->id;
+            
              foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
                  $arrayData[$key]=$value;
@@ -61,7 +61,7 @@ class AdStatisticsController extends Controller
             $name=str_replace([":"," ","."],"",$sequel->name);
             $file_name=uniqid($name.'_').$extension;
              $file_url='uploads/'.$file_name;
-              $statistic_id=$statistics->id;
+             
             foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
                 $arrayData[$key]=$value;
@@ -77,12 +77,15 @@ class AdStatisticsController extends Controller
 
     }
      
-    public function index(Statistics $statistics){ 
+    public function index(Request $request,Statistics $statistics){ 
         $adStat=AStat::with('statistics')->where('statistic_id','=',$statistics->id)->orderBy('id')->paginate(5);
-        
+        $page=$request->input("page");
+        $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
+
         return view('profile.adstat.index',[
             'statistics'=>$statistics,
-            'adStat'=>$adStat
+            'adStat'=>$adStat,
+             "id"=>$idToShow
         ]);
     }
     public function create(Statistics $statistics){

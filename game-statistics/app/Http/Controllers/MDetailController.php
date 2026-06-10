@@ -8,13 +8,20 @@ use Illuminate\Http\Request;
 
 class MDetailController extends Controller
 {
-    public function index(Modification $modification){
-        
+    public function index(Request $request,Modification $modification){
+        //after successfull insert new modification detail forget session variables for original file name and redirect
+        if($request->session()->get("redirect")==="true"){
+                    $request->session()->forget(['original_file_name','redirect']);
+        }
+       
         $mdetail=MDetail::with('modifications')->where('mod_id','=',$modification->id)->orderBy('id')->paginate('5');
-      
+         $page=$request->input("page");
+                 $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
+
         return view("profile.mdetail.index",[
              'mdetails'=>$mdetail,
-             'modification'=>$modification
+             'modification'=>$modification,
+              "id"=>$idToShow
         ]);
     }
     public function create(Modification $modification){
@@ -23,24 +30,35 @@ class MDetailController extends Controller
         ]);
     }
     public function store(Modification $modification, Request $request){
-         $validated=$request->validate([
+        
+         
+        $request->validate([
                 "description"=>['required','min:10','max:255'],
                 "file_url"=>['nullable','file'],
                 "mod_id"=>['required','numeric'],
-         ]);
+         ]); 
+        
+         
               $filePath=null;
+              $fileName="";
         if($request->hasFile('file_url')){
             $file=$request->file('file_url');
+          
             $fileName=$file->getClientOriginalName();
             $file->move(public_path('uploads'),$fileName);
-            $filePath='uploads/'.$fileName;
-        } ;
-        
+            $filePath='uploads/'.$fileName; 
+          
+        } ; 
+
+         $request->session()->put("original_file_name",$fileName); 
+         $request->session()->put("redirect","true");
+           
          MDetail::create([
              "description"=>$request->description,
              "file_url"=>$filePath,
              "mod_id"=>$request->mod_id,
          ]);
+         $request->session()->forget(['original_file_name']);
          return redirect()->route('modification.details.index',$modification)->with('status','Successfully stored new modification detail');
     }
     public function edit(Modification $modification,MDetail $mdetail){
