@@ -8,11 +8,14 @@ use App\Models\Sequel;
 
 class SequelController extends Controller
 {
-    public function index(Game $game){
+    public function index(Request $request,Game $game){
         $sequels=Sequel::orderBy('id')->where('sequel.game_id','=',$game->id)->paginate(5);
+                $page=$request->input("page");
+        $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
+
         return view("profile.sequel.index",["game"=>$game,
         "sequels"=>$sequels,
-        "id"=>0],
+        "id"=>$idToShow],
         );
     }
     public function create(Game $game){
