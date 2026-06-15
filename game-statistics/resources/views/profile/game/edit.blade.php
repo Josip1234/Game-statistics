@@ -63,7 +63,12 @@
             @enderror
         </div>
 
-
+        <div>
+             <label for="game_genre_id" class="block font-medium text-sm text-gray-700">Select other genres</label>
+             <input type="checkbox" name="game_genre[]" value="1">Racing 
+             <input type="checkbox" name="game_genre[]" value="2">Action 
+             <input type="checkbox" name="game_genre[]" value="3">Simulation 
+        </div>
 
          <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
