@@ -24,7 +24,8 @@
                             <th class="border px-3 py-2 text-left">Year of production</th>
                             <th class="border px-3 py-2 text-left">User</th>
                             <th class="border px-3 py-2 text-left">Sequel?</th>
-                            <th class="border px-3 py-2 text-left">Genre</th> 
+                            <th class="border px-3 py-2 text-left">Primary genre</th> 
+                               <th class="border px-3 py-2 text-left">Other genres</th> 
                                <th class="border px-3 py-2 text-left">Platform</th>
                             <th class="border px-3 py-2 text-left">Actions</th>
                         </tr>
@@ -44,7 +45,10 @@
                                  {{ $game->genre->name }}
                              @endif    
                             
-                            </td>       
+                            </td>   
+                                 <td class="border px-3 py-2">
+                                       {{ __('No multiple genres defined') }}
+                                 </td>
                              <td class="border px-3 py-2">
                            @if($game->platform_id===null)
                                 {{ "No platform defined" }}
