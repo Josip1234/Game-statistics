@@ -17,6 +17,8 @@
             <script src="{{ asset('js/keyval.js') }}"></script>
         @elseif(request()->routeIs('advanced.statistics.sjson_data'))
         <script src="{{ asset('js/keyval.js') }}"></script>
+       @elseif(request()->routeIs('profile.game.edit'))
+        <script src="{{ asset('js/selectedfirstgenre.js') }}"></script>
         @endif
 
         <!-- Scripts -->

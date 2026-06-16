@@ -43,7 +43,7 @@
                         <div>
                             <label for="genre" class="block font-medium text-sm text-gray-700">Select game
                                 genre</label>
-                            <select name="genre_id" id="genre" class="mt-1 block w-full">
+                            <select name="genre_id" id="genre" class="mt-1 block w-full" onchange="getValues()">
                                 @foreach ($genres as $genre)
                                     <option value="{{ $genre->id }}" @selected(old('genre_id', $game->genre_id) == $genre->id)>{{ $genre->name }}
                                     </option>
@@ -74,10 +74,10 @@
 
                             <h3 class="mb-4 font-semibold text-heading">{{ __('Additional Genres') }}</h3>
                             <ul
-                                class="w-48 select-none text-sm font-medium text-heading bg-neutral-primary-soft border border-default rounded-base">
+                                class="w-48 select-none text-sm font-medium text-heading bg-neutral-primary-soft border border-default rounded-base" id="checkboxValues">
                                            @foreach ($genres as $genre)
    
-                                <li class="w-full border-b border-default rounded-t-lg">
+                                <li class="w-full border-b border-default rounded-t-lg" id="{{ $genre->id }}">
                                     <div class="flex items-center ps-3">
                                         <input id="game_genre[]" type="checkbox" value="{{ $genre->id }}" name="game_genre[]"
                                             class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
