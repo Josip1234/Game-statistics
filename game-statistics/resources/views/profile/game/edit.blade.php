@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @include('layouts.navigation2')
-                    <form method="post" action="{{ route('profile.game.update', $game) }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('profile.game.update', $game) }}" class="mt-6 space-y-6" >
                         @csrf
                         @method('put')
                         <div>
@@ -43,7 +43,7 @@
                         <div>
                             <label for="genre" class="block font-medium text-sm text-gray-700">Select game
                                 genre</label>
-                            <select name="genre_id" id="genre" class="mt-1 block w-full" onchange="getValues()">
+                            <select name="genre_id" id="genre" class="mt-1 block w-full" onchange="getValues();">
                                 @foreach ($genres as $genre)
                                     <option value="{{ $genre->id }}" @selected(old('genre_id', $game->genre_id) == $genre->id)>{{ $genre->name }}
                                     </option>
@@ -59,7 +59,7 @@
                         <div>
                             <label for="platform_id" class="block font-medium text-sm text-gray-700">Select game
                                 platform</label>
-                            <select name="platform_id" id="platform_id" class="mt-1 block w-full">
+                            <select name="platform_id" id="platform_id" class="mt-1 block w-full" onchange="selectLast(this.form.optList1);">
                                 @foreach ($platform as $platform)
                                     <option value="{{ $platform->id }}" @selected(old('platform_id', $game->platform_id) == $platform->id)>
                                         {{ $platform->name }}</option>
