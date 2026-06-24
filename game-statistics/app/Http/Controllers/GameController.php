@@ -66,8 +66,11 @@ class GameController extends Controller
             'user_id'=>['required'],
             'have_sequel'=>['nullable','numeric'],
              'genre_id'=>['nullable','numeric'],
-              'platform_id'=>['nullable','numeric']
+              'platform_id'=>['nullable','numeric'],
+              'game_genre.*'=>['not in:'.$game->genre_id, 'min:1','required'],
         ]);
+  
+        
         $game->update($validated);
         return redirect()->route('profile.game.homepage')->with('status','Game successfully updated.');
     }

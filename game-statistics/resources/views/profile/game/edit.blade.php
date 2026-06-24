@@ -89,12 +89,12 @@
                                    @endforeach
                             </ul>
 
-   
 
-
-                            @error('game_genre')
+            
+                            @error('game_genre.*')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
+                           
                         </div>
 
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
