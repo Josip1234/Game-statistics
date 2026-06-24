@@ -43,7 +43,7 @@
                         <div>
                             <label for="genre" class="block font-medium text-sm text-gray-700">Select game
                                 genre</label>
-                            <select name="genre_id" id="genre" class="mt-1 block w-full" onchange="getValues();">
+                            <select name="genre_id" id="genre" class="mt-1 block w-full">
                                 @foreach ($genres as $genre)
                                     <option value="{{ $genre->id }}" @selected(old('genre_id', $game->genre_id) == $genre->id)>{{ $genre->name }}
                                     </option>

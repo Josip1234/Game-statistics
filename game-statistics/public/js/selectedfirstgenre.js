@@ -2,7 +2,7 @@ let removedElement="";
 let removedElementIndex=0;
 
 window.onload= function(){
-  removedElement=removeCheckedValueFromCheckbox();
+  //removedElement=removeCheckedValueFromCheckbox();
   
 }
 function getValues(){
