@@ -40,7 +40,7 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::get('/create','create')->name('new'); 
         Route::post('/add','add')->name('add');
         Route::get('{game}/edit','edit')->name('edit');
-        Route::put('{game}/update','update')->name('update'); 
+        Route::put('{game}/update','update')->name('update')->middleware("check.stored.value.game_genre"); 
         Route::delete('{game}/delete','delete')->name('delete');
     });
 

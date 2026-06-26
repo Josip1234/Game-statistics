@@ -47,4 +47,8 @@ class Game extends Model
     public function game(){
         return $this->hasMany(Modification::class);
     }
+    //one game can have many hame_genres
+    public function game_genres(){
+        return $this->hasMany(Game_Genre::class);
+    }
 }

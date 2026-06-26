@@ -98,7 +98,7 @@
                         </div>
 
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-
+                        <input type="hidden" name="game_id" value="{{ $game->id }}">
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Update') }}</x-primary-button>
 

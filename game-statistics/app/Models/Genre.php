@@ -18,4 +18,8 @@ class Genre extends Model
     protected function games(){
         return $this->hasMany(Game::class);
     }
+    //one genre can be in multiple game_genre
+    public function game_genres(){
+        return $this->hasMany(Game_Genre::class);
+    }
 }

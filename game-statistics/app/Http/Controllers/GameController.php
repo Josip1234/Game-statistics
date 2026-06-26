@@ -59,7 +59,8 @@ class GameController extends Controller
          'platform'=>$platform
         ]);
     }
-        public function update(Request $request,Game $game){
+        public function update(Request $request,Game $game){ 
+
         $validated=$request->validate([
             'name'=>['required','max:255','min:2'],
             'yearOrRangeOfProduction'=>['required','min:4'],
@@ -70,6 +71,7 @@ class GameController extends Controller
               'game_genre.*'=>['not in:'.$game->genre_id, 'min:1','required'],
         ]);
   
+        
         
         $game->update($validated);
         return redirect()->route('profile.game.homepage')->with('status','Game successfully updated.');
