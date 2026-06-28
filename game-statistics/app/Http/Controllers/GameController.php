@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Game_Genre;
 use App\Models\Genre;
 use App\Models\Platform;
 use App\Models\User;
@@ -53,10 +54,14 @@ class GameController extends Controller
       public function edit(Game $game){
           $genre=Genre::orderBy('id')->get();
           $platform=Platform::orderBy('id')->get();
+          //list of checked values
+          $game_genres=Game_Genre::select("genre_id")->where("game_id","=",$game->id)->distinct()->orderBy("id")->get();
+         
         return view('profile.game.edit',
         ["game"=>$game,
          'genres'=>$genre,
-         'platform'=>$platform
+         'platform'=>$platform,
+         'gg'=>$game_genres,
         ]);
     }
         public function update(Request $request,Game $game){ 

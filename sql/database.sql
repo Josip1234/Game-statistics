@@ -12,3 +12,4 @@ use game_statistics;
 -- action for sequel will be printed in game index otherwise actions for game statistics will be printed
 alter table game modify column have_sequel char(1) null;
 alter table game drop column platform_id;
+SELECT distinct genre_id FROM game_statistics.game_genre where game_id='1';

@@ -80,8 +80,16 @@
                                 <li class="w-full border-b border-default rounded-t-lg" id="{{ $genre->id }}">
                                     <div class="flex items-center ps-3">
                                         <input id="game_genre[]" type="checkbox" value="{{ $genre->id }}" name="game_genre[]"
-                                            class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
-                                            @checked(old('genre_id', $game->genre_id) == $genre->id)>
+                                            class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" 
+                                          
+                                               @foreach ($gg as $checked)
+                                                    @if($checked->genre_id==$genre->id)
+                                                    @checked($genre->id)
+                                                    break;
+                                                    @endif
+                                               @endforeach
+                                        
+                                            >
                                         <label for="game_genre[]"
                                             class="w-full py-3 ms-2 text-sm font-medium text-heading">{{ $genre->name }}</label>
                                     </div>
