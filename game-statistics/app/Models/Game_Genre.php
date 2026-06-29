@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Game_Genre extends Model
 {
     public $table="game_genre";
+    
     protected $fillable = [
         "game_id",
         "genre_id"

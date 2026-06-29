@@ -77,7 +77,37 @@ class GameController extends Controller
         ]);
   
         
-        
+         $listOfInputValues=$request->input("game_genre");
+         //get all ids from game genre with game id we need to updated that records
+         $ids=Game_Genre::selectRaw('id')->where("game_id","=",$game->id)->orderBy('id')->get();
+         $mapValues=array();
+         $inputIndex=0;
+         foreach ($ids as $updateIDs) {
+            $id=$updateIDs;
+            foreach ($listOfInputValues as $inputValues) {
+             
+                    $mapValues[]= [
+                          "id"=>$id["id"],
+                             "input"=>$inputValues,
+                    ];
+                   unset($listOfInputValues[$inputIndex]);
+                 
+                   break;
+                
+            }
+              $inputIndex++;
+         }
+         foreach ($mapValues as $values) {
+             Game_Genre::where('id',$values["id"])->update([
+                            'game_id'=>$game->id,
+                            'genre_id'=>$values["input"],
+                ]);
+         }
+         /* 
+         need to implement if there is no inserted id to insert new id 
+         next implement will be if value has been unchecked delete it for that genre
+         
+         */
         $game->update($validated);
         return redirect()->route('profile.game.homepage')->with('status','Game successfully updated.');
     }
