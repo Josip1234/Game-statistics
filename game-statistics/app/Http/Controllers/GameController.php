@@ -82,29 +82,65 @@ class GameController extends Controller
          $ids=Game_Genre::selectRaw('id')->where("game_id","=",$game->id)->orderBy('id')->get();
          $mapValues=array();
          $inputIndex=0;
+         //this will be used to make an array to insert new genre_id value
+         $idToInsertIndex=1;
+         //array to input new value if it is not checked
+         $insertMapValues=array();
+         $sizeOfArrayOfInputIds=count($ids);
+         $indexOfInputValues=0;
+         $idInsert=Game_Genre::selectRaw('max(id) as max')->where("game_id","=",$game->id)->get();
+         $prevIdInsert=0;
+         $sizeOfInputCheckboxValues=count($listOfInputValues);
          foreach ($ids as $updateIDs) {
+          
             $id=$updateIDs;
-            foreach ($listOfInputValues as $inputValues) {
-             
-                    $mapValues[]= [
+            foreach ($listOfInputValues as $inputValues) { 
+                  
+                    
+                    if($indexOfInputValues>$sizeOfInputCheckboxValues) break;
+
+                    //if size of list input values array is exceeded size of the list of current id list 
+                    if($indexOfInputValues>$sizeOfArrayOfInputIds){
+                        $nextId=($prevIdInsert==0)?$idInsert[0]["max"]+1:$prevIdInsert;
+                        $insertMapValues[]=[
+                            "id"=>$nextId,
+                            "input"=>$inputValues,
+                        ];
+                        $nextId++;
+                        $prevIdInsert=$nextId; 
+                    
+                    }else{
+                          $mapValues[]= [
                           "id"=>$id["id"],
                              "input"=>$inputValues,
                     ];
                    unset($listOfInputValues[$inputIndex]);
-                 
-                   break;
+                    }
+                    $indexOfInputValues++;
+                  
                 
             }
               $inputIndex++;
+             
+            
          }
+ 
          foreach ($mapValues as $values) {
              Game_Genre::where('id',$values["id"])->update([
                             'game_id'=>$game->id,
                             'genre_id'=>$values["input"],
                 ]);
          }
+         if(count($insertMapValues)>0){
+              foreach ($insertMapValues as $value) {
+                 Game_Genre::create([
+                  'game_id'=>$game->id,
+                    'genre_id'=>$value["input"],
+               ]);
+              }
+              
+         }
          /* 
-         need to implement if there is no inserted id to insert new id 
          next implement will be if value has been unchecked delete it for that genre
          
          */

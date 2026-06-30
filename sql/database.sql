@@ -16,7 +16,7 @@ SELECT distinct genre_id FROM game_statistics.game_genre where game_id='1';
 
 SELECT MAX(id) from game_genre where game_id=1 and genre_id =1;
 select count(*) as broj_duplikata from game_genre where game_id=1 and genre_id = 1;
-delete from game_genre where id = 23;
+delete from game_genre where id = 46;
 
 
 /* DELIMITER $$
