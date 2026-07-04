@@ -17,6 +17,11 @@ class Game_Genre extends Model
         "game_id"=>'integer',
         "genre_id"=>'integer'
     ];
+    //we dont need those fileds to show in json
+    protected $hidden = [
+        "created_at",
+        "updated_at"
+    ];
     public function game(){
         return $this->BelongsTo(Game::class);
     }

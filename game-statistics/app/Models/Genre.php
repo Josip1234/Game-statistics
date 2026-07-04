@@ -14,6 +14,11 @@ class Genre extends Model
     protected $casts = [
         "name"=>"string"
     ];
+       //we dont need those fileds to show in json
+    protected $hidden = [
+        "created_at",
+        "updated_at"
+    ];
     //one genre can have many games
     protected function games(){
         return $this->hasMany(Game::class);

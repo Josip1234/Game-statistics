@@ -76,70 +76,45 @@ class GameController extends Controller
               'game_genre.*'=>['not in:'.$game->genre_id, 'min:1','required'],
         ]);
   
-        
+             //get checked values from input
          $listOfInputValues=$request->input("game_genre");
-         //get all ids from game genre with game id we need to updated that records
-         $ids=Game_Genre::selectRaw('id')->where("game_id","=",$game->id)->orderBy('id')->get();
-         $mapValues=array();
-         $inputIndex=0;
-         //this will be used to make an array to insert new genre_id value
-         $idToInsertIndex=1;
-         //array to input new value if it is not checked
-         $insertMapValues=array();
-         $sizeOfArrayOfInputIds=count($ids);
-         $indexOfInputValues=0;
-         $idInsert=Game_Genre::selectRaw('max(id) as max')->where("game_id","=",$game->id)->get();
-         $prevIdInsert=0;
-         $sizeOfInputCheckboxValues=count($listOfInputValues);
-         foreach ($ids as $updateIDs) {
-          
-            $id=$updateIDs;
-            foreach ($listOfInputValues as $inputValues) { 
-                  
-                    
-                    if($indexOfInputValues>$sizeOfInputCheckboxValues) break;
+         $completedListOfGenreValues=Genre::orderBy("id")->get();
+         $selectedGenreValue=$request->input("genre_id");
+         //create array which will contain game_genre_id for deletion
+         //this contains array of genre ids which will be deleted if not checked 
+         $unchecked_ids=array();
 
-                    //if size of list input values array is exceeded size of the list of current id list 
-                    if($indexOfInputValues>$sizeOfArrayOfInputIds){
-                        $nextId=($prevIdInsert==0)?$idInsert[0]["max"]+1:$prevIdInsert;
-                        $insertMapValues[]=[
-                            "id"=>$nextId,
-                            "input"=>$inputValues,
-                        ];
-                        $nextId++;
-                        $prevIdInsert=$nextId; 
-                    
-                    }else{
-                          $mapValues[]= [
-                          "id"=>$id["id"],
-                             "input"=>$inputValues,
-                    ];
-                   unset($listOfInputValues[$inputIndex]);
-                    }
-                    $indexOfInputValues++;
-                  
-                
+
+         //process completed list of values 
+         foreach ($completedListOfGenreValues as $key => $values) {
+            //if value is selected skip it 
+            if($selectedGenreValue==$values["id"]){
+                $unchecked_ids[]=$values["id"];
+                //delete selected val from the list 
+                unset($completedListOfGenreValues[$key]);
+                continue;
             }
-              $inputIndex++;
-             
-            
          }
- 
-         foreach ($mapValues as $values) {
-             Game_Genre::where('id',$values["id"])->update([
-                            'game_id'=>$game->id,
-                            'genre_id'=>$values["input"],
-                ]);
-         }
-         if(count($insertMapValues)>0){
-              foreach ($insertMapValues as $value) {
-                 Game_Genre::create([
-                  'game_id'=>$game->id,
-                    'genre_id'=>$value["input"],
-               ]);
-              }
-              
-         }
+      
+    
+        //process checked list 
+        //need another iteration to get correct id-s for not selected values 
+        foreach ($completedListOfGenreValues as $key => $value) {
+            $id=$value["id"];
+            foreach ($listOfInputValues as $val) {
+                //if id in completed list are equal to val in input values that values are checked continue
+                if($id==$val){
+                    unset($completedListOfGenreValues[$key]);
+                } 
+                else continue;
+            }
+        }
+        foreach ($completedListOfGenreValues as $key => $value) {
+             $unchecked_ids[]=$value["id"];
+        }
+        //now we have a list of values to delete in game_genre table
+         dd($unchecked_ids);
+          exit;
          /* 
          next implement will be if value has been unchecked delete it for that genre
          
