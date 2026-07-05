@@ -83,8 +83,28 @@ class GameController extends Controller
          //create array which will contain game_genre_id for deletion
          //this contains array of genre ids which will be deleted if not checked 
          $unchecked_ids=array();
+         //list of values to create
+         $checked_ids=array();
 
-
+         //process completed list create new values 
+         //need ids for create
+         //list of genres  in game_genres
+         $list_genres_in_game_genres=Game_Genre::where("game_id","=",$game->id)->orderBy("id")->get();
+         //copy list of input vals 
+         $inputvalCopy=$listOfInputValues;
+  
+             foreach ($list_genres_in_game_genres as  $val) {
+                //echo $val["genre_id"]."<br>";
+                foreach ($inputvalCopy as $key => $value) {
+                    if($value==$val["genre_id"]){ unset($inputvalCopy[$key]); break;}
+                    else{
+                        $checked_ids[]=$value;
+                        unset($inputvalCopy[$key]);
+                    } 
+                }
+                //echo "<br>";
+             }
+     
          //process completed list of values 
          foreach ($completedListOfGenreValues as $key => $values) {
             //if value is selected skip it 
@@ -113,15 +133,36 @@ class GameController extends Controller
              $unchecked_ids[]=$value["id"];
         }
         //now we have a list of values to delete in game_genre table
-         dd($unchecked_ids);
-          exit;
+        
+          //delete unchecked values
+         foreach ($unchecked_ids as $value) {
+            Game_Genre::where('game_id',$game->id)->where('genre_id',$value)->delete();
+         }
+          //create checked values
+          foreach ($checked_ids as $value) {
+                Game_Genre::create([
+                    'game_id'=>$game->id,
+                    'genre_id'=>$value
+                ]);
+          }
          /* 
          next implement will be if value has been unchecked delete it for that genre
          
+             Game_Genre::where('id',$values["id"])->update([
+                            'game_id'=>$game->id,
+                            'genre_id'=>$values["input"],
+                ]);
+                    Game_Genre::where('id',$values["id"])->delete([
+                            'game_id'=>$game->id,
+                            'genre_id'=>$values["input"],
+                ]);
+
+
          */
         $game->update($validated);
         return redirect()->route('profile.game.homepage')->with('status','Game successfully updated.');
     }
+        
     public function delete(Game $game){
         $game->delete();
          return redirect()->route('profile.game.homepage')->with('status','Game successfully deleted.');

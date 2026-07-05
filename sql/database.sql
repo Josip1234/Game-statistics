@@ -18,6 +18,9 @@ SELECT MAX(id) from game_genre where game_id=1 and genre_id =1;
 select count(*) as broj_duplikata from game_genre where game_id=1 and genre_id = 1;
 delete from game_genre where id = 46;
 
+select g.*,gg.* from genre g left join game_genre gg on gg.genre_id = g.id where gg.game_id=1;
+
+
 
 /* DELIMITER $$
 create procedure deleteDuplicatedValues(in game_id bigint, in genre_id bigint)
