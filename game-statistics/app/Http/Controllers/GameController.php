@@ -12,7 +12,7 @@ use App\Models\User;
 class GameController extends Controller
 {
     public function homepage(Request $request){ 
-        $games=Game::with(['genre','platform'])->join('users','game.user_id','=','users.id') 
+        $games=Game::with(['genre','platform','game_genres'])->join('users','game.user_id','=','users.id') 
         ->select(
             'game.id',
             'game.name as gn',
@@ -23,6 +23,8 @@ class GameController extends Controller
             'users.nickname')
          ->orderBy('game.id')
          ->paginate(5);  
+         
+        
         $page=$request->input("page"); 
         $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
 

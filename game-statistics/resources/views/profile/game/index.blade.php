@@ -47,7 +47,28 @@
                             
                             </td>   
                                  <td class="border px-3 py-2">
-                                       {{ __('No multiple genres defined') }}
+                                      @if(count($game->game_genres)==0)
+                                         {{ __('No multiple genres defined') }}
+                                      @else 
+                                         @php
+                                            $index=1;
+                                         @endphp
+                                         @foreach ($game->game_genres as $val )
+                                        
+                                            
+                                            {{$val->genre->name }} 
+                                                @php
+                                                if($index<count($game->game_genres)) echo ",";
+                                                else echo "";
+                                            @endphp
+
+                                             @php
+                                                $index++;
+                                            @endphp
+                                          
+                                            
+                                       @endforeach
+                                      @endif
                                  </td>
                              <td class="border px-3 py-2">
                            @if($game->platform_id===null)
