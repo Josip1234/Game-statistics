@@ -78,6 +78,7 @@ class GameController extends Controller
   
              //get checked values from input
          $listOfInputValues=$request->input("game_genre");
+       
          $completedListOfGenreValues=Genre::orderBy("id")->get();
          $selectedGenreValue=$request->input("genre_id");
          //create array which will contain game_genre_id for deletion
@@ -90,20 +91,23 @@ class GameController extends Controller
          //need ids for create
          //list of genres  in game_genres
          $list_genres_in_game_genres=Game_Genre::where("game_id","=",$game->id)->orderBy("id")->get();
+
          //copy list of input vals 
          $inputvalCopy=$listOfInputValues;
   
              foreach ($list_genres_in_game_genres as  $val) {
                 //echo $val["genre_id"]."<br>";
                 foreach ($inputvalCopy as $key => $value) {
-                    if($value==$val["genre_id"]){ unset($inputvalCopy[$key]); break;}
-                    else{
-                        $checked_ids[]=$value;
-                        unset($inputvalCopy[$key]);
-                    } 
+                    if($val["genre_id"]==$value){ unset($inputvalCopy[$key]); break;}
+                   
                 }
                 //echo "<br>";
              }
+             foreach ($inputvalCopy as $key => $value) {
+                    $checked_ids[]=$value;
+             }
+          
+            
      
          //process completed list of values 
          foreach ($completedListOfGenreValues as $key => $values) {
@@ -138,6 +142,7 @@ class GameController extends Controller
          foreach ($unchecked_ids as $value) {
             Game_Genre::where('game_id',$game->id)->where('genre_id',$value)->delete();
          }
+       
           //create checked values
           foreach ($checked_ids as $value) {
                 Game_Genre::create([
