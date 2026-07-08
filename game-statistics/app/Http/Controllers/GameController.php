@@ -36,21 +36,36 @@ class GameController extends Controller
     public function create(){
         $genre=Genre::orderBy('id')->get(); 
         $platform=Platform::orderBy('id')->get();
+
         return view('profile.game.create',[
             'genres'=>$genre,
             'platform'=>$platform
         ]);
     }
     public function add(Request $request){
+       // $currentId=Game::selectRaw('max(id) as max')->get();
+       // dd($currentId);
+       // $nextId=$currentId[0]["max"]+1;
+        $checked_ids=$request->input("game_genre");
+
         $validated=$request->validate([
             'name'=>['required','max:255','min:2'],
             'yearOrRangeOfProduction'=>['required','min:4'],
             'user_id'=>['required'],
             'have_sequel'=>['nullable','numeric'],
             'genre_id'=>['nullable','numeric'],
-            'platform_id'=>['nullable','numeric']
+            'platform_id'=>['nullable','numeric'],
+            'game_genre.*'=>['not in:'.$request->input("genre_id"), 'min:1','required'],
         ]);
         Game::create($validated);
+            $LastInsertedID=Game::getPdo()->lastInsertId();
+            dd($LastInsertedID);
+            foreach ($checked_ids as $value) {
+                Game_Genre::create([
+                    'game_id'=>$LastInsertedID,
+                    'genre_id'=>$value
+                ]);
+          }
         return redirect()->route('profile.game.homepage')->with('status','New game successfully added.');
     }
       public function edit(Game $game){

@@ -22,6 +22,7 @@ select g.*,gg.* from genre g left join game_genre gg on gg.genre_id = g.id where
 
 
 
+
 /* DELIMITER $$
 create procedure deleteDuplicatedValues(in game_id bigint, in genre_id bigint)
 begin 
