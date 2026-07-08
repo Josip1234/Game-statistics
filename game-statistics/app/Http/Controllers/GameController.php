@@ -58,8 +58,8 @@ class GameController extends Controller
             'game_genre.*'=>['not in:'.$request->input("genre_id"), 'min:1','required'],
         ]);
         Game::create($validated);
-            $LastInsertedID=Game::getPdo()->lastInsertId();
-            dd($LastInsertedID);
+            $LastInsertedID=Game::max("id");
+         
             foreach ($checked_ids as $value) {
                 Game_Genre::create([
                     'game_id'=>$LastInsertedID,
