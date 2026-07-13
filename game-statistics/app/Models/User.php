@@ -24,7 +24,8 @@ class User extends Authenticatable
         'password',
         'dbirth',
         'nickname',
-        'profilePicture'
+        'profilePicture',
+        'userType'
     ];
 
     /**
