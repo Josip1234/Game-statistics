@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdStatisticsController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameProfileController;
@@ -139,8 +140,12 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::get('{statistics}/{adstat}/jdindex','readJsonData')->name('readJData'); 
       
   });
+  Route::prefix("admin_users")->name('admin.users.')->controller(AdminUserController::class)->middleware(['auth','admin'])->group(function(){
+        Route::get('admin/users','index')->name('index');
+  });
 
 }); 
+
 
  
 

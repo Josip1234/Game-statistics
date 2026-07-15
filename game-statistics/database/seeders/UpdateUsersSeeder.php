@@ -8,7 +8,7 @@ use App\Models\User;
 
 class UpdateUsersSeeder extends Seeder
 {
-    /** 1:31:34
+    /** 
      * Run the database seeds.
      */
     public function run(): void

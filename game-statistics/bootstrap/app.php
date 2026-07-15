@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckAdmin;
 use App\Http\Middleware\CheckStoredValuesGameGEnre;
 use App\Http\Middleware\CleanupGameGenreTable;
 use App\Http\Middleware\ForgetFileSessionForRoute;
@@ -22,7 +23,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'remember.url'=>RememberPreviousUrl::class,
             'storage.cleanup'=>StorageCleanup::class, 
             'forget.file.session'=>ForgetFileSessionForRoute::class,
-            'check.stored.value.game_genre'=>CheckStoredValuesGameGEnre::class
+            'check.stored.value.game_genre'=>CheckStoredValuesGameGEnre::class,
+            'admin'=>CheckAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

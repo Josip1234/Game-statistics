@@ -2,6 +2,14 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
+            <div class="mb-6">
+                <div class="text-sm text-gray-600">
+                    Type of user:
+                    <span class="font-semibold">
+                            {{ $user->userType===1 ? 'Admin':"User" }}
+                    </span>
+                </div>
+            </div>
         </h2>
     </x-slot>
 

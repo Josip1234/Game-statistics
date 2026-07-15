@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //admin = 1 , korisnici =0
         Schema::table('users', function (Blueprint $table) {
             $table->tinyInteger('userType')->nullable()->after('email');
         });
