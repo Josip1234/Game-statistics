@@ -10,16 +10,16 @@
                 <div class="overflow-x-auto">
                         <table class="min-w-full border">
                            <thead>
-                            <tr class="bg-gray-50">  
-                                <th class="border px-3 py-2 text-left"> Full Name</th>    
-                                <th class="border px-3 py-2 text-left"> Email</th>    
-                                <th class="border px-3 py-2 text-left"> User type</th>    
-                                <th class="border px-3 py-2 text-left"> Date of birth</th>    
-                                <th class="border px-3 py-2 text-left"> Nickname</th>    
-                                <th class="border px-3 py-2 text-left"> Profile picture</th>    
-                                <th class="border px-3 py-2 text-left"> Actions</th>                              
-                            </tr>    
-                        </thead>     
+                            <tr class="bg-gray-50">
+                                <th class="border px-3 py-2 text-left"> Full Name</th>
+                                <th class="border px-3 py-2 text-left"> Email</th>
+                                <th class="border px-3 py-2 text-left"> User type</th>
+                                <th class="border px-3 py-2 text-left"> Date of birth</th>
+                                <th class="border px-3 py-2 text-left"> Nickname</th>
+                                <th class="border px-3 py-2 text-left"> Profile picture</th>
+                                <th class="border px-3 py-2 text-left"> Actions</th>
+                            </tr>
+                        </thead>
                         <tbody>
                         @foreach($users as $u)
                             <tr>
@@ -28,13 +28,19 @@
                                 <td class="border px-3 py-2">{{ $u->userType === 1 ? 'Admin' : 'User' }}</td>
                                 <td class="border px-3 py-2">{{ $u->dbirth?->format("d.m.Y") }}</td>
                                 <td class="border px-3 py-2">{{ $u->nickname }}</td>
-                                <td class="border px-3 py-2">{{ $u->profilePicture  }}</td>
+                                <td class="border px-3 py-2">
+                                    @if ($u->profilePicture==null || $u->profilePicture=="")
+                                           {{ __('No profile picture') }}
+                                    @else
+                                         <img src="/{{ $u->profilePicture }}" alt="profile_picture{{$u->email}}" class="w-full h-48 object-cover object-center">
+                                    @endif
+                                </td>
                                 <td class="border px-3 py-2"></td>
 
                             </tr>
-                        @endforeach    
-                        
-                        </tbody>     
+                        @endforeach
+
+                        </tbody>
                         </table>
                 </div>
         </div>
