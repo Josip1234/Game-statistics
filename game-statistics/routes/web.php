@@ -139,6 +139,9 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
   });
   Route::prefix("admin_users")->name('admin.users.')->controller(AdminUserController::class)->middleware(['auth','admin'])->group(function(){
         Route::get('admin/users','index')->name('index');
+        Route::get('admin/users/{user}/edit','edit')->name('edit');
+        Route::put('admin/users/{user}','update')->name('update')->middleware('numberOfAdmins');
+        Route::delete('admin/users/{user}','delete')->name('delete');
   });
 
 });
