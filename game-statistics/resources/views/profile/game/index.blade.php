@@ -24,9 +24,8 @@
                             <th class="border px-3 py-2 text-left">Year of production</th>
                             <th class="border px-3 py-2 text-left">User</th>
                             <th class="border px-3 py-2 text-left">Sequel?</th>
-                            <th class="border px-3 py-2 text-left">Primary genre</th> 
-                               <th class="border px-3 py-2 text-left">Other genres</th> 
-                               <th class="border px-3 py-2 text-left">Platform</th>
+                            <th class="border px-3 py-2 text-left">Genres</th>
+                               <th class="border px-3 py-2 text-left">Platforms</th>
                             <th class="border px-3 py-2 text-left">Actions</th>
                         </tr>
                     </thead>
@@ -36,27 +35,25 @@
                             <td class="border px-3 py-2">{{ ++$id }}</td>
                             <td class="border px-3 py-2">{{ $game->gn }}</td>
                             <td class="border px-3 py-2">{{ $game->yearOrRangeOfProduction }}</td>
-                            <td class="border px-3 py-2">{{ $game->nickname}}</td>   
-                            <td class="border px-3 py-2">{{ ($game->have_sequel===1)?"Have sequel":"No sequel"; }}</td>  
+                            <td class="border px-3 py-2">{{ $game->nickname}}</td>
+                            <td class="border px-3 py-2">{{ ($game->have_sequel===1)?"Have sequel":"No sequel"; }}</td>
                             <td class="border px-3 py-2">
                              @if($game->genre_id===null)
                                 {{ "No genre defined" }}
                              @else
                                  {{ $game->genre->name }}
-                             @endif    
-                            
-                            </td>   
-                                 <td class="border px-3 py-2">
-                                      @if(count($game->game_genres)==0)
-                                         {{ __('No multiple genres defined') }}
-                                      @else 
+                             @endif
+
+                                          @if(count($game->game_genres)==0)
+
+                                      @else
                                          @php
                                             $index=1;
                                          @endphp
                                          @foreach ($game->game_genres as $val )
-                                        
-                                            
-                                            {{$val->genre->name }} 
+
+
+                                            {{$val->genre->name }}
                                                 @php
                                                 if($index<count($game->game_genres)) echo ",";
                                                 else echo "";
@@ -65,20 +62,21 @@
                                              @php
                                                 $index++;
                                             @endphp
-                                          
-                                            
+
+
                                        @endforeach
                                       @endif
-                                 </td>
+
+                            </td>
                              <td class="border px-3 py-2">
                            @if($game->platform_id===null)
                                 {{ "No platform defined" }}
                              @else
                                  {{ $game->platform->name }}
-                             @endif   
+                             @endif
                              </td>
                             <td class="border px-3 py-2"><a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a>
-                            
+
                                     <form method="POST"
                                                       action="{{ route('profile.game.delete', $game) }}"
                                                       style="display: inline"
@@ -89,18 +87,18 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form>
-                                               
+
 
                                                 @if($game->have_sequel===1)
                                                    <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i>S</a>
-                                                @else 
+                                                @else
                                                    <a href="{{ route('game.statistics.gamStIndex',$game) }}"><i class="bi bi-arrow-bar-right"></i><i class="bi bi-controller"></i><i class="bi bi-123"></i></a>
-                                                   <a href="{{ route('game.profile.index',$game) }}"><i class="bi bi-person"></i></a> 
+                                                   <a href="{{ route('game.profile.index',$game) }}"><i class="bi bi-person"></i></a>
                                                    <a href="{{ route('game.sequel.modifications.index',$game) }}"><i class="bi bi-pencil-square"></i><i class="bi bi-controller"></i></a>
                                                 @endif
-                              
-                            
-                            </td>                  
+
+
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
