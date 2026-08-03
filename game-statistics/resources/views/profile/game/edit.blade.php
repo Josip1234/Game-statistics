@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @include('layouts.navigation2')
-                    <form method="post" action="{{ route('profile.game.update', $game) }}" class="mt-6 space-y-6" >
+                    <form method="post" action="{{ route('profile.game.update', $game) }}" class="mt-6 space-y-6">
                         @csrf
                         @method('put')
                         <div>
@@ -44,6 +44,7 @@
                             <label for="genre" class="block font-medium text-sm text-gray-700">Select game
                                 genre</label>
                             <select name="genre_id" id="genre" class="mt-1 block w-full">
+                                <option value=""> {{ __('-- Select genre --') }}</option>
                                 @foreach ($genres as $genre)
                                     <option value="{{ $genre->id }}" @selected(old('genre_id', $game->genre_id) == $genre->id)>{{ $genre->name }}
                                     </option>
@@ -59,7 +60,9 @@
                         <div>
                             <label for="platform_id" class="block font-medium text-sm text-gray-700">Select game
                                 platform</label>
-                            <select name="platform_id" id="platform_id" class="mt-1 block w-full" onchange="selectLast(this.form.optList1);">
+                            <select name="platform_id" id="platform_id" class="mt-1 block w-full"
+                                onchange="selectLast(this.form.optList1);">
+                                <option value=""> {{ __('-- Select platform --') }}</option>
                                 @foreach ($platform as $platform)
                                     <option value="{{ $platform->id }}" @selected(old('platform_id', $game->platform_id) == $platform->id)>
                                         {{ $platform->name }}</option>
@@ -73,36 +76,32 @@
                         <div>
 
                             <h3 class="mb-4 font-semibold text-heading">{{ __('Additional Genres') }}</h3>
-                            <ul
-                                class="w-48 select-none text-sm font-medium text-heading bg-neutral-primary-soft border border-default rounded-base" id="checkboxValues">
-                                           @foreach ($genres as $genre)
-   
-                                <li class="w-full border-b border-default rounded-t-lg" id="{{ $genre->id }}">
-                                    <div class="flex items-center ps-3">
-                                        <input id="game_genre[]" type="checkbox" value="{{ $genre->id }}" name="game_genre[]"
-                                            class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" 
-                                          
-                                               @foreach ($gg as $checked)
-                                                    @if($checked->genre_id==$genre->id)
+                            <ul class="w-48 select-none text-sm font-medium text-heading bg-neutral-primary-soft border border-default rounded-base"
+                                id="checkboxValues">
+                                @foreach ($genres as $genre)
+                                    <li class="w-full border-b border-default rounded-t-lg" id="{{ $genre->id }}">
+                                        <div class="flex items-center ps-3">
+                                            <input id="game_genre[]" type="checkbox" value="{{ $genre->id }}"
+                                                name="game_genre[]"
+                                                class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
+                                                @foreach ($gg as $checked)
+                                                    @if ($checked->genre_id == $genre->id)
                                                     @checked($genre->id)
                                                     break;
-                                                    @endif
-                                               @endforeach
-                                        
-                                            >
-                                        <label for="game_genre[]"
-                                            class="w-full py-3 ms-2 text-sm font-medium text-heading">{{ $genre->name }}</label>
-                                    </div>
-                                </li>
-                                   @endforeach
+                                                    @endif @endforeach>
+                                            <label for="game_genre[]"
+                                                class="w-full py-3 ms-2 text-sm font-medium text-heading">{{ $genre->name }}</label>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
 
 
-            
+
                             @error('game_genre.*')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
-                           
+
                         </div>
 
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">

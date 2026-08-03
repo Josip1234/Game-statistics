@@ -43,6 +43,7 @@
                             <label for="genre" class="block font-medium text-sm text-gray-700">Select game
                                 genre</label>
                             <select name="genre_id" id="genre" class="mt-1 block w-full">
+                                <option value=""> {{ __('-- Select genre --') }}</option>
                                 @foreach ($genres as $genre)
                                     <option value="{{ $genre->id }}" @selected(old('genre_id') == $genre->id)>{{ $genre->name }}
                                     </option>
@@ -58,6 +59,7 @@
                             <label for="platform_id" class="block font-medium text-sm text-gray-700">Select game
                                 platform</label>
                             <select name="platform_id" id="platform_id" class="mt-1 block w-full">
+                                 <option value=""> {{ __('-- Select platform --') }}</option>
                                 @foreach ($platform as $platform)
                                     <option value="{{ $platform->id }}" @selected(old('platform_id') == $platform->id)>
                                         {{ $platform->name }}</option>

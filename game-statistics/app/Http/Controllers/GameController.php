@@ -39,6 +39,7 @@ class GameController extends Controller
     {
         $genre = Genre::orderBy('id')->get();
         $platform = Platform::orderBy('id')->get();
+        
 
         return view('profile.game.create', [
             'genres' => $genre,
@@ -56,7 +57,7 @@ class GameController extends Controller
             'name' => ['required', 'max:255', 'min:2'],
             'yearOrRangeOfProduction' => ['required', 'min:4'],
             'user_id' => ['required'],
-            'have_sequel' => ['nullable', 'numeric'],
+            'have_sequel' => ['required', 'numeric'],
             'genre_id' => ['nullable', 'numeric'],
             'platform_id' => ['nullable', 'numeric'],
             'game_genre.*' => ['not in:' . $request->input("genre_id"), 'min:1', 'required'],
@@ -97,7 +98,7 @@ class GameController extends Controller
             'name' => ['required', 'max:255', 'min:2'],
             'yearOrRangeOfProduction' => ['required', 'min:4'],
             'user_id' => ['required'],
-            'have_sequel' => ['nullable', 'numeric'],
+            'have_sequel' => ['required', 'numeric'],
             'genre_id' => ['nullable', 'numeric'],
             'platform_id' => ['nullable', 'numeric'],
             'game_genre.*' => ['not in:' . $game->genre_id, 'min:1', 'required'],

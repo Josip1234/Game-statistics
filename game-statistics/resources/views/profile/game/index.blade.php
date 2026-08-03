@@ -37,16 +37,19 @@
                             <td class="border px-3 py-2">{{ $game->yearOrRangeOfProduction }}</td>
                             <td class="border px-3 py-2">{{ $game->nickname}}</td>
                             <td class="border px-3 py-2">{{ ($game->have_sequel===1)?"Have sequel":"No sequel"; }}</td>
-                            <td class="border px-3 py-2">
+                            <td class="border px-1 py-2">
                              @if($game->genre_id===null)
-                                {{ "No genre defined" }}
+                                @php
+                                    $gnr="No main genre defined";
+                                @endphp
+                                {{ $gnr }}
                              @else
                                  {{ $game->genre->name }}
                              @endif
 
-                                          @if(count($game->game_genres)==0)
-
-                                      @else
+                                          @if(count($game->game_genres)!=0)
+                                                  
+                                       {{ __(',') }}
                                          @php
                                             $index=1;
                                          @endphp
