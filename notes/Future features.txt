@@ -11,3 +11,8 @@ same as multiple tables for genres.
 
 
 
+  <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
+                        {{ __('User Management') }}
+                    </x-nav-link> 
+
+if user is not admin in next version of our app we can hide this user management url at navigation
