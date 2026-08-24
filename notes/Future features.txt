@@ -15,4 +15,6 @@ same as multiple tables for genres.
                         {{ __('User Management') }}
                     </x-nav-link> 
 
-if user is not admin in next version of our app we can hide this user management url at navigation
+if user is not admin in next version of our app we can hide this user management url at navigation 
+
+https://packagist.org/packages/nnnick/chartjs update profila picture is required for update informations
