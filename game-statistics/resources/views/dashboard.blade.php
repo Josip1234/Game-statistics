@@ -10,12 +10,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div>
-                           {{ __("You're logged in!") }}  
+                           {{ __("You're logged in!") }}
                     </div>
                    <div class="mt-1 text-sm text-gray-600">
                      <span class="font-semibold">
                       Type of user: {{ auth()->user()->userType===1 ? 'Admin' : 'User  ' }}
                       </span>
+                       @if(auth()->user()->userType===1)
+                       <span class="font-semibold flex gap-4">
+                        Last registered user: {{ $user}}
+                      </span>
+                        <span class="font-semibold flex gap-4">
+                        Date of registration: {{ $registered?->format("d.m.Y H:i:s")}}
+                      </span>
+                      @endif
                    </div>
                 </div>
                    @if(session("status"))
@@ -23,6 +31,7 @@
                             {{ session('status') }}
                      </div>
                      @endif
+
             </div>
         </div>
     </div>

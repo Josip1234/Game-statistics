@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc2407b1a509d7fcbbc5146f46a2c921",
+    "content-hash": "3bfdca05716308ce31ce928c8223f4d2",
     "packages": [
         {
             "name": "brick/math",
@@ -2443,6 +2443,51 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.7.0"
             },
             "time": "2025-12-06T11:56:16+00:00"
+        },
+        {
+            "name": "nnnick/chartjs",
+            "version": "v4.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chartjs/Chart.js.git",
+                "reference": "9c5cf9fac7ec04a71b516e2aff3f7d76876be369"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chartjs/Chart.js/zipball/9c5cf9fac7ec04a71b516e2aff3f7d76876be369",
+                "reference": "9c5cf9fac7ec04a71b516e2aff3f7d76876be369",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "release/2.0": "v2.0-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NICK DOWNIE",
+                    "email": "hello@nickdownie.com"
+                }
+            ],
+            "description": "Simple HTML5 charts using the canvas element.",
+            "homepage": "https://www.chartjs.org/",
+            "keywords": [
+                "JS",
+                "chart"
+            ],
+            "support": {
+                "issues": "https://github.com/chartjs/Chart.js/issues",
+                "source": "https://github.com/chartjs/Chart.js/tree/v4.5.1"
+            },
+            "time": "2025-10-13T05:37:11+00:00"
         },
         {
             "name": "nunomaduro/termwind",
