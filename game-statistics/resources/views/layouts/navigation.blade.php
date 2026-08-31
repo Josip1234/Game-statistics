@@ -24,9 +24,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                     @if (auth()->user()->userType == 1)
                     <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                         {{ __('User Management') }}
                     </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('profile.game.homepage')" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Gaming homepage') }}
                     </x-nav-link>
