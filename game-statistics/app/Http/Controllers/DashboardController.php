@@ -19,9 +19,17 @@ class DashboardController extends Controller
         $userAdded=$lastRegisteredUser[0]["created_at"];
         $username=$lastRegisteredUser[0]["nickname"];
 
+        //data for graph 
+        // number of registered users per year 
+         //select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%Y") as yearOfRegistration
+         //from users u group by yearOfRegistration desc;
+         $numberOfRegisteredUsersPerYear=User::selectRaw('COUNT(id) as numberOfRegisteredUsers,YEAR(users.created_at) as yearOfRegistration')->
+         groupBy('yearOfRegistration')->orderBy('yearOfRegistration','desc')->get();
+         
         return view('dashboard',[
             "user"=>$username,
-            "registered"=>$userAdded
+            "registered"=>$userAdded,
+            "listOfReggUsers"=>$numberOfRegisteredUsersPerYear
         ]);
     }
 }
