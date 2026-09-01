@@ -25,22 +25,33 @@
                       </span>
                       @endif
                    </div>
-                   <div>
+                   <div> 
+                    
   <canvas id="myChart"></canvas>
 </div>
-
+   
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    const label=[];
+    const data=[];
+   let list={!! $listOfReggUsers !!};
+   for (let index = 0; index < list.length; index++) {
+    const element = list[index]["yearOfRegistration"];
+    const element2 = list[index]["numberOfRegisteredUsers"];
+    label.push(element);
+    data.push(element2);
+   }
+   
   const ctx = document.getElementById('myChart');
-
+  
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels:label,
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Registered user in last years',
+        data: data,
         borderWidth: 1
       }]
     },
