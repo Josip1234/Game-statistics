@@ -20,8 +20,15 @@ delete from game_genre where id = 46;
 
 select g.*,gg.* from genre g left join game_genre gg on gg.genre_id = g.id where gg.game_id=1;
 
+select count(u.id) as registeredUsers,u.created_at as periodRegistered from users u having date_format(periodRegistered,"%Y")<=2026;
 
+select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%Y") as yearOfRegistration,
+date_format(u.created_at,"%m") as monthOfRegistration,
+date_format(u.created_at,"%d") as dayOfRegistration from users u group by yearOfRegistration desc;
 
+-- number of registered users per year 
+select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%Y") as yearOfRegistration
+ from users u group by yearOfRegistration desc;
 
 /* DELIMITER $$
 create procedure deleteDuplicatedValues(in game_id bigint, in genre_id bigint)
