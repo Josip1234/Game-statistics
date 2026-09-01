@@ -29,6 +29,12 @@ date_format(u.created_at,"%d") as dayOfRegistration from users u group by yearOf
 -- number of registered users per year 
 select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%Y") as yearOfRegistration
  from users u group by yearOfRegistration desc;
+ 
+ -- select maximum date from registered users
+select max(u.created_at) as maxRegisteredUserDate from users u;
+
+-- select user id of latest registered user
+select max(id) as lastUser from users u where u.created_at = (select max(u.created_at) as maxRegisteredUserDate from users u);
 
 /* DELIMITER $$
 create procedure deleteDuplicatedValues(in game_id bigint, in genre_id bigint)
