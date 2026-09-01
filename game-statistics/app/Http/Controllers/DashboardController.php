@@ -26,6 +26,9 @@ class DashboardController extends Controller
          $numberOfRegisteredUsersPerYear=User::selectRaw('COUNT(id) as numberOfRegisteredUsers,YEAR(users.created_at) as yearOfRegistration')->
          groupBy('yearOfRegistration')->orderBy('yearOfRegistration','desc')->get();
          
+
+
+
         return view('dashboard',[
             "user"=>$username,
             "registered"=>$userAdded,
