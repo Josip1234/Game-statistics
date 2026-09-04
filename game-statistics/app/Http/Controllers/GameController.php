@@ -21,6 +21,7 @@ class GameController extends Controller
                 'game.have_sequel',
                 'game.genre_id',
                 'game.platform_id',
+                'game.user_id',
                 'users.nickname'
             )
             ->orderBy('game.id')

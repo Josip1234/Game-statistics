@@ -79,9 +79,10 @@
                              @endif
                              </td>
                             <td class="border px-3 py-2">
+                                    
                                     <a href="{{ route('profile.game.detail',$game) }}"><i class="bi bi-ticket-detailed-fill"></i><i class="bi bi-controller"></i></a> <br>
                                     <a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a> <br>
-
+                                          @if(auth()->user()->id===$game->user_id)
                                     <form method="POST"
                                                       action="{{ route('profile.game.delete', $game) }}"
                                                       style="display: inline"
@@ -92,7 +93,7 @@
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
                                                 </form> <br>
-
+                                         @endif
 
                                                 @if($game->have_sequel===1)
                                                    <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i>S</a> <br>
