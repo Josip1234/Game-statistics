@@ -40,6 +40,7 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::get('{game}/edit','edit')->name('edit');
         Route::put('{game}/update','update')->name('update')->middleware("check.stored.value.game_genre");
         Route::delete('{game}/delete','delete')->name('delete');
+        Route::get('{game}/detail','showDetails')->name('detail');
     });
 
     Route::prefix("game_sequel")->name("game.sequel.")->controller(SequelController::class)->middleware('auth')->group(function(){

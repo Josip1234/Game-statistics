@@ -21,8 +21,8 @@
                         <tr class="bg-gray-50">
                             <th class="border px-3 py-2 text-left">ID</th>
                             <th class="border px-3 py-2 text-left">Game name</th>
-                            <th class="border px-3 py-2 text-left">Year of production</th>
-                            <th class="border px-3 py-2 text-left">User</th>
+                          
+                            <th class="border px-3 py-2 text-left">User added</th>
                             <th class="border px-3 py-2 text-left">Sequel?</th>
                             <th class="border px-3 py-2 text-left">Genres</th>
                                <th class="border px-3 py-2 text-left">Platforms</th>
@@ -34,7 +34,7 @@
                         <tr>
                             <td class="border px-3 py-2">{{ ++$id }}</td>
                             <td class="border px-3 py-2">{{ $game->gn }}</td>
-                            <td class="border px-3 py-2">{{ $game->yearOrRangeOfProduction }}</td>
+                          
                             <td class="border px-3 py-2">{{ $game->nickname}}</td>
                             <td class="border px-3 py-2">{{ ($game->have_sequel===1)?"Have sequel":"No sequel"; }}</td>
                             <td class="border px-1 py-2">
@@ -78,7 +78,9 @@
                                  {{ $game->platform->name }}
                              @endif
                              </td>
-                            <td class="border px-3 py-2"><a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a>
+                            <td class="border px-3 py-2">
+                                    <a href="{{ route('profile.game.detail',$game) }}"><i class="bi bi-ticket-detailed-fill"></i><i class="bi bi-controller"></i></a> <br>
+                                    <a href="{{ route('profile.game.edit',$game) }}"><i class="bi bi-pencil-square"></i></a> <br>
 
                                     <form method="POST"
                                                       action="{{ route('profile.game.delete', $game) }}"
@@ -89,14 +91,14 @@
                                                     <button type="submit" class="text-red-600 hover:underline">
                                                         <i class="bi bi-trash icon-delete"></i>
                                                     </button>
-                                                </form>
+                                                </form> <br>
 
 
                                                 @if($game->have_sequel===1)
-                                                   <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i>S</a>
+                                                   <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i>S</a> <br>
                                                 @else
-                                                   <a href="{{ route('game.statistics.gamStIndex',$game) }}"><i class="bi bi-arrow-bar-right"></i><i class="bi bi-controller"></i><i class="bi bi-123"></i></a>
-                                                   <a href="{{ route('game.profile.index',$game) }}"><i class="bi bi-person"></i></a>
+                                                   <a href="{{ route('game.statistics.gamStIndex',$game) }}"><i class="bi bi-arrow-bar-right"></i><i class="bi bi-controller"></i><i class="bi bi-123"></i></a> <br>
+                                                   <a href="{{ route('game.profile.index',$game) }}"><i class="bi bi-person"></i></a> <br>
                                                    <a href="{{ route('game.sequel.modifications.index',$game) }}"><i class="bi bi-pencil-square"></i><i class="bi bi-controller"></i></a>
                                                 @endif
 

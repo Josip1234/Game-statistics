@@ -203,4 +203,10 @@ class GameController extends Controller
         $game->delete();
         return redirect()->route('profile.game.homepage')->with('status', 'Game successfully deleted.');
     }
+    
+    public function showDetails(Game $game){
+        return view("profile.game.detail",[
+            "history"=>$game->yearOrRangeOfProduction
+        ]);
+    }
 }
