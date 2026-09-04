@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckAdmin;
+use App\Http\Middleware\CheckDatabaseConnection;
 use App\Http\Middleware\CheckNumberOfAdmins;
 use App\Http\Middleware\CheckStoredValuesGameGEnre;
 use App\Http\Middleware\CleanupGameGenreTable;
@@ -28,6 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin'=>CheckAdmin::class,
             'numberOfAdmins'=>CheckNumberOfAdmins::class,
         ]);
+        $middleware->append(CheckDatabaseConnection::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
