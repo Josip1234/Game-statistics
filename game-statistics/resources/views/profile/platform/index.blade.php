@@ -21,7 +21,7 @@
                                 <tr class="bg-gray-50">
                                     <th class="border px-3 py-2 text-left">ID</th>
                                     <th class="border px-3 py-2 text-left">Platform name</th>
-                                    <th class="border px-3 py-2 text-left">Platform history</th>
+                                   
                                     <th class="border px-3 py-2 text-left">Actions</th>
                                 </tr>
                             </thead>
@@ -30,11 +30,13 @@
                                     <tr>
                                         <td class="border px-3 py-2">{{ ++$id }}</td>
                                         <td class="border px-3 py-2">{{ $platform->name }}</td>
-                                        <td class="border px-3 py-2">{{ $platform->platform_history }}</td>
+                                   
                                         <td class="border px-3 py-2">
+                  <a href="{{ route('game.platform.detail',$platform) }}"><i class="bi bi-ticket-detailed-fill"></i><i class="bi bi-controller"></i></a> <br>
+
                                             <a href="{{ route('game.platform.edit', $platform) }}"><i
                                                     class="bi bi-pencil-square"></i> 
-                                            </a>
+                                            </a> <br>
                                                  <form method="POST"
                                                       action="{{ route('game.platform.delete', $platform) }}"
                                                       style="display: inline"

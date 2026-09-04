@@ -44,4 +44,9 @@ class PlatformController extends Controller
         $platform->delete();
         return redirect()->route('game.platform.index')->with('status','Platform deleted.');
     }
+    public function showDetails(Platform $platform){
+        return view("profile.platform.detail",[
+            'history'=>$platform->platform_history
+        ]);
+    }
 }

@@ -58,7 +58,7 @@
                      <x-nav-link :href="route( 'game.platform.create' )">
                         {{ __('New platform') }}
                     </x-nav-link>
-                 @elseif(request()->routeIs('game.platform.create') || request()->routeIs('game.platform.edit'))
+                 @elseif(request()->routeIs('game.platform.create') || request()->routeIs('game.platform.edit') || request()->routeIs('game.platform.detail'))
                     <x-nav-link :href="route( 'game.platform.index' )">
                         {{ __('Back to platform homepage') }}
                     </x-nav-link>

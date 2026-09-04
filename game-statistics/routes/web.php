@@ -83,6 +83,7 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::get('{platform}/edit','edit')->name('edit');
         Route::put('{platform}/update','update')->name('update');
         Route::delete('{platform}/delete','delete')->name('delete');
+        Route::get('{platform}/detail','showDetails')->name('detail');
     });
    Route::prefix("game_profile")->name('game.profile.')->controller(GameProfileController::class)->middleware('auth')->group(function(){
         Route::get('{game}/index','gpindex')->name('index');
