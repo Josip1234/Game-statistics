@@ -68,7 +68,7 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::put('{game}/{statistics}/gamStore','gamStore')->name('gamStore');
         Route::delete('{game}/{statistics}/gamDelete','gamDelete')->name('gamDelete');
     });
-    Route::prefix("game_genre")->name('game.genre.')->controller(GenreController::class)->middleware('auth')->group(function(){
+    Route::prefix("game_genre")->name('game.genre.')->controller(GenreController::class)->middleware(['auth','redirectUsers'])->group(function(){
         Route::get('/index','genGmIndex')->name('genGmIndex');
         Route::get('/new','genNew')->name('genNew');
         Route::post('/store','genStore')->name('store');
@@ -76,7 +76,7 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::put('{genre}/update','genUpdate')->name('genUpdate');
         Route::delete('{genre}/delete','genDelete')->name('genDelete');
     });
-    Route::prefix("game_platform")->name('game.platform.')->controller(PlatformController::class)->middleware('auth')->group(function(){
+    Route::prefix("game_platform")->name('game.platform.')->controller(PlatformController::class)->middleware(['auth','redirectUsers'])->group(function(){
         Route::get('/index','index')->name('index');
         Route::get('/new','create')->name('create');
         Route::post('/store','store')->name('store');

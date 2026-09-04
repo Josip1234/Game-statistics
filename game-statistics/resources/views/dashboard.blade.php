@@ -10,7 +10,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div>
-                           {{ __("You're logged in!") }}
+                           {{ __("You're logged in!") }} 
+                       @if (session('routeError'))
+                        <div class="mb-4 rounder-md bg-red-50 p-4 text-sm text-red-700">
+                            {{ session('routeError') }}
+                        </div>
+                    @endif
+                      @if(session("status"))
+                     <div class="mb-4 rounder-md bg-green-50 p-4 text-sm text-green-700">
+                            {{ session('status') }}
+                     </div>
+                     @endif
                     </div>
                    <div class="mt-1 text-sm text-gray-600">
                      <span class="font-semibold">
@@ -65,11 +75,7 @@
   });
 </script>
                 </div>
-                   @if(session("status"))
-                     <div class="mb-4 rounder-md bg-green-50 p-4 text-sm text-green-700">
-                            {{ session('status') }}
-                     </div>
-                     @endif
+                 
 
             </div>
         </div>

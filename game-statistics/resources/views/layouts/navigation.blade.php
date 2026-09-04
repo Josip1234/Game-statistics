@@ -32,13 +32,16 @@
                     <x-nav-link :href="route('profile.game.homepage')" :active="request()->routeIs('profile.game.homepage')">
                         {{ __('Gaming homepage') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('game.genre.genGmIndex')" :active="request()->routeIs('game.genre.genGmIndex')">
+                     @if (auth()->user()->userType == 1)
+                             <x-nav-link :href="route('game.genre.genGmIndex')" :active="request()->routeIs('game.genre.genGmIndex')">
                         {{ __('Game genre homepage') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('game.platform.index')" :active="request()->routeIs('game.platform.index')">
                         {{ __('Game platform index') }}
                     </x-nav-link>
+                    @endif
+               
 
                 </div>
             </div>

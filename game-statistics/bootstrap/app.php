@@ -6,6 +6,7 @@ use App\Http\Middleware\CheckNumberOfAdmins;
 use App\Http\Middleware\CheckStoredValuesGameGEnre;
 use App\Http\Middleware\CleanupGameGenreTable;
 use App\Http\Middleware\ForgetFileSessionForRoute;
+use App\Http\Middleware\RedirectRegularUsersForGenresAndPlatforms;
 use App\Http\Middleware\RememberPreviousUrl;
 use App\Http\Middleware\StorageCleanup;
 use App\Http\Middleware\ValidateFileInput;
@@ -28,6 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'check.stored.value.game_genre'=>CheckStoredValuesGameGEnre::class,
             'admin'=>CheckAdmin::class,
             'numberOfAdmins'=>CheckNumberOfAdmins::class,
+            'redirectUsers'=>RedirectRegularUsersForGenresAndPlatforms::class,
         ]);
         $middleware->append(CheckDatabaseConnection::class);
     })
