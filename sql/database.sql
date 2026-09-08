@@ -45,6 +45,15 @@ select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%m") as 
  
   select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%m") as monthOfRegistration
  from users u  group by monthOfRegistration desc;
+ 
+ -- select game id, game name, date of game addition from game table
+select g.id,g.name,g.created_at from game g;
+
+-- select only game id and created at from game table
+select g.id,g.created_at from game g;
+
+-- select how many games we have per one year 
+select count(g.id), year(g.created_at) as yearAddition from game g group by yearAddition order by yearAddition asc;
 
 /* DELIMITER $$
 create procedure deleteDuplicatedValues(in game_id bigint, in genre_id bigint)

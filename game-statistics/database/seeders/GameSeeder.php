@@ -16,10 +16,14 @@ class GameSeeder extends Seeder
     {
         $faker=Faker::create("en_EN");
         $year=$faker->year."-".$faker->year;
-        Game::updateOrCreate([
+        for ($i=0; $i < 100; $i++) {
+              Game::updateOrCreate([
             "name"=>$faker->word,
             "yearOrRangeOfProduction"=>$year,
-            "user_id"=>1
-        ]);        
+            "user_id"=>1,
+            "created_at"=>$faker->dateTime
+        ]);
+        }
+
     }
 }
