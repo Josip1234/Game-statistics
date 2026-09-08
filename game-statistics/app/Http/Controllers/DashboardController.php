@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+Use App\Models\Game;
 
 class DashboardController extends Controller
 {
     public function homepage(){
-        return view('welcome');
+        /*
+        -- select how many games we have per one year
+select count(g.id), year(g.created_at) as yearAddition from game g group by yearAddition order by yearAddition asc;
+        */
+        $games=Game::selectRaw("count(game.id) as gameNumber, year(game.created_at) as yearAddition")->groupBy("yearAddition")->orderBy("yearAddition")->get();
+
+        return view('homepage',[
+            "games"=>$games
+        ]);
     }
     public function dashboard(){
         // select max(id) as lastUser from users u where u.created_at = (select max(u.created_at) as maxRegisteredUserDate from users u);
