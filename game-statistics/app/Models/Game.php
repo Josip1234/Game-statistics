@@ -51,4 +51,7 @@ class Game extends Model
     public function game_genres(){
         return $this->hasMany(Game_Genre::class);
     }
+    public function game_platforms(){
+        return $this->hasMany(GamePlatform::class);
+    }
 }
