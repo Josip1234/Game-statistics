@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div>
-                           {{ __("You're logged in!") }} 
+                           {{ __("You're logged in!") }}
                        @if (session('routeError'))
                         <div class="mb-4 rounder-md bg-red-50 p-4 text-sm text-red-700">
                             {{ session('routeError') }}
@@ -35,11 +35,28 @@
                       </span>
                       @endif
                    </div>
-                   <div> 
-                    
+                   <div>
+
   <canvas id="myChart"></canvas>
+           <form method="post" action="{{ route("graph") }}" class="mt-6 space-y-6">
+                        @csrf
+                        <div class="mb-4">
+                             <x-input-label for="yearOfReg" :value="__('Choose year of registered user')" />
+                             <select name="yearOfReg" id="yearOfReg" class="mt-1 block w-full">
+                                     @foreach ($listOfReggUsers as $regUs)
+                                    <option value="{{ $regUs["yearOfRegistration"] }}">
+                                        {{ $regUs["yearOfRegistration"] }}</option>
+                                @endforeach
+                             </select>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <x-primary-button>{{ __('Choose year') }}</x-primary-button>
+
+                        </div>
+                    </form>
 </div>
-   
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -52,9 +69,9 @@
     label.push(element);
     data.push(element2);
    }
-   
+
   const ctx = document.getElementById('myChart');
-  
+
   new Chart(ctx, {
     type: 'bar',
     data: {
@@ -75,7 +92,7 @@
   });
 </script>
                 </div>
-                 
+
 
             </div>
         </div>

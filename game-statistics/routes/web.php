@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[DashboardController::class,'homepage']);
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth', 'verified','storage.cleanup','forget.file.session'])->name('dashboard');
+Route::post('/graph',[DashboardController::class,'showGraphPerYear'])->middleware(['auth', 'verified'])->name('graph');
 
 Route::get('/json',function(){
     $gs = new GameService();

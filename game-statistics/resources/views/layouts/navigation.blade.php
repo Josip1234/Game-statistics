@@ -41,7 +41,7 @@
                         {{ __('Game platform index') }}
                     </x-nav-link>
                     @endif
-               
+
 
                 </div>
             </div>

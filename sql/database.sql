@@ -36,6 +36,16 @@ select max(u.created_at) as maxRegisteredUserDate from users u;
 -- select user id of latest registered user
 select max(id) as lastUser from users u where u.created_at = (select max(u.created_at) as maxRegisteredUserDate from users u);
 
+-- number of registered users per month by year 
+select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%m") as monthOfRegistration
+ from users u where date_format(u.created_at,"%Y") = 2024 group by monthOfRegistration desc;
+ 
+ select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%m") as monthOfRegistration
+ from users u where date_format(u.created_at,"%Y") = 2024 group by monthOfRegistration desc;
+ 
+  select count(u.id) as numberOfRegisteredUsers,date_format(u.created_at,"%m") as monthOfRegistration
+ from users u  group by monthOfRegistration desc;
+
 /* DELIMITER $$
 create procedure deleteDuplicatedValues(in game_id bigint, in genre_id bigint)
 begin 
