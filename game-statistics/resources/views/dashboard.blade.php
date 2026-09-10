@@ -35,6 +35,7 @@
                       </span>
                       @endif
                    </div>
+                    @if(auth()->user()->userType===1)
                    <div>
 
   <canvas id="myChart"></canvas>
@@ -92,7 +93,7 @@
   });
 </script>
                 </div>
-
+    @endif
 
             </div>
         </div>
