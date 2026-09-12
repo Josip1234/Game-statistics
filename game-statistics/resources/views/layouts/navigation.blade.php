@@ -12,9 +12,16 @@
                     </div>
                 @else
                  <div class="shrink-0 flex items-center">
-                    <img src="/{{ auth()->user()->profilePicture }}" alt="profile_picture{{ auth()->user()->email }}"
+                    @if(env("APP_ENV")==="local")
+                        <img src="{{ asset(auth()->user()->profilePicture) }}" alt="profile_picture{{ auth()->user()->email }}"
                         class="w-auto h-full object-contain object-top">
                      </div>
+                     @else
+                     <img src="/public/{{auth()->user()->profilePicture}}" alt="profile_picture{{ auth()->user()->email }}"
+                        class="w-auto h-full object-contain object-top">
+                     </div>
+                    @endif
+
                 @endif
 
 

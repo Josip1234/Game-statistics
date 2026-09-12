@@ -65,7 +65,11 @@
         <div>
             <label for="profilePicture">Profile picture</label>
             @if(!empty($user->profilePicture))
+             @if(env("APP_ENV")==="local")
             <img src="{{ old('profilePicture',$user->profilePicture) }}" alt="profile_picture" class="mt-1 block w-full">
+             @else
+            <img src="/public/{{ old('profilePicture',$user->profilePicture) }}" alt="profile_picture" class="mt-1 block w-full">
+             @endif
             @else
             <p class="mt-2">Picture does not exists</p>
             @endif

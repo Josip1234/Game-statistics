@@ -40,9 +40,15 @@
                                             @if ($u->profilePicture == null || $u->profilePicture == '')
                                                 {{ __('No profile picture') }}
                                             @else
+                                                 @if(env("APP_ENV")==="local")
                                                 <img src="/{{ $u->profilePicture }}"
                                                     alt="profile_picture{{ $u->email }}"
                                                     class="w-full h-48 object-cover object-center">
+                                                 @else
+                                                      <img src="/public/{{ $u->profilePicture }}"
+                                                    alt="profile_picture{{ $u->email }}"
+                                                    class="w-full h-48 object-cover object-center">
+                                                 @endif
                                             @endif
                                         </td>
                                         <td class="border px-3 py-2">
