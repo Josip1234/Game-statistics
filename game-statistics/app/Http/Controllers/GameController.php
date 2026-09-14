@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Game_Genre;
+use App\Models\GamePlatform;
 use App\Models\Genre;
 use App\Models\Platform;
 use App\Models\User;
@@ -40,11 +41,12 @@ class GameController extends Controller
     {
         $genre = Genre::orderBy('id')->get();
         $platform = Platform::orderBy('id')->get();
-        
+
+
 
         return view('profile.game.create', [
             'genres' => $genre,
-            'platform' => $platform
+            'platforms' => $platform
         ]);
     }
     public function add(Request $request)
@@ -53,6 +55,7 @@ class GameController extends Controller
         // dd($currentId);
         // $nextId=$currentId[0]["max"]+1;
         $checked_ids = $request->input("game_genre");
+        $checked_platform_ids=$request->input("game_platform");
 
         $validated = $request->validate([
             'name' => ['required', 'max:255', 'min:2'],
@@ -62,6 +65,7 @@ class GameController extends Controller
             'genre_id' => ['nullable', 'numeric'],
             'platform_id' => ['nullable', 'numeric'],
             'game_genre.*' => ['not in:' . $request->input("genre_id"), 'min:1', 'required'],
+            'game_platform.*' => ['not in:' . $request->input("platform_id"), 'min:1', 'required']
         ]);
         Game::create($validated);
         $LastInsertedID = Game::max("id");
@@ -70,6 +74,14 @@ class GameController extends Controller
                 Game_Genre::create([
                     'game_id' => $LastInsertedID,
                     'genre_id' => $value
+                ]);
+            }
+        }
+        if($checked_platform_ids != null){
+            foreach ($checked_platform_ids as $value) {
+                GamePlatform::create([
+                    'game_id'=>$LastInsertedID,
+                    'platform_id'=>$value
                 ]);
             }
         }
@@ -204,7 +216,7 @@ class GameController extends Controller
         $game->delete();
         return redirect()->route('profile.game.homepage')->with('status', 'Game successfully deleted.');
     }
-    
+
     public function showDetails(Game $game){
         return view("profile.game.detail",[
             "history"=>$game->yearOrRangeOfProduction

@@ -59,8 +59,8 @@
                             <label for="platform_id" class="block font-medium text-sm text-gray-700">Select game
                                 platform</label>
                             <select name="platform_id" id="platform_id" class="mt-1 block w-full">
-                                 <option value=""> {{ __('-- Select platform --') }}</option>
-                                @foreach ($platform as $platform)
+                                <option value=""> {{ __('-- Select platform --') }}</option>
+                                @foreach ($platforms as $platform)
                                     <option value="{{ $platform->id }}" @selected(old('platform_id') == $platform->id)>
                                         {{ $platform->name }}</option>
                                 @endforeach
@@ -70,12 +70,12 @@
                             @enderror
                         </div>
 
-
-
-                        <div>
+                     <!-- mobile tablet or desktop has the same number of columns -->
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2">
+                        <div class="md:mr-[50%] lg:mr-[50%]">
 
                             <h3 class="mb-4 font-semibold text-heading">{{ __('Additional Genres') }}</h3>
-                            <ul class="w-48 select-none text-sm font-medium text-heading bg-neutral-primary-soft border border-default rounded-base"
+                            <ul class="w-48 md:w-48 lg:w-48 select-none text-sm font-medium text-heading bg-neutral-primary-soft border border-default rounded-base"
                                 id="checkboxValues">
                                 @foreach ($genres as $genre)
                                     <li class="w-full border-b border-default rounded-t-lg" id="{{ $genre->id }}">
@@ -92,11 +92,42 @@
 
 
 
+
                             @error('game_genre.*')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
 
                         </div>
+
+                        <div class="md:ml-[50%] lg:ml-[50%]">
+
+                            <h3 class="mb-4 font-semibold text-heading">{{ __('Additional Platforms') }}</h3>
+                            <ul class="w-54 md:w-40 lg:w-72 select-none text-sm font-medium text-heading bg-neutral-primary-soft border border-default rounded-base"
+                                id="checkboxValues">
+                                @foreach ($platforms as $platform)
+                                    <li class="w-full border-b border-default rounded-t-lg" id="{{ $platform->id }}">
+                                        <div class="flex items-center ps-3">
+                                            <input id="game_platform[]" type="checkbox" value="{{ $platform->id }}"
+                                                name="game_platform[]"
+                                                class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
+                                            <label for="game_platform[]"
+                                                class="w-full py-3 ms-2 text-sm font-medium text-heading">{{ $platform->name }}</label>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+
+
+
+                            @error('game_platform.*')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+
+                        </div>
+
+
+</div>
+
 
 
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
