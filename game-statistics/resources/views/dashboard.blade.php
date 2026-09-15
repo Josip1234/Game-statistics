@@ -24,14 +24,14 @@
                     </div>
                    <div class="mt-1 text-sm text-gray-600">
                      <span class="font-semibold">
-                      Type of user: {{ auth()->user()->userType===1 ? 'Admin' : 'User  ' }}
+                      User type: {{ auth()->user()->userType===1 ? 'Admin' : 'User  ' }}
                       </span>
                        @if(auth()->user()->userType===1)
                        <span class="font-semibold flex gap-4">
                         Last registered user: {{ $user}}
                       </span>
                         <span class="font-semibold flex gap-4">
-                        Date of registration: {{ $registered?->format("d.m.Y H:i:s")}}
+                        Registration date: {{ $registered?->format("d.m.Y H:i:s")}}
                       </span>
                       @endif
                    </div>
@@ -42,7 +42,7 @@
            <form method="post" action="{{ route("graph") }}" class="mt-6 space-y-6">
                         @csrf
                         <div class="mb-4">
-                             <x-input-label for="yearOfReg" :value="__('Choose year of registered user')" />
+                             <x-input-label for="yearOfReg" :value="__('Select a year')" />
                              <select name="yearOfReg" id="yearOfReg" class="mt-1 block w-full">
                                      @foreach ($listOfReggUsers as $regUs)
                                     <option value="{{ $regUs["yearOfRegistration"] }}">
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="flex items-center gap-4">
-                            <x-primary-button>{{ __('Choose year') }}</x-primary-button>
+                            <x-primary-button>{{ __('Search') }}</x-primary-button>
 
                         </div>
                     </form>
@@ -78,7 +78,7 @@
     data: {
       labels:label,
       datasets: [{
-        label: 'Registered user in last years',
+        label: 'Registered users over the years',
         data: data,
         borderWidth: 1
       }]

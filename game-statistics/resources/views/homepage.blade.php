@@ -45,7 +45,7 @@
     data: {
       labels:label,
       datasets: [{
-        label: 'Number of games added trough the years',
+        label: 'Number of games added over the years',
         data: data,
         borderWidth: 1
       }]

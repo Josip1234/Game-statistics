@@ -36,7 +36,7 @@
       labels:label,
       datasets: [{
         backgroundColor: barColors,
-        label: 'Registered users per month',
+        label: 'Number of registered users per month',
         data: data,
         borderWidth: 1,
         barPercentage: 0.8,
@@ -47,7 +47,7 @@
       legend: {display: true},
        title: {
         display: false,
-        text: "Number of users registered per month"
+        text: "Number of registered users per month"
         },
       scales: {
         y: {
