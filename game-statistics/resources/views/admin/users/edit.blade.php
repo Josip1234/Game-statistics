@@ -16,7 +16,7 @@
                         @csrf
                         @method('put')
                         <div class="mb-4">
-                             <x-input-label for="userType" :value="__('Update type of user')" />
+                             <x-input-label for="userType" :value="__('Select a new user type')" />
                              <select name="userType" id="userType" class="mt-1 block w-full">
                                 <option value="1" @selected(old('userType',$user->userType)==1)>Administrator</option>
                                 <option value="0" @selected(old('userType',$user->userType)==0)>User</option>
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="flex items-center gap-4">
-                            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                            <x-primary-button>{{ __('Save changes') }}</x-primary-button>
 
                         </div>
                     </form>
