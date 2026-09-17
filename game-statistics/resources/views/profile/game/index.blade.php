@@ -78,6 +78,23 @@
                                 {{ "No platform defined" }}
                              @else
                                  {{ $game->platform->name }}
+                                  @if(count($game->game_platforms)!=0)
+                                    {{ __(',') }}
+                                     @php
+                                            $platform_index=1;
+                                     @endphp
+                                           @foreach ($game->game_platforms as $val )
+                                               {{$val->platform->name }}
+                                                   @php
+                                                if($platform_index<count($game->game_platforms)) echo ",";
+                                                else echo "";
+                                            @endphp
+
+                                             @php
+                                                $platform_index++;
+                                            @endphp
+                                           @endforeach
+                                  @endif
                              @endif
                              </td>
                             <td class="border px-3 py-2">

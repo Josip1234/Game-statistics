@@ -14,7 +14,7 @@ class GameController extends Controller
 {
     public function homepage(Request $request)
     {
-        $games = Game::with(['genre', 'platform', 'game_genres'])->join('users', 'game.user_id', '=', 'users.id')
+        $games = Game::with(['genre', 'platform', 'game_genres','game_platforms'])->join('users', 'game.user_id', '=', 'users.id')
             ->select(
                 'game.id',
                 'game.name as gn',
