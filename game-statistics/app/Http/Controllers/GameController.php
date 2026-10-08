@@ -118,26 +118,38 @@ class GameController extends Controller
             'genre_id' => ['nullable', 'numeric'],
             'platform_id' => ['nullable', 'numeric'],
             'game_genre.*' => ['not in:' . $game->genre_id, 'min:1', 'required'],
+            'game_platform.*'=>['not in:'.$game->platform_id,'min:1','required']
         ]);
 
         //get checked values from input
         $listOfInputValues = $request->input("game_genre");
+        //for platforms
+        $listOfPlatformInputValues=$request->input("game_platform");
 
         $completedListOfGenreValues = Genre::orderBy("id")->get();
+        //platforms
+        $completedListOfPlatformValues=Platform::orderBy("id")->get();
         $selectedGenreValue = $request->input("genre_id");
+        $selectedPlatformValue=$request->input("platform_id");
         //create array which will contain game_genre_id for deletion
         //this contains array of genre ids which will be deleted if not checked
         $unchecked_ids = array();
+        $uncheckedPlatform_ids=array();
         //list of values to create
         $checked_ids = array();
+        $checkedPlatform_ids=array();
 
         //process completed list create new values
         //need ids for create
         //list of genres  in game_genres
         $list_genres_in_game_genres = Game_Genre::where("game_id", "=", $game->id)->orderBy("id")->get();
+        //list of platforms in game_platform
+        $list_platforms_in_game_platforms= GamePlatform::where("game_id","=",$game->id)->orderBy("id")->get();
 
         //copy list of input vals
         $inputvalCopy = $listOfInputValues;
+        $inputPlValCopy=$listOfPlatformInputValues;
+
 
         foreach ($list_genres_in_game_genres as  $val) {
             //echo $val["genre_id"]."<br>";
@@ -149,11 +161,26 @@ class GameController extends Controller
             }
             //echo "<br>";
         }
+        foreach ($list_platforms_in_game_platforms as $val) {
+            foreach ($inputPlValCopy as $key => $value) {
+                if($val["platform_id"] == $value){
+                    unset($inputPlValCopy[$key]);
+                    break;
+                }
+            }
+        }
+
         if($inputvalCopy!=0){
         foreach ($inputvalCopy as $key => $value) {
             $checked_ids[] = $value;
         }
         }
+        if($inputPlValCopy!=0){
+            foreach ($inputPlValCopy as $key => $value) {
+                $checkedPlatform_ids[]=$value;
+            }
+        }
+
 
 
         //process completed list of values
@@ -166,7 +193,13 @@ class GameController extends Controller
                 continue;
             }
         }
-
+        foreach ($completedListOfPlatformValues as $key => $values) {
+            if($selectedPlatformValue == $values["id"]){
+                $uncheckedPlatform_ids[]=$values["id"];
+                unset($completedListOfPlatformValues[$key]);
+                continue;
+            }
+        }
 
         //process checked list
         //need another iteration to get correct id-s for not selected values
@@ -179,14 +212,29 @@ class GameController extends Controller
                 } else continue;
             }
         }
+        foreach ($completedListOfPlatformValues as $key => $value) {
+                $id = $value["id"];
+            foreach ($listOfPlatformInputValues as $val) {
+                //if id in completed list are equal to val in input values that values are checked continue
+                if ($id == $val) {
+                    unset($completedListOfPlatformValues[$key]);
+                } else continue;
+            }
+        }
         foreach ($completedListOfGenreValues as $key => $value) {
             $unchecked_ids[] = $value["id"];
         }
-        //now we have a list of values to delete in game_genre table
+        foreach ($completedListOfPlatformValues as $key => $value) {
+            $uncheckedPlatform_ids[]=$value["id"];
+        }
+        //now we have a list of values to delete in game_genre table and game_platform tables
 
         //delete unchecked values
         foreach ($unchecked_ids as $value) {
             Game_Genre::where('game_id', $game->id)->where('genre_id', $value)->delete();
+        }
+        foreach ($uncheckedPlatform_ids as $value) {
+            GamePlatform::where('game_id',$game->id)->where('platform_id',$value)->delete();
         }
 
         //create checked values
@@ -195,6 +243,12 @@ class GameController extends Controller
                 'game_id' => $game->id,
                 'genre_id' => $value
             ]);
+        }
+        foreach ($checkedPlatform_ids as $value) {
+              GamePlatform::create([
+                  'game_id'=>$game->id,
+                  'platform_id'=>$value
+              ]);
         }
         /*
          next implement will be if value has been unchecked delete it for that genre
