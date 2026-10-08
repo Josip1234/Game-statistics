@@ -117,7 +117,12 @@
                                         <div class="flex items-center ps-3">
                                             <input id="game_platform[]" type="checkbox" value="{{ $platform->id }}"
                                                 name="game_platform[]"
-                                                class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
+                                                class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
+                                                @foreach ($gp as $checked)
+                                                    @if ($checked->platform_id == $platform->id)
+                                                    @checked($platform->id)
+                                                    break;
+                                                    @endif @endforeach>
                                             <label for="game_platform[]"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-heading">{{ $platform->name }}</label>
                                         </div>

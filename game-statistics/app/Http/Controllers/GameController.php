@@ -93,6 +93,7 @@ class GameController extends Controller
         $platform = Platform::orderBy('id')->get();
         //list of checked values
         $game_genres = Game_Genre::select("genre_id")->where("game_id", "=", $game->id)->distinct()->orderBy("id")->get();
+        $game_platforms=GamePlatform::select("platform_id")->where("game_id","=",$game->id)->distinct()->orderBy("id")->get();
 
 
         return view(
@@ -102,6 +103,7 @@ class GameController extends Controller
                 'genres' => $genre,
                 'platforms' => $platform,
                 'gg' => $game_genres,
+                'gp'=> $game_platforms
             ]
         );
     }
