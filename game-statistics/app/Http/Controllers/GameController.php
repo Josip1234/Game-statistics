@@ -94,12 +94,13 @@ class GameController extends Controller
         //list of checked values
         $game_genres = Game_Genre::select("genre_id")->where("game_id", "=", $game->id)->distinct()->orderBy("id")->get();
 
+
         return view(
             'profile.game.edit',
             [
                 "game" => $game,
                 'genres' => $genre,
-                'platform' => $platform,
+                'platforms' => $platform,
                 'gg' => $game_genres,
             ]
         );
