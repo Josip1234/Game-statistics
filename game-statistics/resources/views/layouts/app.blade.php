@@ -11,15 +11,17 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
-       
-         
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+
         @if(request()->routeIs('advanced.statistics.json_data'))
             <script src="{{ asset('js/keyval.js') }}"></script>
         @elseif(request()->routeIs('advanced.statistics.sjson_data'))
         <script src="{{ asset('js/keyval.js') }}"></script>
        @elseif(request()->routeIs('profile.game.edit'))
         <script src="{{ asset('js/selectedfirstgenre.js') }}"></script>
+        @elseif(request()->routeIs('advanced.statistics.editJData'))
+        <script src="{{ asset('js/keyval_edit.js') }}"></script>
         @endif
 
         <!-- Scripts -->

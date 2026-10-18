@@ -18,19 +18,19 @@ class AdStatisticsController extends Controller
         ]);
     }
     public function skeyval(Sequel $sequel,Statistics $statistics){
-     
+
         return view("profile.adstat.jkeyval",[
             'statistics'=>$statistics,
             'sequel'=>$sequel
         ]);
     }
-    //next two functions recieves request from form input, game service which converts input data to json array 
+    //next two functions recieves request from form input, game service which converts input data to json array
     //game as part of parameter url and statistics object (we must get statistic id to insert into database)
     //new file name is being set by unique id (game name or sequel name)
-    //inputed request is being converted to array of key values 
+    //inputed request is being converted to array of key values
     //then that array is being given to game service to convert it to json array
     //as a response, we got json array which will be stored in server
-    //in our database, only url will be stored 
+    //in our database, only url will be stored
     //data will be pulled from json depending on url in our database.
     //when we got json, we need original json data content (just for test)
     //need to validate key val data in case empty values can be passed this is next step in development
@@ -38,19 +38,19 @@ class AdStatisticsController extends Controller
                $arrayData=array();
             $extension='.json';
                $name=str_replace([":"," ","."],"",$game->name);
-              
+
             $file_name=uniqid($name.'_').$extension;
             $file_url='uploads/'.$file_name;
-            
+
              foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
                  $arrayData[$key]=$value;
             }
            $gameService->set(array_keys($arrayData),array_values($arrayData),$file_name,$file_url);
-            $json=$gameService->returnJsonKeyValues(); 
+            $json=$gameService->returnJsonKeyValues();
             $data=$json->original;
             $dat=$gameService->change_key_val($data);
-            $gameService->saveGameAdStatistics($dat);  
+            $gameService->saveGameAdStatistics($dat);
                $request->session()->put('file_name',$file_name);
             $request->session()->put('file_url',$file_url);
              return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
@@ -61,23 +61,23 @@ class AdStatisticsController extends Controller
             $name=str_replace([":"," ","."],"",$sequel->name);
             $file_name=uniqid($name.'_').$extension;
              $file_url='uploads/'.$file_name;
-             
+
             foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
                 $arrayData[$key]=$value;
             }
             $gameService->set(array_keys($arrayData),array_values($arrayData),$file_name,$file_url);
-            $json=$gameService->returnJsonKeyValues(); 
+            $json=$gameService->returnJsonKeyValues();
             $data=$json->original;
-            $dat=$gameService->change_key_val($data);     
+            $dat=$gameService->change_key_val($data);
             $gameService->saveGameAdStatistics($dat);
             $request->session()->put('file_name',$file_name);
             $request->session()->put('file_url',$file_url);
             return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
 
     }
-     
-    public function index(Request $request,Statistics $statistics){ 
+
+    public function index(Request $request,Statistics $statistics){
         $adStat=AStat::with('statistics')->where('statistic_id','=',$statistics->id)->orderBy('id')->paginate(5);
         $page=$request->input("page");
         $idToShow=($request->input("page")==1 || !($request->input("page")))?0:(5*$page)-5;
@@ -98,7 +98,7 @@ class AdStatisticsController extends Controller
         $validated=$request->validate([
               'statistic_id' => ['required','numeric','min:1'],
               'file_name'=>['required','string','max:100','unique:advanced_statistics,file_name','min:1'],
-              'file_url'=>['required','string','unique:advanced_statistics,file_url','min:1'] 
+              'file_url'=>['required','string','unique:advanced_statistics,file_url','min:1']
         ]);
         AStat::create($validated);
         $request->session()->forget(['file_name','file_url']);
@@ -114,7 +114,7 @@ class AdStatisticsController extends Controller
         $validated=$request->validate([
               'statistic_id' => ['required','numeric','min:1'],
               'file_name'=>['required','string','max:100','unique:advanced_statistics,file_name','min:1'],
-              'file_url'=>['required','string','unique:advanced_statistics,file_url','min:1'] 
+              'file_url'=>['required','string','unique:advanced_statistics,file_url','min:1']
         ]);
         $adstat->update($validated);
         return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully updated statistic.');
@@ -123,24 +123,34 @@ class AdStatisticsController extends Controller
         $adstat->delete();
        return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully deleted statistic.');
 
-    } 
-    public function readJsonData(GameService $gameService,Statistics $statistics,AStat $adstat){
- 
+    }
+    public function readJsonData(Request $request,GameService $gameService,Statistics $statistics,AStat $adstat){
+
         $gameService->setFileUrl($adstat->file_url);
         $data=$gameService->loadData();
         $filtered=[];
         foreach ($data as $key => $value) {
-          
+
                 $filtered[$key]=$value;
-            
-        
+
+
         }
-     
+        $request->session()->put('file_url',$gameService->getFileUrl());
+
         return view("profile.adstat.jdi",[
             "statistics"=>$statistics,
             "adstat"=>$adstat,
             "addat"=>$filtered
         ]);
     }
- 
+
+    public function editAdvancedStatisticData(Request $request){
+        $file=$request->session()->get('file_url');
+        //session forget we will use when data is updated
+        //$request->session()->forget('file_url');
+        return view("profile.adstat.jkeyval_edit",[
+            "data_url"=>$file
+        ]);
+    }
+
 }

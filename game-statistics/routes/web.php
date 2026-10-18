@@ -138,6 +138,7 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::put('{statistics}/{adstat}/update','update')->name('adupdate');
         Route::delete('{statistics}/{adstat}/delete','delete')->name('addelete');
         Route::get('{statistics}/{adstat}/jdindex','readJsonData')->name('readJData');
+        Route::get('/jdiedit','editAdvancedStatisticData')->name('editJData');
 
   });
   Route::prefix("admin_users")->name('admin.users.')->controller(AdminUserController::class)->middleware(['auth','admin'])->group(function(){

@@ -172,6 +172,11 @@
                        <x-nav-link :href="route( 'advanced.statistics.adhomepage',$statistics )">
                         {{ __('Return to advanced statistics homepage') }}
                     </x-nav-link>
+                <x-nav-link :href="route('advanced.statistics.editJData')">
+                        {{ __('Edit advanced statistics data') }}
+                    </x-nav-link>
+                 @elseif(request()->routeIs('advanced.statistics.editJData'))
+
                  @elseif(request()->routeIs('admin.users.edit'))
                   <x-nav-link :href="route( 'admin.users.index')">
                         {{ __('Return to user management') }}
