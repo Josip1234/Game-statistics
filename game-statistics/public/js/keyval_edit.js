@@ -1,10 +1,27 @@
- let numberOfFields=0;
 
+
+ let numberOfFields=0;
  let index=0;
  let labelId=0;
+// update number of fields when page is fully loaded
+window.addEventListener("load",function(){
+   let p = document.getElementById('number_of_fields');
+   let text = p.textContent;
+   let number = Number(text);
+   //need to update indexes and label ids
+   //index value is half of sum of fields
+   let ind=50/2;
+   index=ind;
+   labelId=ind;
+   numberOfFields=number;
+});
+
+
+
+
+
 
 function addNewTextFields(){
-
 
       index++;
 
@@ -61,7 +78,7 @@ parent.appendChild(input2);
 parent.appendChild(button);
 
 //sessionStorage.setItem("number_of_fields", numberOfFields);
-document.getElementById('number_or_fields').innerText=numberOfFields;
+document.getElementById('number_of_fields').innerText=numberOfFields;
 
 
 
@@ -86,11 +103,14 @@ function removeAllFields(){
   index=0;
   labelId=0;
   numberOfFields=0;
-   document.getElementById('number_or_fields').innerText=numberOfFields;
+   document.getElementById('number_of_fields').innerText=numberOfFields;
 }
 
 function removeFieldById(id){
-
+  let text = id.id;
+  //let s get ids from regex
+  const re= new RegExp("[0-9].*");
+  const indexNum=re.exec(text);
 
   let div=document.getElementById('values');
   let input=div.getElementsByTagName('input');
@@ -98,26 +118,28 @@ function removeFieldById(id){
 
 
 
-      let labId="label"+index;
-      let keyId="key"+index;
+
+      let labId="label"+indexNum;
+      let keyId="key"+indexNum;
+
       input[keyId].remove();
       label[labId].remove();
       id.remove();
        numberOfFields--;
-         document.getElementById('number_or_fields').innerText=numberOfFields;
+         document.getElementById('number_of_fields').innerText=numberOfFields;
 
 
 
 
 
-       let label2Id="label2"+index;
-      let valId="val"+index;
+       let label2Id="label2"+indexNum;
+      let valId="val"+indexNum;
       input[valId].remove();
       label[label2Id].remove();
 
       numberOfFields--;
       index--;
-           document.getElementById('number_or_fields').innerText=numberOfFields;
+           document.getElementById('number_of_fields').innerText=numberOfFields;
 
 
 

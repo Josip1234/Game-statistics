@@ -9,8 +9,14 @@
 
 
          <h3>{{ __('Number of fields in form:') }}</h3>
-
-         <p id="number_or_fields">0</p>
+         @php
+             $number_of_fields=0;
+         @endphp
+         <p id="number_of_fields">
+            @if($number_of_fields == 0)
+                {{ count($data)*2 }}
+            @endif
+         </p>
 
     </x-slot>
 
@@ -24,6 +30,31 @@
                         @endif
                     @csrf
         <div id="values">
+            @php
+                $index=1;
+                $indexKey="key";
+
+                $index2=1;
+                $indexValue="val";
+
+                $button="button";
+                //label key
+                $label1="label";
+                //label 2 value
+                $label2="label2";
+            @endphp
+             @foreach($data as $key => $value)
+                <label for="{{ $indexKey }}{{ $index }}" id="{{ $label1 }}{{ $index }}">Edit key number {{ $index }}</label>
+                <input type="text" name="{{ $indexKey }}{{ $index }}" id="{{ $indexKey }}{{ $index }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" value="{{ $key }}" required>
+                 <label for="{{ $indexValue }}{{ $index2 }}" id="{{ $label2 }}{{ $index2 }}">Edit value number {{ $index2 }}</label>
+                <input type="text" name="{{ $indexValue }}{{ $index2 }}" id="{{ $indexValue }}{{ $index2 }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" value="{{ $value }}" required>
+                <button type="button" id="{{ $button }}{{ $index }}" class="inline-flex items-center px-4 py-5 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" onclick="removeFieldById(this)">Remove key val fields</button>
+             @php
+                $index++;
+                $index2++;
+                $number_of_fields+=2;
+             @endphp
+             @endforeach
 
         </div>
 

@@ -144,12 +144,16 @@ class AdStatisticsController extends Controller
         ]);
     }
 
-    public function editAdvancedStatisticData(Request $request){
+    public function editAdvancedStatisticData(GameService $gameService,Request $request){
         $file=$request->session()->get('file_url');
         //session forget we will use when data is updated
         //$request->session()->forget('file_url');
+        $gameService->setFileUrl($file);
+        $data=$gameService->loadData();
+
         return view("profile.adstat.jkeyval_edit",[
-            "data_url"=>$file
+            "data_url"=>$file,
+            "data"=>$data
         ]);
     }
 
