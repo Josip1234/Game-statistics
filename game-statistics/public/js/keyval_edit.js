@@ -4,6 +4,7 @@
  let index=0;
  let labelId=0;
 // update number of fields when page is fully loaded
+// ovdje je potencijalni problem
 window.addEventListener("load",function(){
    let p = document.getElementById('number_of_fields');
    let text = p.textContent;
