@@ -116,7 +116,8 @@ function removeFieldById(id){
   let input=div.getElementsByTagName('input');
   let label=div.getElementsByTagName('label');
 
-
+      //s obzirom da postoje određeni problemi sa js-om za različite sustave najbolje je postaviti placeholdere u view za uunos key values-a
+      //kao workaround
 
 
       let labId="label"+indexNum;
