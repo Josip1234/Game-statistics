@@ -107,40 +107,41 @@ function removeAllFields(){
 }
 
 function removeFieldById(id){
-  let text = id.id;
+  let text = id.id; //button25
   //let s get ids from regex
-  const re= new RegExp("[0-9].*");
-  const indexNum=re.exec(text);
+  const re= new RegExp("[0-9].*"); //25
+  const indexNum=re.exec(text); // 25
 
-  let div=document.getElementById('values');
-  let input=div.getElementsByTagName('input');
-  let label=div.getElementsByTagName('label');
+  let div=document.getElementById('values'); //dohvati div
+  let input=div.getElementsByTagName('input'); //dohvati inpute iz diva
+  let label=div.getElementsByTagName('label'); //dohvati lable oznake
 
       //s obzirom da postoje određeni problemi sa js-om za različite sustave najbolje je postaviti placeholdere u view za uunos key values-a
       //kao workaround
 
 
-      let labId="label"+indexNum;
-      let keyId="key"+indexNum;
+      let labId="label"+indexNum; //label25
+      let keyId="key"+indexNum; //key25
 
-      input[keyId].remove();
-      label[labId].remove();
-      id.remove();
-       numberOfFields--;
-         document.getElementById('number_of_fields').innerText=numberOfFields;
-
-
+      input[keyId].remove(); //remove key25
+      label[labId].remove(); //remove label25
+      id.remove(); //remove id
+       numberOfFields--; //oduzmi broj polja
+         document.getElementById('number_of_fields').innerText=numberOfFields; //ažuriraj broj polja na stranici
 
 
 
-       let label2Id="label2"+indexNum;
-      let valId="val"+indexNum;
-      input[valId].remove();
-      label[label2Id].remove();
 
-      numberOfFields--;
-      index--;
-           document.getElementById('number_of_fields').innerText=numberOfFields;
+
+       let label2Id="label2"+indexNum; //label225
+      let valId="val"+indexNum; //val25
+      input[valId].remove(); //makni val25
+      label[label2Id].remove(); //makni label225
+
+
+      numberOfFields--; //smanji broj polja
+      index--; //smanji index ako se dodaje iduće polje key i values su sljedeži brojevi
+           document.getElementById('number_of_fields').innerText=numberOfFields; //ažuriraj broj polja na stranici
 
 
 
