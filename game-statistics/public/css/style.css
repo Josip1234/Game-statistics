@@ -1,0 +1,3 @@
+label:not([for]):not([id]){
+    display: none;
+}

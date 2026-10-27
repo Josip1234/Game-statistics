@@ -15,7 +15,10 @@ window.addEventListener("load",function(){
    index=ind;
    labelId=ind;
    numberOfFields=number;
+
 });
+
+
 
 
 
@@ -110,8 +113,8 @@ function removeAllFields(){
 function removeFieldById(id){
   let text = id.id; //button25
   //let s get ids from regex
-  const re= new RegExp("[0-9].*"); //25
-  const indexNum=re.exec(text); // 25
+  let re= new RegExp("[0-9].*"); //25
+  let indexNum=re.exec(text); // 25
 
   let div=document.getElementById('values'); //dohvati div
   let input=div.getElementsByTagName('input'); //dohvati inpute iz diva
@@ -126,6 +129,7 @@ function removeFieldById(id){
 
       input[keyId].remove(); //remove key25
       label[labId].remove(); //remove label25
+
       id.remove(); //remove id
        numberOfFields--; //oduzmi broj polja
          document.getElementById('number_of_fields').innerText=numberOfFields; //ažuriraj broj polja na stranici
@@ -147,5 +151,34 @@ function removeFieldById(id){
 
 
 
+}
+
+function removeFieldById2(id){
+    let buttonId=id.id;
+    let button = document.getElementById(buttonId);
+    button.remove();
+      //let s get ids from regex
+    const re= new RegExp("[0-9].*"); //25
+    const indexNum=Number(re.exec(buttonId)); // 25
+
+    let key="key"+indexNum;
+
+    let val="val"+indexNum;
+
+    let label1="label"+indexNum;
+
+    let label2="label2"+indexNum;
+
+        let label1Input=document.getElementById(label1);
+    label1Input.remove();
+    let label2Input=document.getElementById(label2);
+    label2Input.remove();
+
+    let keyInput=document.getElementById(key);
+    keyInput.remove();
+    let valueInput=document.getElementById(val);
+    valueInput.remove();
+
 
 }
+

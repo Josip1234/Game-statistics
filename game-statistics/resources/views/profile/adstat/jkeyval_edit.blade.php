@@ -42,13 +42,14 @@
                 $label1="label";
                 //label 2 value
                 $label2="label2";
+
             @endphp
              @foreach($data as $key => $value)
-                <label for="{{ $indexKey }}{{ $index }}" class="block font-medium text-sm text-gray-700" id="{{ $label1 }}{{ $index }}">Edit key number {{ $index }}</label>
+                  <label for="{{ $indexKey }}{{ $index }}" class="block font-medium text-sm text-gray-700" id="{{ $label1 }}{{ $index }}">Edit key number {{ $index }}</label>
                 <input type="text" name="{{ $indexKey }}{{ $index }}" id="{{ $indexKey }}{{ $index }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" value="{{ $key }}" required>
                  <label for="{{ $indexValue }}{{ $index2 }}" class="block font-medium text-sm text-gray-700" id="{{ $label2 }}{{ $index2 }}">Edit value number {{ $index2 }}</label>
                 <input type="text" name="{{ $indexValue }}{{ $index2 }}" id="{{ $indexValue }}{{ $index2 }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" value="{{ $value }}" required>
-                <button type="button" id="{{ $button }}{{ $index }}" class="inline-flex items-center px-4 py-5 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"  onclick="removeFieldById(this)">Remove key val fields</button>
+                <button type="button" id="{{ $button }}{{ $index }}" class="inline-flex items-center px-4 py-5 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" onclick="removeFieldById(this)">Remove key val fields</button>
              @php
                 $index++;
                 $index2++;
