@@ -76,8 +76,6 @@ label2.setAttribute('class','block font-medium text-sm text-gray-700');
 input.setAttribute('class','border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full');
 input2.setAttribute('class','border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full');
 
-input.setAttribute('required','');
-input2.setAttribute('required','');
 
 label1.setAttribute('id','label'+index);
 label2.setAttribute('id','label2'+index);

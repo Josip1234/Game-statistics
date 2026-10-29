@@ -156,5 +156,34 @@ class AdStatisticsController extends Controller
             "data"=>$data
         ]);
     }
+    public function saveEditedData(GameService $gameService,Request $request){
+            //data without pair key1 val1 key2 val2 will be automaticcly removed from json
+            //empty values for editing are allowed
+            $data=array();
+            $fileName=$request->input('file_name');
+            $gameService->setFileUrl($fileName);
+            $removeData=$request->input('remove_fields');
+              //filter null or empty values from keys or values
+             foreach ($request->input() as $key => $value) {
+                if($key==="_token") continue;
+                if($key==="remove_fields") continue;
+                //skip empty values do not add to array
+                if($value===null || $value==="" || empty($value)) continue;
+                //skip file name
+                if($key==="file_name") continue;
+                //also skip empty keys if exists
+                if($key===null || $key==="" || empty($key)) continue;
+                $data[$key]=$value;
+            }
+            //filter data without pairs it seems that one key value is invalid
+
+            foreach ($data as $key => $value) {
+                 $string=$key;
+            }
+
+            dd($data);
+
+
+    }
 
 }

@@ -26,7 +26,7 @@
                 <div class="p-6 text-gray-900">
                     @include('layouts.navigation2')
                     @if (request()->routeIs('advanced.statistics.editJData'))
-                        <form method="post" action="" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('advanced.statistics.updateJData') }}" class="mt-6 space-y-6">
                     @endif
                     @csrf
                     <div id="values">
@@ -51,7 +51,7 @@
                             <input type="text" name="{{ $indexKey }}{{ $index }}"
                                 id="{{ $indexKey }}{{ $index }}"
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
-                                value="{{ $key }}" required>
+                                value="{{ $key }}">
                             <label for="{{ $indexValue }}{{ $index2 }}"
                                 class="block font-medium text-sm text-gray-700"
                                 id="{{ $label2 }}{{ $index2 }}">Edit value number
@@ -59,7 +59,7 @@
                             <input type="text" name="{{ $indexValue }}{{ $index2 }}"
                                 id="{{ $indexValue }}{{ $index2 }}"
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
-                                value="{{ $value }}" required>
+                                value="{{ $value }}" >
 
 
 
@@ -91,6 +91,7 @@
                             onclick="addNewTextFields()">Add new key val text field</button>
 
 
+                        <input type="hidden" name="file_name" value="{{ $data_url }}">
 
 
                     <div class="flex items-center gap-4">
