@@ -176,12 +176,69 @@ class AdStatisticsController extends Controller
                 $data[$key]=$value;
             }
             //filter data without pairs it seems that one key value is invalid
-
+            //before foreach we need to declare index variable will serve as a counter for odd or even numbers
+            $index=0;
+            //value of first key variable
+            $firstKey="";
+            //value of second key variable
+            $secondKey="";
+            //check if first variable starts with k
+            $keyStartsWithK=false;
+            //check if second variable starts with v
+            //we can do that since we cannot have kk or vv one after another pair is key value
+            //if there is kk or vv it means that one of the records should not be in the list
+            $secondKeyStartsWithV=false;
+            //iterate trough data
+            //store value from check does first key value and second key value are correct
+            $remainInList=false;
+            //filst of filtered data
+            $filteredDataList=array();
             foreach ($data as $key => $value) {
-                 $string=$key;
+
+                //if index is 0 add first key
+                if((int)$index==0) $firstKey=$key;
+
+                 //if index is one add second key
+                if((int)$index==1) $secondKey=$key;
+
+                //if index is greather than1
+                //check if number is odd or even
+
+                if($index>1){
+                     //first key becames even number (paran)
+                     //otherwise second key becames key if it is odd (neparan)
+                     if($index%2==0) $firstKey=$key;
+                     else $secondKey=$key;
+                }
+                echo $secondKey;
+                //if first key is different from empty string check if starts with a k if it is return true
+                if($firstKey!="")  $keyStartsWithK=($firstKey[0]=='k')?true:false;
+                //if second key is different from empty string check if second key starts with v return true if it is
+                if($secondKey!="") $secondKeyStartsWithV=($secondKey[0]=='v')?true:false;
+                //check if both values are true before that both keys needs to have values different than ""
+                //if first key starts with k and second key starts with v return true ž
+                //pair key val is correct and should be remain in a list
+                if($firstKey!="" && $secondKey!="") $remainInList=((int)$keyStartsWithK===(int)$secondKeyStartsWithV)?true:false;
+
+                //if key cannot be in the list skip it
+                if($remainInList===false){
+                    continue;
+                }else{
+                    //remain in list
+                    $filteredDataList[$key]=$value;
+                }
+                //for each odd numbers empty variables
+                //only if index >1 start this
+                     if($index>1){
+                        if($index%2!=0){
+                        $firstKey="";
+                        $secondKey="";
+                }
+                     }
+                //increase index by 1
+                $index++;
             }
 
-            dd($data);
 
 
     }
