@@ -179,9 +179,68 @@ class AdStatisticsController extends Controller
             }
 
 
+            $index=0;
+            $prvi="";
+            $drugi="";
+            $indexFirst=0;
+            $indexSecond=0;
+            $keysForRemove=array();
+            foreach ($data as $key => $value) {
+                  if($index==0){
+                      $prvi=$key;
+                      $indexFirst=$index;
+                  }
+                  elseif ($index==1) {
+                      $drugi=$key;
+                      $indexSecond=$index;
+                  }
+                  else{
+                    if($index%2==0){
+                        $prvi=$key;
+                         $indexFirst=$index;
+                    }else{
+                        $drugi=$key;
+                        $indexSecond=$index;
+                    }
+                  }
+
+                  if($prvi != "" && $drugi != ""){
+                        $pair=array($indexFirst=>$prvi,$indexSecond=>$drugi);
+
+                        foreach ($pair as $pkey => $pvalue) {
+                            $isFirstLetterIsk=($pvalue[0]==="k")?true:false;
+                            $isSecondLetterIsv=(next($pair)[0]==="v")?true:false;
+
+                            if($isFirstLetterIsk != $isSecondLetterIsv){
+                                $keysForRemove[$pkey]=$pvalue;
+                            }
+
+                            break;
+
+
+                        }
+
+                  }
+                 // echo "Prvi:".$prvi."<br>"."Drugi:".$drugi."<br>";
+                  $index++;
+            }
+
+            print_r($keysForRemove);
+
+
+
+
+
+
+
+
+
+            }
+
+
 
 
 
     }
 
-}
+
