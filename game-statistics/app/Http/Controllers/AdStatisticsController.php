@@ -178,55 +178,48 @@ class AdStatisticsController extends Controller
                 $data[$key]=$value;
             }
 
-
+            //initialize index with 0
             $index=0;
-            $prvi="";
-            $drugi="";
-            $indexFirst=0;
-            $indexSecond=0;
-            $keysForRemove=array();
+            //initialize num 1 with -1
+            $num1=-1;
+            //initialize num 2 with -1
+            $num2=-1;
+            //for each data as key value
+            //init new list data
+            $new_data=array();
+            //need four variables to remember key and value
+            $rememberKey1="";
+            $rememberValue1="";
+            $rememberKey2="";
+            $rememberValue2="";
             foreach ($data as $key => $value) {
-                  if($index==0){
-                      $prvi=$key;
-                      $indexFirst=$index;
-                  }
-                  elseif ($index==1) {
-                      $drugi=$key;
-                      $indexSecond=$index;
-                  }
-                  else{
-                    if($index%2==0){
-                        $prvi=$key;
-                         $indexFirst=$index;
-                    }else{
-                        $drugi=$key;
-                        $indexSecond=$index;
-                    }
-                  }
+                //if index is even find number in key and put it as number1 else put it as number 2
+                //every even number is key every odd number is value to compare
+                if($index%2==0){
+                     $num1=preg_replace('/[^0-9]/', '', $key);
+                     $rememberKey1=$key;
+                     $rememberValue1=$value;
+                }else{
+                    $num2=preg_replace('/[^0-9]/', '', $key);
+                    $rememberKey2=$key;
+                    $rememberValue2=$value;
+                }
 
-                  if($prvi != "" && $drugi != ""){
-                        $pair=array($indexFirst=>$prvi,$indexSecond=>$drugi);
+                //if number 1 is different than number 2 increase index skip everything else otherwise print pair of key val numbers then increase index
+                //put in new list only values which are equals
+                if($num1!=$num2){
+                     $index++;
+                    continue;
+                }else{
 
-                        foreach ($pair as $pkey => $pvalue) {
-                            $isFirstLetterIsk=($pvalue[0]==="k")?true:false;
-                            $isSecondLetterIsv=(next($pair)[0]==="v")?true:false;
+                    $new_data[$rememberKey1]=$rememberValue1;
+                    $new_data[$rememberKey2]=$rememberValue2;
 
-                            if($isFirstLetterIsk != $isSecondLetterIsv){
-                                $keysForRemove[$pkey]=$pvalue;
-                            }
-
-                            break;
-
-
-                        }
-
-                  }
-                 // echo "Prvi:".$prvi."<br>"."Drugi:".$drugi."<br>";
-                  $index++;
+                }
+                $index++;
             }
 
-            print_r($keysForRemove);
-
+            dd($new_data);
 
 
 
