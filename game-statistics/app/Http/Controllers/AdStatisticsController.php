@@ -210,10 +210,16 @@ class AdStatisticsController extends Controller
                 if($num1!=$num2){
                      $index++;
                     continue;
-                }else{
+                }
+                else{
 
                     $new_data[$rememberKey1]=$rememberValue1;
                     $new_data[$rememberKey2]=$rememberValue2;
+
+                    $rememberKey1="";
+                    $rememberKey2="";
+                    $rememberValue1="";
+                    $rememberValue2="";
 
                 }
                 $index++;
