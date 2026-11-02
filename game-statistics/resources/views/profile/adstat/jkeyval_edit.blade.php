@@ -18,6 +18,7 @@
             @endif
         </p>
 
+        <p>{{ __('To remove fields, click and delete key, values or both') }}</p>
     </x-slot>
 
     <div class="py-12">
@@ -66,13 +67,13 @@
 
 
 
-                                <div class="flex items-center ps-3">
+                             {{--     <div class="flex items-center ps-3">
                                     <input id="remove_fields[]" type="checkbox" value="{{ $index }}"
                                         name="remove_fields[]"
                                         class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
                                     <label for="remove_fields[]"
                                         class="w-full py-3 ms-2 text-sm font-medium text-heading">Remove</label>
-                                </div>
+                                </div> --}}
 
                             @php
                                 $index++;

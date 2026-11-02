@@ -164,7 +164,7 @@ class AdStatisticsController extends Controller
             $data=array();
             $fileName=$request->input('file_name');
             $gameService->setFileUrl($fileName);
-            $removeData=$request->input('remove_fields');
+            //$removeData=$request->input('remove_fields');
               //filter null or empty values from keys or values
              foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
