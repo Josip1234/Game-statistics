@@ -112,7 +112,7 @@ class GameService{
                     $v="";
                  }
              }
-             dd($games);
+
              $this->saveGameAStat($games);
         }
 

@@ -229,43 +229,11 @@ class AdStatisticsController extends Controller
                 $index++;
             }
 
-            $sortedDataByKeys=array();
-            //need to have for example times drowned:15 key must be first not value
-            //sorting algorhitm implementation
-            $index=0;
-
-            foreach ($new_data as $k => $v) {
-                if($index%2==0){ //pokazivač na parove key val svaki parni je key
-                    if($k[0]==="k"){ //u slučaju da je ključ k jednak k
-                       $key1=$k;  //key1 pokazivač na key u paru
-                       $value1=$v; //value1 pokazivač na value u paru
-                       $index++;  //uvećaj index prilikom svake iteracije
-                    }else{
-                       $key2=$k;
-                       $value2=$v;
-                       $index++;
-                    }
-                }else{    //neprani predstavlja vrijednost
-                     if($k[0]==="v"){
-                        $key2=$k;
-                        $value2=$v;
-                        $index++;
-
-                    }else{
-                       $key1=$k;
-                       $value1=$v;
-                       $index++;
-                    }
-
-                 $sortedDataByKeys[$key1]=$value1;
-                 $sortedDataByKeys[$key2]=$value2;
-                }
 
 
-            }
 
-            dd($sortedDataByKeys);
-            $gameService->saveGameAdStatistics($sortedDataByKeys,false);
+
+            $gameService->saveGameAdStatistics($new_data,false);
             return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully edited advanced statistics, file name:'.$fileName);
 
 

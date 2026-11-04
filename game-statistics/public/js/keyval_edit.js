@@ -39,21 +39,8 @@ function addNewTextFields(){
       let parent = document.getElementById("values");
       let label1 = document.createElement("label");
       let label2 = document.createElement("label");
-      let additionalDiv=document.createElement("div");
-      let checkbox=document.createElement("input");
-      let labelForCheckBox=document.createElement("label");
 
-checkbox.setAttribute('id','remove_fields[]');
-checkbox.setAttribute('type','checkbox');
-checkbox.setAttribute('value',index);
-checkbox.setAttribute('name','remove_fields[]');
-checkbox.setAttribute('class','w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft');
-labelForCheckBox.setAttribute('for','remove_fields[]');
-labelForCheckBox.setAttribute('class','w-full py-3 ms-2 text-sm font-medium text-heading');
-labelForCheckBox.textContent='Remove';
-additionalDiv.setAttribute('class','flex items-center ps-3');
-additionalDiv.appendChild(checkbox);
-additionalDiv.appendChild(labelForCheckBox);
+
 
 input.setAttribute('type', 'text');
 input2.setAttribute('type', 'text');
