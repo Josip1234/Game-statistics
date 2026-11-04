@@ -69,8 +69,8 @@ class GameService{
         return $array;
     }
 
-    public function saveGameAdStatistics(array $data){
-
+    public function saveGameAdStatistics(array $data, bool $loadPreviousData){
+        if($loadPreviousData===true){
         $games=$this->loadGamesStat();
         $maxId=0;
         foreach ($games as $game) {
@@ -92,7 +92,30 @@ class GameService{
         }
        // $json.="}]";
        // print_r($games);
-        $this->saveGameAStat($games);
+       $this->saveGameAStat($games);
+        }else{
+             $games=array();
+             $k="";
+             $v="";
+             $index=0;
+             foreach ($data as $key => $value) {
+                 if($index%2==0){
+                    $k=$value;
+                    $index++;
+                 }else{
+                    $v=$value;
+                    $index++;
+                 }
+                 if($k != "" && $v!=""){
+                    $games[$k]=$v;
+                    $k="";
+                    $v="";
+                 }
+             }
+             dd($games);
+             $this->saveGameAStat($games);
+        }
+
     }
     private function saveGameAStat(array $games):void{
         Storage::put($this->file_url,json_encode($games, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));

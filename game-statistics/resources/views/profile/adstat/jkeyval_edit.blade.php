@@ -27,7 +27,7 @@
                 <div class="p-6 text-gray-900">
                     @include('layouts.navigation2')
                     @if (request()->routeIs('advanced.statistics.editJData'))
-                        <form method="post" action="{{ route('advanced.statistics.updateJData') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('advanced.statistics.updateJData',$statistics) }}" class="mt-6 space-y-6">
                     @endif
                     @csrf
                     <div id="values">

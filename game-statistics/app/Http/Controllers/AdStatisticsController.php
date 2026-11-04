@@ -52,17 +52,19 @@ class AdStatisticsController extends Controller
             $json=$gameService->returnJsonKeyValues();
             $data=$json->original;
             $dat=$gameService->change_key_val($data);
-            $gameService->saveGameAdStatistics($dat);
+            $gameService->saveGameAdStatistics($dat,true);
                $request->session()->put('file_name',$file_name);
             $request->session()->put('file_url',$file_url);
              return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
     }
+    //before generating new statistic file url will be generated only if there is key values added
      public function ssave_to_json(Request $request, GameService $gameService, Sequel $sequel, Statistics $statistics){
             $arrayData=array();
             $extension='.json';
             $name=str_replace([":"," ","."],"",$sequel->name);
             $file_name=uniqid($name.'_').$extension;
              $file_url='uploads/'.$file_name;
+
 
             foreach ($request->input() as $key => $value) {
                 if($key==="_token") continue;
@@ -72,7 +74,7 @@ class AdStatisticsController extends Controller
             $json=$gameService->returnJsonKeyValues();
             $data=$json->original;
             $dat=$gameService->change_key_val($data);
-            $gameService->saveGameAdStatistics($dat);
+            $gameService->saveGameAdStatistics($dat,true);
             $request->session()->put('file_name',$file_name);
             $request->session()->put('file_url',$file_url);
             return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully saved file: '.$file_name.', file: url: '.$file_url);
@@ -91,6 +93,7 @@ class AdStatisticsController extends Controller
         ]);
     }
     public function create(Statistics $statistics){
+
         return view('profile.adstat.create',[
            'statistics'=>$statistics
         ]);
@@ -146,7 +149,7 @@ class AdStatisticsController extends Controller
         ]);
     }
 
-    public function editAdvancedStatisticData(GameService $gameService,Request $request){
+    public function editAdvancedStatisticData(GameService $gameService,Statistics $statistics,Request $request){
         $file=$request->session()->get('file_url');
         //session forget we will use when data is updated
         //$request->session()->forget('file_url');
@@ -155,10 +158,11 @@ class AdStatisticsController extends Controller
 
         return view("profile.adstat.jkeyval_edit",[
             "data_url"=>$file,
-            "data"=>$data
+            "data"=>$data,
+            "statistics"=>$statistics
         ]);
     }
-    public function saveEditedData(GameService $gameService,Request $request){
+    public function saveEditedData(GameService $gameService,Statistics $statistics,Request $request){
             //data without pair key1 val1 key2 val2 will be automaticcly removed from json
             //empty values for editing are allowed
             $data=array();
@@ -225,7 +229,44 @@ class AdStatisticsController extends Controller
                 $index++;
             }
 
-            dd($new_data);
+            $sortedDataByKeys=array();
+            //need to have for example times drowned:15 key must be first not value
+            //sorting algorhitm implementation
+            $index=0;
+
+            foreach ($new_data as $k => $v) {
+                if($index%2==0){ //pokazivač na parove key val svaki parni je key
+                    if($k[0]==="k"){ //u slučaju da je ključ k jednak k
+                       $key1=$k;  //key1 pokazivač na key u paru
+                       $value1=$v; //value1 pokazivač na value u paru
+                       $index++;  //uvećaj index prilikom svake iteracije
+                    }else{
+                       $key2=$k;
+                       $value2=$v;
+                       $index++;
+                    }
+                }else{    //neprani predstavlja vrijednost
+                     if($k[0]==="v"){
+                        $key2=$k;
+                        $value2=$v;
+                        $index++;
+
+                    }else{
+                       $key1=$k;
+                       $value1=$v;
+                       $index++;
+                    }
+
+                 $sortedDataByKeys[$key1]=$value1;
+                 $sortedDataByKeys[$key2]=$value2;
+                }
+
+
+            }
+
+            dd($sortedDataByKeys);
+            $gameService->saveGameAdStatistics($sortedDataByKeys,false);
+            return redirect()->route('advanced.statistics.adhomepage',$statistics)->with('status','Successfully edited advanced statistics, file name:'.$fileName);
 
 
 
