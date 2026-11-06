@@ -22,4 +22,7 @@ class Profile extends Model
     public function sequel(){
         return $this->belongsTo(Sequel::class);
     }
+    public function game_statistics(){
+        return $this->hasMany(GameStatistic::class);
+    }
 }
