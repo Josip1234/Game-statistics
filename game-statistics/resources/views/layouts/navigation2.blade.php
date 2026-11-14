@@ -160,9 +160,18 @@
                         <x-nav-link :href="route( 'advanced.statistics.sjson_data',[$statistics->sequel_id,$statistics] )">
                         {{ __('Return to sequel json data') }}
                     </x-nav-link>
+
+                 <x-nav-link :href="route( 'advanced.statistics.profile_stats',$statistics )">
+                        {{ __('Map save game to advanced statistics') }}
+                    </x-nav-link>
+
                        @elseif($statistics->game_id!=null && $statistics->sequel_id==null)
                              <x-nav-link :href="route( 'advanced.statistics.json_data',[$statistics->game_id,$statistics] )">
                         {{ __('Return to game json data') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route( 'advanced.statistics.profile_stats',$statistics )">
+                        {{ __('Map save game to advanced statistics') }}
                     </x-nav-link>
                         @endif
                     <x-nav-link :href="route( 'advanced.statistics.adcreate',$statistics )">
