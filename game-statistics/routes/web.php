@@ -141,7 +141,9 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::get('{statistics}/{adstat}/jdindex','readJsonData')->name('readJData');
         Route::get('{statistics}/jdiedit','editAdvancedStatisticData')->name('editJData');
         Route::post('{statistics}/jdiupdate','saveEditedData')->name('updateJData');
-        Route::get('{statistics}/adstatprofindex',[SaveGameAdvStatisticController::class,'home'])->name('profile_stats');
+        Route::get('{game}/{profile}/{adstat}/adstatprofindex',[SaveGameAdvStatisticController::class,'home'])->name('profile_stats');
+        Route::get('{game}/{sequel}/{profile}/{adstat}/adstatprofindexseq',[SaveGameAdvStatisticController::class,'seqHome'])->name('profile_stats_seq');
+
 
   });
   Route::prefix("admin_users")->name('admin.users.')->controller(AdminUserController::class)->middleware(['auth','admin'])->group(function(){

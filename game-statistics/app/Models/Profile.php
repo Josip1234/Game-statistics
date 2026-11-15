@@ -23,6 +23,6 @@ class Profile extends Model
         return $this->belongsTo(Sequel::class);
     }
     public function game_statistics(){
-        return $this->hasMany(GameStatistic::class);
+        return $this->hasMany(GameStatistic::class,"profile_id");
     }
 }
