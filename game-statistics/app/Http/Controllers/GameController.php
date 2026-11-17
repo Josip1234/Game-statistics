@@ -8,13 +8,14 @@ use App\Models\Game_Genre;
 use App\Models\GamePlatform;
 use App\Models\Genre;
 use App\Models\Platform;
+use App\Models\Statistics;
 use App\Models\User;
 
 class GameController extends Controller
 {
     public function homepage(Request $request)
     {
-        $games = Game::with(['genre', 'platform', 'game_genres','game_platforms'])->join('users', 'game.user_id', '=', 'users.id')
+        $games = Game::with(['genre', 'platform', 'game_genres','game_platforms','profiles'])->join('users', 'game.user_id', '=', 'users.id')
             ->select(
                 'game.id',
                 'game.name as gn',
@@ -28,10 +29,11 @@ class GameController extends Controller
             ->orderBy('game.id')
             ->paginate(5);
 
+        $statisticsWithGames=Statistics::with(["games","sequels","astat"])->orderBy("statistics.id")->get();
 
         $page = $request->input("page");
         $idToShow = ($request->input("page") == 1 || !($request->input("page"))) ? 0 : (5 * $page) - 5;
-
+        dd($statisticsWithGames);
         return view('profile.game.index', [
             "games" => $games,
             "id" => $idToShow
