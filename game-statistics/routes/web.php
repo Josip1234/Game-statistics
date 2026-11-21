@@ -140,7 +140,7 @@ Route::middleware(['auth','forget.file.session'])->group(function () {
         Route::delete('{statistics}/{adstat}/delete','delete')->name('addelete');
         Route::get('{statistics}/{adstat}/jdindex','readJsonData')->name('readJData');
         Route::get('{statistics}/jdiedit','editAdvancedStatisticData')->name('editJData');
-        Route::post('{statistics}/jdiupdate','saveEditedData')->name('updateJData'); 
+        Route::post('{statistics}/jdiupdate','saveEditedData')->name('updateJData');
         //need additional url for game sequel or just a game for navigation urls.
         Route::get('{game}/{profile}/{adstat}/adstatprofindex',[SaveGameAdvStatisticController::class,'home'])->name('profile_stats');
         Route::get('{game}/{sequel}/{profile}/{adstat}/adstatprofindexseq',[SaveGameAdvStatisticController::class,'seqHome'])->name('profile_stats_seq');
