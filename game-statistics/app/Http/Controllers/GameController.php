@@ -33,11 +33,25 @@ class GameController extends Controller
 
         $page = $request->input("page");
         $idToShow = ($request->input("page") == 1 || !($request->input("page"))) ? 0 : (5 * $page) - 5;
-        //dd($statisticsWithGames);
+        //remember: 1 game many profiles need to loop trough the array
         //dd($games[1]->profiles[0]->id);
+        //dd($games[1]->profiles[0]->id);
+       /* foreach ($games as $gp) {
+            if((int)count($gp->profiles)!=0){
+                 foreach($gp->profiles as $pids){
+                     dd($pids->id);
+                 }
+            }
+        }
+        exit;
+        */
+
+
         return view('profile.game.index', [
             "games" => $games,
-            "id" => $idToShow
+            "id" => $idToShow,
+            "statgm"=>$statisticsWithGames
+
         ]);
     }
     public function create()

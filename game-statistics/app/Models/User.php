@@ -53,6 +53,6 @@ class User extends Authenticatable
     }
     //one user can have many games
     public function games(){
-        $this->hasMany(Game::class);
+        $this->hasMany(Game::class,"user_id");
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameStatistic extends Model
 {
+
     protected $table="game_statistic";
     protected $fillable = [
         "profile_id",

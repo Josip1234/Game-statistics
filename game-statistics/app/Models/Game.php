@@ -27,7 +27,7 @@ class Game extends Model
     public function sequels(){
         $this->hasMany(Sequel::class);
     }
-    //one game can have more statistics
+    //one game can have more statistics not functional somewhere mistake has been made
     public function statistics(){
         $this->belongsTo(Statistics::class);
     }

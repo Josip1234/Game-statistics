@@ -25,6 +25,7 @@ class Statistics extends Model
        return $this->belongsTo(Sequel::class,"sequel_id","id");
     }
     //stat can be for many games
+    //this is not functional somewhere mistake has been made
     public function games(){
         return $this->belongsTo(Game::class,"game_id","id");
     }

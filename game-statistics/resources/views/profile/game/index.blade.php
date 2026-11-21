@@ -117,19 +117,36 @@
                                                 @if($game->have_sequel===1)
                                                    <a href="{{ route('game.sequel.homepage',$game) }}"><i class="bi bi-arrow-bar-right"></i>S</a> <br>
                                                    {{-- if game has profile print map url otherwise do not print this url --}}
-                                                   @if($game->profiles != null)
-                                                          <a href="#{{ $game->id }}/{{ $game->profile }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
-                                                   @endif
+
+                                                     {{-- <dd>{{ $games[1]->profiles[0]->id }}</dd> --}}
+                                                     @if($game->profiles != null && (int)count($game->profiles)!=0)
+
+
+                                                         @foreach ($game->profiles as $pids)
+
+                                                            {{-- //statgm lista statistike sa videoigrama tu ćemo uzeti id statistike --}}
+
+                                                         <a href="#{{ $game->id }}/{{ $pids->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+
+                                                         @endforeach
+                                                      @endif
+
+
 
                                                 @else
 
                                                    <a href="{{ route('game.statistics.gamStIndex',$game) }}"><i class="bi bi-arrow-bar-right"></i><i class="bi bi-controller"></i><i class="bi bi-123"></i></a> <br>
                                                    <a href="{{ route('game.profile.index',$game) }}"><i class="bi bi-person"></i></a> <br>
                                                    <a href="{{ route('game.sequel.modifications.index',$game) }}"><i class="bi bi-pencil-square"></i><i class="bi bi-controller"></i></a>
-                                                 {{--   @if($game->profiles != null)
-                                                   <a href="#{{ $game->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
-                                                   @endif
+                                                     {{-- if game has save game go to loop show url for mapping statistics and profile--}}
+                                                    {{--   @if($game->profiles != null)
+
+                                                        <a href="#{{ $game->id }}/{{ $game->profile }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                      @endif
                                                     --}}
+
+
+
                                                 @endif
 
 
