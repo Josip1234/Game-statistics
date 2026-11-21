@@ -126,7 +126,15 @@
 
                                                             {{-- //statgm lista statistike sa videoigrama tu ćemo uzeti id statistike --}}
 
-                                                         <a href="#{{ $game->id }}/{{ $pids->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+
+                                                         @foreach ($statgm as $stats)
+                                                                @if($stats->sequels!=null)
+                                                                    @if($game->id===$stats->sequels->id)
+                                                                    <a href="#{{ $game->id }}/{{ $pids->id }}/{{ $stats->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                                    @endif
+                                                                @endif
+
+                                                         @endforeach
 
                                                          @endforeach
                                                       @endif
@@ -139,11 +147,30 @@
                                                    <a href="{{ route('game.profile.index',$game) }}"><i class="bi bi-person"></i></a> <br>
                                                    <a href="{{ route('game.sequel.modifications.index',$game) }}"><i class="bi bi-pencil-square"></i><i class="bi bi-controller"></i></a>
                                                      {{-- if game has save game go to loop show url for mapping statistics and profile--}}
-                                                    {{--   @if($game->profiles != null)
+                                                    @if($game->profiles != null)
 
-                                                        <a href="#{{ $game->id }}/{{ $game->profile }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                        @foreach ($game->profiles as $pidss)
+
+                                                            {{-- //statgm lista statistike sa videoigrama tu ćemo uzeti id statistike --}}
+
+
+                                                         @foreach ($statgm as $stats2)
+                                                                @if($stats2->sequels==null)
+                                                                    @if($game->id===$stats2->game_id)
+                                                                    <a href="#{{ $game->id }}/{{ $pidss->id }}/{{ $stats2->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                                    @endif
+                                                                @endif
+
+                                                         @endforeach
+
+                                                         @endforeach
                                                       @endif
-                                                    --}}
+
+
+
+
+
+
 
 
 
