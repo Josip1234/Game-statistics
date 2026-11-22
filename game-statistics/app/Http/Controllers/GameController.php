@@ -46,7 +46,7 @@ class GameController extends Controller
         exit;
         */
 
-        //dd($statisticsWithGames);
+        //dd($statisticsWithGames[0]->astat[0]);
         return view('profile.game.index', [
             "games" => $games,
             "id" => $idToShow,

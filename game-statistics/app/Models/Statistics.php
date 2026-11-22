@@ -20,6 +20,7 @@ class Statistics extends Model
        "ended_playing"=>"date",
        "hours_played"=>"integer"
     ];
+
     //stat can be for many sequels
     public function sequels(){
        return $this->belongsTo(Sequel::class,"sequel_id","id");

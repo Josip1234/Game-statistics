@@ -130,7 +130,12 @@
                                                          @foreach ($statgm as $stats)
                                                                 @if($stats->sequels!=null)
                                                                     @if($game->id===$stats->sequels->id)
-                                                                    <a href="#{{ $game->id }}/{{ $pids->id }}/{{ $stats->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                                       @foreach($stats->astat as $astat2)
+
+                                                                             {{--  <a href="#{{ $game->id }}/{{ $pids->id }}/{{ $stats->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br> --}}
+                                                                            <a href="{{ route('advanced.statistics.profile_stats_seq',[$game,$stats->sequels,$pids,$astat2]) }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                                   @endforeach
+
                                                                     @endif
                                                                 @endif
 
@@ -157,7 +162,12 @@
                                                          @foreach ($statgm as $stats2)
                                                                 @if($stats2->sequels==null)
                                                                     @if($game->id===$stats2->game_id)
-                                                                    <a href="#{{ $game->id }}/{{ $pidss->id }}/{{ $stats2->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                                   {{-- <a href="#{{ $game->id }}/{{ $pidss->id }}/{{ $stats2->id }}" class="text-blue-600">Map game advanced statistic and profile</a> <br> --}}
+                                                                   @foreach($stats2->astat as $astat)
+                                                                            <a href="{{ route('advanced.statistics.profile_stats',[$game,$pidss,$astat]) }}" class="text-blue-600">Map game advanced statistic and profile</a> <br>
+                                                                   @endforeach
+
+
                                                                     @endif
                                                                 @endif
 
