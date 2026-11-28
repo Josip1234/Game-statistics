@@ -29,7 +29,10 @@
            <div>
             <x-input-label for="save_game_file" :value="__('Upload save game file')" />
 
-            <x-text-input id="save_game_file" name="save_game_file" type="text" class="mt-1 block w-full" :value="old('save_game_file')" autocomplete="off" />
+          <input type="file" name="save_game_file" value="{{ old('save_game_file') }}" class="mt-1 block w-full" id="save_game_file">
+            @error('save_game_file')
+                <p class="mt-2">{{ $message }}</p>
+            @enderror
 
             <x-input-error :messages="$errors->get('save_game_file')" class="mt-2" />
         </div>
